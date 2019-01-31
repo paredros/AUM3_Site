@@ -1,0 +1,65 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% if data.type == "long" %}
+
+        <div class="container-fluid blackAUM" style="margin-top: -100px">
+            <div class="row slideInUp wow">
+                <div class="col-1"></div>
+                <div class="col-9" >
+                    <div class="row backgroundWhite" style="height: auto;">
+                        <div class="col-md-4 col-xs-12 ApplyButton m-0 p-0">
+                            <h1>{{ settings.home.ApplyBanner.bigtext }}</h1>
+                            <h4><img class="_replace" src="{% static 'icons/down-arrow.png' %}"></h4>
+                            {% if settings.home.ApplyBanner.useTwolines %}
+                                <h2>{{ settings.home.ApplyBanner.line1|safe }}</h2>
+                                <h3>{{ settings.home.ApplyBanner.line2|safe }}</h3>
+                            {% else %}
+                                <h3>{{ settings.home.ApplyBanner.line1|safe }}</h3>
+                            {% endif %}
+                            <div class="Space-25"></div>
+                            <div class="m-0 p-0">
+                                <div class="BarraAnim_Idle"></div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-1 d-none d-md-block mt-4 mb-4">
+                            <div class="lineaVertical"></div>
+                        </div>
+                        <div class="col-md-7 d-none d-md-block BannerLong">
+                            {% if data.textType == "double" %}
+                                <h1>{{ data.text|richtext }}</h1>
+                                <p>
+                                    {{ data.text2|richtext }}
+                                </p>
+                                <h6><img src="{% static 'icons/FlechaRight1.png' %}"></h6>
+                            {% else %}
+                                <h2>{{ data.text|richtext }}</h2>
+                                <h6><img src="{% static 'icons/FlechaRight1.png' %}"></h6>
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    <script>
+        function ApplyButtonActivation() {
+            $(".ApplyButton").hover(function() {
+                $(this).css('cursor','pointer');
+                $(this).addClass('backgroundOver1_force');
+                $(this).addClass('text-white');
+                $(this).find('img').attr("src","{% static 'icons/down-arrow-2.png' %}");
+                $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
+            }, function () {
+                $(this).find('img').attr("src","{% static 'icons/down-arrow.png' %}");
+                $(this).removeClass('backgroundOver1_force');
+                $(this).removeClass('text-white');
+                $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
+            });
+
+    }
+    </script>
+{% elif data.type == "short" %}
+{% endif %}
