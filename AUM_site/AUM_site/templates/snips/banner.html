@@ -7,7 +7,7 @@
                 <div class="col-1"></div>
                 <div class="col-9" >
                     <div class="row backgroundWhite" style="height: auto;">
-                        <div class="col-md-4 col-xs-12 ApplyButton m-0 p-0">
+                        <div class="col-md-4 col-xs-12 ApplyButton m-0 p-0" onclick="window.open('{{ settings.home.ApplyBanner.link |safe }}');">
                             <h1>{{ settings.home.ApplyBanner.bigtext }}</h1>
                             <h4><img class="_replace" src="{% static 'icons/down-arrow.png' %}"></h4>
                             {% if settings.home.ApplyBanner.useTwolines %}
@@ -44,22 +44,5 @@
                 <div class="col-2"></div>
             </div>
         </div>
-    <script>
-        function ApplyButtonActivation() {
-            $(".ApplyButton").hover(function() {
-                $(this).css('cursor','pointer');
-                $(this).addClass('backgroundOver1_force');
-                $(this).addClass('text-white');
-                $(this).find('img').attr("src","{% static 'icons/down-arrow-2.png' %}");
-                $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
-            }, function () {
-                $(this).find('img').attr("src","{% static 'icons/down-arrow.png' %}");
-                $(this).removeClass('backgroundOver1_force');
-                $(this).removeClass('text-white');
-                $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
-            });
-
-    }
-    </script>
 {% elif data.type == "short" %}
 {% endif %}

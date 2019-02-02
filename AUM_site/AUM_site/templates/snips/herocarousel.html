@@ -17,7 +17,7 @@
 <div id="carouselHero" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
       {% for hc in data %}
-        {% image hc.value.image width-400 as tmp_photo %}
+        {% image hc.value.image width-1920 as tmp_photo %}
         {% if forloop.first %}
             <div class="carousel-item active">
         {% else %}
@@ -31,17 +31,25 @@
                     background-color: #121212;
                     background-image: url('{{ tmp_photo.url }}');
                     background-size: cover;
-                    background-position: center; ">
+                    background-position: center;
+                    ">
                 <!--img class="d-block w-auto" src="{{ tmp_photo.url }}" alt="slide" style="height: 100vh;"-->
             </div>
-            <div class="carousel-caption d-none d-block d-flex text_base text_shadow_black" style="
-                font-size:6vw;
-                bottom: 30%;
-                top:10%;
-                right: 30%;
-                padding: unset;
-                text-align: left;
-                ">
+            <div class="inline-block" style="
+                    position: absolute;
+                    width: 100vw;
+                    height: 100vh;
+                    min-height: 500px;
+                    top: 0px;
+                    left: 0px;
+                    background-image: linear-gradient(
+                     rgba(0, 74, 135,{{ hc.value.tintBlue }}),
+                     rgba(0, 74, 135,{{ hc.value.tintBlue }})
+                     );
+                        ">
+
+            </div>
+            <div class="carousel-caption d-none d-block d-flex text_base text_shadow_black HeroText1" >
                 <div style="align-self: flex-end">
                      {{ hc.value.heading | richtext }}
                 </div>

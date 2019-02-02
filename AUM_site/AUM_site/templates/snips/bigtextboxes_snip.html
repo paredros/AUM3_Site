@@ -1,0 +1,48 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container-fluid mt-5">
+<div class="row">
+<div class="col-auto col-lg-1 col-xl-2"></div>
+<div class="col-12 col-lg-10 col-xl-8">
+    <div class="d-md-flex justify-content-between SpaceMin-400 zoomIn wow">
+        {% for box in data.boxes %}
+            <div class="p-1 MiFlex_Even p-2" >
+                {% if box.value.has_link %}
+                    {% comment %}
+                    {% if value.url.type == "internal" %}
+                        {% if value.url.anchor %}
+                            <div class="MaltaTextoHolder IsButton" onclick="window.location='{% url value.url.dir value.url.param %}#{{ value.url.anchor }}';">
+                        {% else %}
+                            <div class="MaltaTextoHolder IsButton" onclick="window.location='{% url value.url.dir value.url.param %}';">
+                        {% endif %}
+                    {% elif value.url.type == "external" %}
+                        {% if value.url.anchor %}
+                            <div class="p-1 MiFlex_Even IsButton" onclick="window.location='{{ value.url.dir }}#{{ value.url.anchor }}';">
+                        {% else %}
+                            <div class="p-1 MiFlex_Even IsButton" onclick="window.location='{{ value.url.dir }}';">
+                        {% endif %}
+                    {% endif %}
+                    {% endcomment %}
+                    <div class="MaltaTextoHolder IsButton" onclick="window.location='{% pageurl box.value.link %}';">
+                {% else %}
+                    <div class="MaltaTextoHolder">
+                {% endif %}
+                    <div class="MaltaTextoHolderBarra">
+                        <div class="BarraAnim_Idle"></div>
+                    </div>
+                    <!--h1>{{ value.title|safe }}</h1>
+                    <p>
+                        {{ value.body|safe }}
+                    </p-->
+                    {{ box.value.text }}
+                    <div class="d-lg-none Space-10"></div>
+                    <div class="Space-25"></div>
+                    <img src="{% static 'icons/FlechaRight2.png' %}">
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="col-auto col-lg-1 col-xl-2"></div>
+</div>
+</div>

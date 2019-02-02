@@ -1,0 +1,74 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<!--div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <div class="d-flex">
+                {% for card in blocks1.cards %}
+                    {% if card.hasbutton %}
+                        {% if card.url.type == "internal" %}
+                            {% if card.url.anchor %}
+                                <div class="p-1 MiFlex_Even IsButton" onclick="window.location='{% url card.url.dir card.url.param %}#{{ card.url.anchor }}';">
+                            {% else %}
+                                <div class="p-1 MiFlex_Even IsButton" onclick="window.location='{% url card.url.dir card.url.param %}';">
+                            {% endif %}
+                        {% elif card.url.type == "external" %}
+                            {% if card.url.anchor %}
+                                <div class="p-1 MiFlex_Even IsButton" onclick="window.location='{{ card.url.dir }}#{{ card.url.anchor }}';">
+                            {% else %}
+                                <div class="p-1 MiFlex_Even IsButton" onclick="window.location='{{ card.url.dir }}';">
+                            {% endif %}
+                        {% endif %}
+
+                    {% else %}
+                        <div class="p-1 MiFlex_Even">
+                    {% endif %}
+                    <div class="pages_VerticalCard text-center h-100 zoomIn wow {{ card.hasbutton|yesno:"OnHoverGrey, " }}">
+                        <h1 class="darkgreyAUM">
+                            {{ card.toptext|safe }}
+                        </h1>
+                    <h2 class="darkgreyAUM">{{ card.midtext|safe }}</h2>
+                    <div class="pages_VerticalCard_line"></div>
+                        <div>
+                            <h3>{{ card.bottomtext|safe }}
+                            </h3>
+                        </div>
+                        <div class="Space-10"></div>
+                            <div class="MoreButton MoreButton_H30 text-left ml-lg-2">
+                                <div class="MoreButton_Over MoreButton_H30">
+                                    Go
+                                    <div class="MoreButtonBarra MoreButtonBarra_H30 MoreButtonBarra_50">
+                                        <div class="BarraAnim_Idle"></div>
+                                    </div>
+                                </div>
+                                {% if button_coloricon == 'white' %}
+                                    <img src="{% static 'icons/FlechaRight2White.png' %}">
+                                {% else %}
+                                    <img src="{% static 'icons/FlechaRight2.png' %}">
+                                {% endif %}
+                            </div>
+                            <div class="Space-10"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div-->
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 col-md-auto col-lg-1 col-xl-2"></div>
+        <div class="col-8 col-md-12 col-lg-10 col-xl-8">
+            <div class="d-md-flex">
+                {% include "snips/theecolumnsmini_item.html" with card=data.column_one %}
+                {% include "snips/theecolumnsmini_item.html" with card=data.column_two %}
+                {% include "snips/theecolumnsmini_item.html" with card=data.column_three %}
+            </div>
+        </div>
+        <div class="col-2 col-md-auto col-lg-1 col-xl-2"></div>
+    </div>
+</div>

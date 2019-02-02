@@ -1,0 +1,34 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<script>
+
+    //var controller = new ScrollMagic.Controller({loglevel: 3});
+    var controller = new ScrollMagic.Controller();
+    var pin_holder;
+    {% for effect in effects %}
+        {% if effect.block_type == 'pin_color' %}
+            pin_holder = new ScrollMagic.Scene({
+                        triggerElement: "#{{ effect.value.anchor }}",
+                        triggerHook: "{{ effect.value.trigger_hook }}",
+                        duration: "{{ effect.value.duration }}",
+                    })
+            {% if effect.value.push_followers %}
+                        .setPin("#{{ effect.value.anchor }}",{pushFollowers:true})
+                {% else %}
+                        .setPin("#{{ effect.value.anchor }}",{pushFollowers:false})
+                {% endif %}
+                        .setTween("body", {backgroundColor: "{{ effect.value.color_bg.color }}"}) // the tween durtion can be omitted and defaults to 1
+                        //.addIndicators() // add indicators (requires plugin)
+                        .addTo(controller);
+
+        {% elif effect.block_type == 'unround_carousel' %}
+            pin_holder = new ScrollMagic.Scene({triggerElement:"#{{ effect.value.anchor }}", triggerHook: "0", duration: 300})
+                                        .setTween(".CarouselTest", {borderRadius:"0%",ease:Power0.easeNone})
+										.addTo(controller);
+            pin_holder = new ScrollMagic.Scene({triggerElement:"#{{ effect.value.anchor }}", triggerHook: "0", duration: 300, loglevel: 3})
+                                        .setTween("#{{ effect.value.anchor }}_internal",{width:"100%",ease:Power0.easeNone})
+										.addTo(controller);
+        {% endif %}
+    {% endfor %}
+
+</script>

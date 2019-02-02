@@ -1,0 +1,26 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container">
+    <div class="d-flex justify-content-between flex-wrap">
+        {% for photo in data.images %}
+            <div class="p-2 MiFlex_Even">
+                <div class="text-center">
+                    <a href="javascript:$('#Instagram_{{ data.key }}{{ forloop.counter }}').addClass('LightBoxShow')">
+                        {% image photo.value.image fill-400x400 as tmp_photo %}
+                        <img src="{{ tmp_photo.url }}" class="rounded-circle InstagramImg">
+                        <!--img src="{% static photo.img %}" class="rounded-circle InstagramImg"-->
+                    </a>
+
+                </div>
+            </div>
+            <div id="Instagram_{{ data.key }}{{ forloop.counter }}" class="LightBox"
+                 onclick="$(this).removeClass('LightBoxShow')">
+                <div class="LightBoxHolder">
+                    {% image photo.value.image width-1920 as tmp_photo %}
+                    <img class="img-fluid" src="{{ tmp_photo.url }}">
+                </div>
+                <h1>{{ photo.value.text | safe }}</h1>
+            </div>
+        {% endfor %}
+    </div>
+</div>

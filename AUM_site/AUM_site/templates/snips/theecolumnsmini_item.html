@@ -1,0 +1,48 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+{% if card.has_link %}
+    <div class="p-1 MiFlex_Even IsButton" onclick="window.location='{% pageurl card.link %}';">
+
+{% else %}
+    <div class="p-1 MiFlex_Even">
+{% endif %}
+<div class="pages_VerticalCard text-center h-100 zoomIn wow {{ card.has_link|yesno:"OnHoverGrey, " }} ">
+{% if card.type_text_top == "small" %}
+    <h1 class="darkgreyAUM">
+        {{ card.text_top|richtext }}
+    </h1>
+{% elif  card.type_text_top == "big" %}
+{% endif %}
+{% if card.text_big_color == "dark" %}
+    <h2 class="darkgreyAUM">{{ card.text_big|safe }}</h2>
+{% elif card.text_big_color == "white" %}
+    <h2 class="text-white">{{ card.text_big|safe }}</h2>
+{% elif card.text_big_color == "cyan" %}
+    <h2 class="cyanAUM">{{ card.text_big|safe }}</h2>
+{% endif %}
+<div class="pages_VerticalCard_line"></div>
+    <div>
+        <h3>{{ card.text_mini|richtext }}
+        </h3>
+    </div>
+    <div class="d-none d-md-block">
+        <div class="Space-10"></div>
+    </div>
+
+        <div class="MoreButton MoreButton_H30 text-left ml-3 ml-md-2">
+            <div class="MoreButton_Over MoreButton_H30">
+                Go
+                <div class="MoreButtonBarra MoreButtonBarra_H30 MoreButtonBarra_50">
+                    <div class="BarraAnim_Idle"></div>
+                </div>
+            </div>
+            {% if button_coloricon == 'white' %}
+                <img src="{% static 'icons/FlechaRight2White.png' %}">
+            {% else %}
+                <img src="{% static 'icons/FlechaRight2.png' %}">
+            {% endif %}
+        </div>
+        <div class="Space-10"></div>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div id="{{ data.anchor }}" >
+    <div id="{{ data.anchor }}_internal" class="mx-auto CarouselValue_Holder">
+        <div id="{{ data.anchor }}_click" class="carousel slide carousel-fade" data-ride="carousel">
+          <ol class="carousel-indicators">
+              {% for image in data.images %}
+            <!--li data-target="#CarouselValue_click" data-slide-to="0" class="active"></li>
+            <li data-target="#CarouselValue_click" data-slide-to="1"></li>
+            <li data-target="#CarouselValue_click" data-slide-to="2"></li-->
+                  <li data-target="#{{ data.anchor }}_click {{ forloop.first|yesno:'active, ' }}" data-slide-to="{{ forloop.counter0 }}"></li>
+
+              {% endfor %}
+          </ol>
+          <div id="{{ data.anchor }}_Trigger" class="carousel-inner">
+              {% for image in data.images %}
+                  {% comment %}
+            <div class="carousel-item active">
+              <div class="CarouselTest" style="background-image: url({% static forcedata.img1 %})"></div>
+            </div>
+            <div class="carousel-item">
+                <div class="CarouselTest" style="background-image: url({% static forcedata.img2 %})"></div>
+            </div>
+            <div class="carousel-item">
+                <div class="CarouselTest" style="background-image: url({% static forcedata.img3 %})"></div>
+            </div>
+                {% endcomment %}
+                  {% image image.value width-1920 as tmp_photo %}
+                  <div class="carousel-item {{ forloop.first|yesno:'active, ' }}">
+                    <div class="CarouselTest" style="background-image: url('{{ tmp_photo.url }}');"></div>
+                </div>
+              {% endfor %}
+                <h1 class="w-100 text-center">{{ data.text_big }}</h1>
+          </div>
+          <a class="carousel-control-prev" href="#{{ data.anchor }}_click" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#{{ data.anchor }}_click" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid p-lg-5"><br></div>
+<div class="container-fluid mt-lg-5"><br></div>
+<div class="container-fluid p-lg-5"><br></div>
+    <!-- GOTO_OUR_VALUES-->
+<div class="container-fluid blackAUM">
+    <div class="row">
+        <div class="col-xl-1"></div>
+        <div class="col-md-12 col-xl-10">
+            {% if data.use_banner %}
+            <div id="" class="row CarouselBanner">
+                {% if data.use_button %}
+                <div class="col-md-4 BannerButton" onclick="window.location='{% pageurl data.link_button %}';">
+
+
+
+                    {% comment %}
+                <div class="col-lg-4 BannerButton" onclick="window.location='{% url forcedata.url.dir forcedata.url.param %}';">
+                {% endcomment %}
+                    <h1>
+                        {{ data.button_text_big |safe }}
+                    </h1>
+                    <h4><img src="{% static 'icons/down-arrow.png' %}"></h4>
+                    <h5>{{ data.button_text_line1 | safe }}</h5>
+                    <h3>{{ data.button_text_line2 |safe }}</h3>
+                    <div class="Space-10"></div>
+                    <div class="BannerButtonBarra">
+                        <div class="BarraAnim_Idle"></div>
+                    </div>
+                </div>
+                <!--div class="d-none d-md-block col-md-1"-->
+                <div class="col-md-1">
+                    <div class="lineaVertical"></div>
+                </div>
+                <div class="backgroundWhite col-md-7">
+                {% else %}
+                <div class="backgroundWhite col-md-12">
+                {% endif %}
+                    <!--h2>{{ forcedata.bannerExplain1 | safe}}</h2>
+                    <p>
+                        {{ forcedata.bannerExplain2 | safe}}
+                    </p-->
+                    {{ data.text_line1 }}
+                    <div class="Space-25"></div>
+                    <h6 class="d-none d-md-block"><img src="{% static 'icons/FlechaRight1.png' %}"></h6>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-xl-1"></div>
+    </div>
+</div>

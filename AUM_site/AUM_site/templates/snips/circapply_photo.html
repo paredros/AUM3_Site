@@ -1,0 +1,33 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container-fluid">
+    <div id="{{ data.idHash }}" class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="CentralImageHolder text-white fadeInUp wow" onclick="window.open('{{ settings.home.ApplyBanner.link |safe }}');">
+                <!--div class="CentralImage" style="background-image: url({% static 'imgtest/img_central_apply.jpg' %})"-->
+                {% image data.image width-500 as tmp_photo %}
+                <div class="CentralImage" style="background-image: url({{ tmp_photo.url }})">
+                    <div class="CentralImageOver"></div>
+                </div>
+                    <div class="CentralImageBarra">
+                        <div class="BarraAnim_Idle"></div>
+                    </div>
+                {% comment %}
+                <h1>{{ settingsapply.call|safe }}</h1>
+                <h2>{{ settingsapply.landing1|safe }}</h2>
+                <h3>{{ settingsapply.landing2|safe }}</h3>
+                {% endcomment %}
+
+                <h1>{{ settings.home.ApplyBanner.bigtext }}</h1>
+                {% if settings.home.ApplyBanner.useTwolines %}
+                    <h2>{{ settings.home.ApplyBanner.line1|safe }}</h2>
+                    <h3>{{ settings.home.ApplyBanner.line2|safe }}</h3>
+                {% else %}
+                    <h3>{{ settings.home.ApplyBanner.line1|safe }}</h3>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>

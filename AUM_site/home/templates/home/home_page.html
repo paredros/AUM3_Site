@@ -52,15 +52,47 @@ Delete the line below if you're just getting started and want to remove the welc
     {% include "snips/herocarousel.html" with data=home_page.herocarrousel %}
     <div class="HeroLogo">
         <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
-        {% comment %}
-        {% image settings.home.GlobalSettings.logoTopGeneral width-200 as tmp_photo %}
-        <img src="{{ tmp_photo.url }}">
-        {% endcomment %}
     </div>
     {% if home_page.herobanner %}
         {% include "snips/banner.html" with data=home_page.herobanner.0.value %}
     {% endif %}
+
+    {% with blocks=home_page.body %}
+
+        {% for block in blocks %}
+            {% if block.block_type == 'programs_list' %}
+                {% include "snips/programs_list.html" with data=programs%}
+            {% elif block.block_type == 'circle_apply_with_photo' %}
+                {% include "snips/circapply_photo.html" with data=block.value%}
+            {% elif block.block_type == 'vertical_space' %}
+                {% include "snips/vertical_space.html" with data=block.value%}
+            {% elif block.block_type == 'three_columns_mini' %}
+                {% include "snips/threecolumnsmini.html" with data=block.value%}
+            {% elif block.block_type == 'central_circle' %}
+                {% include "snips/centralcirc_snip.html" with data=block.value%}
+            {% elif block.block_type == 'circle_image_block' %}
+                {% include "snips/instagramphotos.html" with data=block.value%}
+            {% elif block.block_type == 'big_text_boxes' %}
+                {% include "snips/bigtextboxes_snip.html" with data=block.value%}
+            {% elif block.block_type == 'carousel_with_banner' %}
+                {% include "snips/carousel_force1_snip.html" with data=block.value%}
+            {% else %}
+                {% comment %}
+                {{ block.block_type }}
+               <section class="block-{{ block.block_type }}">
+                   {{ block }}
+               </section>
+               {% endcomment %}
+            {% endif %}
+        {% endfor %}
+
+    {% endwith %}
+
     <h1>HOLA</h1>
     {{ settings.home.ApplyBanner.bigtext }}
 
 {% endblock content %}
+{% block extra_js %}
+    {% include "snips/effects_js.html" with effects=home_page.effects %}
+    {% include "snips/global_js.html" %}
+{% endblock extra_js %}

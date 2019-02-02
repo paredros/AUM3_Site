@@ -1,0 +1,89 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container mt-5" >
+    <div class="row text-center">
+        <!--div class="row "  style="background-color: #ce1731"-->
+    {% for i in "xxxxx" %}
+{% for program in data %}
+    <!--h1>{{ program.programTitle }}</h1>
+    <h2>{{ program.short }}</h2-->
+
+            {% comment %}
+            <div id="CardProgram" class="zoomIn wow CardClass" onclick="window.location='{% url 'programs' program.pk %}';">
+            {% endcomment %}
+            {% image program.imageBase width-400 as tmp_photo %}
+            <div class="CardProgram zoomIn wow CardClass text-left">
+                {% if program.imageBase %}
+                    <div class="ProgramImgResponsive" style="background-image: url({{tmp_photo.url}})">
+                {% else %}
+                    <!--div class="ProgramImgResponsive" style="background-color: {{ program.backgroundColorMini }}"-->
+                {% endif %}
+                        <p>{{ program.letters |safe }}</p>
+                    </div>
+
+                <div class="programTitle">
+                    <h3>{{ program.group |safe }}</h3>
+                    <h1>{{ program.programTitle |safe }}</h1>
+                </div>
+                <h2 class="d-none d-md-block">{{ program.short |safe }}
+                    <br>
+                    <img src="{% static 'icons/FlechaRight2.png' %}">
+                </h2>
+                <div class="CardProgramBarra">
+                    <div class="BarraAnim_Idle"></div>
+                </div>
+            </div>
+
+{% endfor %}
+{% endfor %}
+
+        <!--/div-->
+    </div>
+</div>
+
+<!--script>
+    function CardProgramsActivation(){
+
+        var watcherPrograms;
+
+        function watchPrograms() {
+            $(".CardClass:not(.flagActive)").each(function (index, element) {
+                $(element).removeClass("animated");
+                $(element).removeClass('unblured');
+                $(element).addClass('blured');
+
+            });
+
+        }
+
+        $(".CardClass").hover(function () {
+            $(this).addClass('flagActive');
+            //$(this).find('img').addClass('imgHover');
+            $(this).find('img').attr("src", "{% static 'icons/FlechaRight2White.png' %}");
+            $(this).find('.programTitle').addClass('backgroundOver1_force');
+            $(this).find('h1').addClass('text-white');
+            $(this).find('h3').addClass('text-white');
+            $(this).find('h2').addClass('text-white');
+            $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
+            $(this).find('h2').addClass('backgroundOver1_force');
+            $(this).css('cursor', 'pointer');
+            //$("#CardProgram:not(.flagActive)").addClass( 'blured' );
+            watcherPrograms = setInterval(watchPrograms, 50);
+        }, function () {
+            $(this).removeClass('flagActive');
+            //$(this).find('img').removeClass('imgHover');
+            $(this).find('img').attr("src", "{% static 'icons/FlechaRight2.png' %}");
+            $(this).find('.programTitle').removeClass('backgroundOver1_force');
+            $(this).find('h1').removeClass('text-white');
+            $(this).find('h3').removeClass('text-white');
+            $(this).find('h2').removeClass('text-white');
+            $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
+            $(this).find('h2').removeClass('backgroundOver1_force');
+            clearInterval(watcherPrograms);
+            $(".CardClass:not(.flagActive)").each(function (index, element) {
+                $(element).removeClass('blured');
+                $(element).addClass('unblured');
+            });
+        });
+    }
+</script-->

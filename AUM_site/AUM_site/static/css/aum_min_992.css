@@ -1,3 +1,21 @@
 .ApplyButton h1{
     font-size: 5em !important;
 }
+.HeroText1 {
+    font-size: 6vw;
+}
+.CarouselValue_Holder{
+    width: 100vh;
+}
+
+.CarouselTest {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+.CarouselBanner h2{
+    font-size: 2.5em !important;
+}
+.CarouselBanner p{
+    font-size: 1.5em !important;
+}

@@ -1,4 +1,1 @@
 
-function ButtonsActivaction() {
-    ApplyButtonActivation();
-}

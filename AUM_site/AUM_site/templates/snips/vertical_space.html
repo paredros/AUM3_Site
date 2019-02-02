@@ -1,0 +1,13 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% comment %}
+{% if data.size == "small" %}
+<div class="container-fluid Space-100">
+    {% elif data.size == "medium"%}
+    <div class="container-fluid Space-200">
+    {% elif data.size == "large"%}
+    <div class="container-fluid Space-400">
+    {% endif %}
+{% endcomment %}
+<div class="container-fluid Space-{{ data.size }}">
+</div>
