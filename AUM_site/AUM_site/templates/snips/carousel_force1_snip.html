@@ -1,7 +1,7 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
 <div id="{{ data.anchor }}" >
-    <div id="{{ data.anchor }}_internal" class="mx-auto CarouselValue_Holder">
+    <div id="{{ data.anchor }}_internal" class="mx-auto {{ data.use_round_effect|yesno:"CarouselValue_Holder, CarouselValue_Holder_NoEffect" }}">
         <div id="{{ data.anchor }}_click" class="carousel slide carousel-fade" data-ride="carousel">
           <ol class="carousel-indicators">
               {% for image in data.images %}
@@ -27,10 +27,14 @@
                 {% endcomment %}
                   {% image image.value width-1920 as tmp_photo %}
                   <div class="carousel-item {{ forloop.first|yesno:'active, ' }}">
-                    <div class="CarouselTest" style="background-image: url('{{ tmp_photo.url }}');"></div>
+                    <div class="CarouselTest {{ data.use_round_effect|yesno:" ,CarouselTest_NoEffect" }}" style="background-image: url('{{ tmp_photo.url }}');"></div>
                 </div>
               {% endfor %}
-                <h1 class="w-100 text-center">{{ data.text_big }}</h1>
+                {% if data.text_big_size == "big" %}
+                <h1 class="w-100 text-center px-5">{{ data.text_big }}</h1>
+                {% elif data.text_big_size == "medium" %}
+                    <h2 class="w-100 text-center px-5">{{ data.text_big }}</h2>
+                {% endif %}
           </div>
           <a class="carousel-control-prev" href="#{{ data.anchor }}_click" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -56,19 +60,35 @@
             {% if data.use_banner %}
             <div id="" class="row CarouselBanner">
                 {% if data.use_button %}
+                    {% if data.use_banner_apply %}
+                <div class="col-md-4 BannerButton" onclick="window.location='{{ settings.home.ApplyBanner.link |safe }}';">
+                    {% else %}
                 <div class="col-md-4 BannerButton" onclick="window.location='{% pageurl data.link_button %}';">
-
+                    {% endif %}
 
 
                     {% comment %}
                 <div class="col-lg-4 BannerButton" onclick="window.location='{% url forcedata.url.dir forcedata.url.param %}';">
                 {% endcomment %}
                     <h1>
-                        {{ data.button_text_big |safe }}
+                        {% if data.use_banner_apply %}
+                            {{ settings.home.ApplyBanner.bigtext }}
+                        {% else %}
+                            {{ data.button_text_big |safe }}
+                        {% endif %}
                     </h1>
                     <h4><img src="{% static 'icons/down-arrow.png' %}"></h4>
+                        {% if data.use_banner_apply %}
+                            {% if settings.home.ApplyBanner.useTwolines %}
+                                <h5>{{ settings.home.ApplyBanner.line1|safe }}</h5>
+                                <h3>{{ settings.home.ApplyBanner.line2|safe }}</h3>
+                            {% else %}
+                                <h3>{{ settings.home.ApplyBanner.line1|safe }}</h3>
+                            {% endif %}
+                        {% else %}
                     <h5>{{ data.button_text_line1 | safe }}</h5>
                     <h3>{{ data.button_text_line2 |safe }}</h3>
+                        {% endif %}
                     <div class="Space-10"></div>
                     <div class="BannerButtonBarra">
                         <div class="BarraAnim_Idle"></div>

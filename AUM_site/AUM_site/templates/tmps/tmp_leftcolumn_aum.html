@@ -1,0 +1,5 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% for block in value %}
+    {% include_block block %}
+{% endfor %}

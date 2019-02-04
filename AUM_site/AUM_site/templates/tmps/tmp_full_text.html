@@ -1,0 +1,7 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+<div class="container">
+    <div class="textaum_{{ value.text_size }}" style="color: {{ value.font_color.color }};
+            text-align: {{ value.align }};">
+        <p>{{ value.text | richtext }}</p>
+    </div>
+</div>

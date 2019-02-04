@@ -1,0 +1,12 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% if value.text_color %}
+<div style="color: {{ value.text_color.color }}">
+{% else %}
+<div>
+{% endif %}
+
+    <div class="tempProgram_Bachelor">{{ program_page.group | safe }}</div>
+    <div class="tempProgram_TitleProgram">{{ program_page.programTitle | safe }}</div>
+    <div class="tempProgram_TitleAproval">{{ program_page.detail | safe }}</div>
+</div>

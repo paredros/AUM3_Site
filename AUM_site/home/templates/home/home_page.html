@@ -12,41 +12,6 @@ Delete the line below if you're just getting started and want to remove the welc
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-
-    {% comment %}
-    {% with hccontent=home_page.herocarrousel %}
-        {% for hc in hccontent %}
-            <h1>{{ hc.value.heading }}</h1>
-            {% image hc.value.image width-900 class="img-responsive img-circle" %}
-
-            {% image hc.value.image width-400 as tmp_photo %}
-
-            <img src="{{ tmp_photo.url }}" width="{{ tmp_photo.width }}"
-                height="{{ tmp_photo.height }}" alt="{{ tmp_photo.alt }}" class="rounded-circle" />
-        {% endfor %}
-
-    {% endwith %}
-    {% endcomment %}
-
-{% comment %}
-    {% with blocks=home_page.body %}
-
-        {% for block in blocks %}
-            {% if block.block_type == 'heading' %}
-                <h2>{{ block.value }}</h2>
-            {% else %}
-                {{ block.block_type }}
-               <section class="block-{{ block.block_type }}">
-                   {{ block }}
-               </section>
-            {% endif %}
-        {% endfor %}
-
-    {% endwith %}
-    {% endcomment %}
 
 
     {% include "snips/herocarousel.html" with data=home_page.herocarrousel %}
@@ -76,6 +41,8 @@ Delete the line below if you're just getting started and want to remove the welc
                 {% include "snips/bigtextboxes_snip.html" with data=block.value%}
             {% elif block.block_type == 'carousel_with_banner' %}
                 {% include "snips/carousel_force1_snip.html" with data=block.value%}
+            {% elif block.block_type == 'blog_list'%}
+                {% include "snips/blog_block.html" with data=blogposts%}
             {% else %}
                 {% comment %}
                 {{ block.block_type }}
@@ -88,11 +55,8 @@ Delete the line below if you're just getting started and want to remove the welc
 
     {% endwith %}
 
-    <h1>HOLA</h1>
-    {{ settings.home.ApplyBanner.bigtext }}
 
 {% endblock content %}
 {% block extra_js %}
-    {% include "snips/effects_js.html" with effects=home_page.effects %}
-    {% include "snips/global_js.html" %}
+
 {% endblock extra_js %}

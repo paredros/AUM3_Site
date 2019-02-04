@@ -12,7 +12,8 @@
             <div id="CardProgram" class="zoomIn wow CardClass" onclick="window.location='{% url 'programs' program.pk %}';">
             {% endcomment %}
             {% image program.imageBase width-400 as tmp_photo %}
-            <div class="CardProgram zoomIn wow CardClass text-left">
+            <!--div class="CardProgram zoomIn wow CardClass text-left"-->
+            <div class="CardProgram zoomIn wow CardClass text-left" onclick="window.location='{% pageurl program %}';">
                 {% if program.imageBase %}
                     <div class="ProgramImgResponsive" style="background-image: url({{tmp_photo.url}})">
                 {% else %}

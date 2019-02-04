@@ -1,0 +1,42 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% comment %}
+{% include "snip/button_talk_snip.html" with button_coloricon='white' %}
+{% endcomment %}
+
+<div class="TalkAdmission_holder" onclick="window.open('{{ settings.home.GlobalSettings.talk_to_admission_link |safe }}');">
+    <img class="TalkAdmission_icon" src="{% static 'icons/contact.png' %}" class="img-fluid">
+    <div class="TalkAdmission_text">{{ settings.home.GlobalSettings.talk_to_admission_text | safe }}</div>
+    <div class="MoreButton">
+        <div class="MoreButton_Over">
+            {{ settings.home.GlobalSettings.talk_to_admission_short | safe }}
+            <div class="MoreButtonBarra">
+                <div class="BarraAnim_Idle"></div>
+            </div>
+        </div>
+        {% if value.theme == 'white' %}
+            <img src="{% static 'icons/FlechaRight2White.png' %}">
+        {% else %}
+            <img src="{% static 'icons/FlechaRight2.png' %}">
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="Space-25"></div>
+<div class="row">
+    <!--BUTTON GET LEAFT-->
+    {% if value.has_leaflet %}
+        <div class="col-6">
+            {% include "snips/button_getleaf_snip.html" with value=value %}
+        </div>
+    {% endif %}
+    <!--BUTTON SCHOLAR-->
+
+{% if value.has_scholarship %}
+    <div class="col-6">
+        {% include "snips/button_scholar_snip.html" with value=value %}
+    </div>
+{% endif %}
+
+</div>

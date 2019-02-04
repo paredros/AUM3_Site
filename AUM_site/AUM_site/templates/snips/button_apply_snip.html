@@ -1,0 +1,33 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="HeroBannerApplyButton" onclick="window.open('{{ settings.home.ApplyBanner.link |safe }}');">
+    <table class="Table-FullSize">
+      <tbody>
+        <tr>
+            <td class="align-middle">
+                <h1>
+                    {{ settings.home.ApplyBanner.bigtext }}
+                </h1>
+                <h4><img src="{% static 'icons/down-arrow.png' %}"></h4>
+                {% comment %}
+                {% if not settingsapply.landing1 or settingsapply.landing1 != "" %}
+                    <h2>{{ settingsapply.landing1|safe }}</h2>
+                {% endif %}
+                {% if not settingsapply.landing2 or settingsapply.landing2 != "" %}
+                    <h3>{{ settingsapply.landing2|safe }}</h3>
+                {% endif %}
+                {% endcomment %}
+                {% if settings.home.ApplyBanner.useTwolines %}
+                    <h2>{{ settings.home.ApplyBanner.line1|safe }}</h2>
+                    <h3>{{ settings.home.ApplyBanner.line2|safe }}</h3>
+                {% else %}
+                    <h3>{{ settings.home.ApplyBanner.line1|safe }}</h3>
+                {% endif %}
+                <div class="HeroBannerApplyBarra">
+                    <div class="BarraAnim_Idle"></div>
+                </div>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+</div>

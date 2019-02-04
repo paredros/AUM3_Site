@@ -40,6 +40,63 @@
                 $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
             });
         }
+
+        if ($('._BannerCirculoApply').length) {
+            $("._BannerCirculoApply").hover(function() {
+                $(this).css('cursor','pointer');
+                $(this).parent().addClass('CirculoCentralImageOver');
+                $(this).addClass('text-white');
+                $(this).find('img').attr("src","{% static 'icons/down-arrow-2.png' %}");
+                $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
+            }, function () {
+                $(this).find('img').attr("src","{% static 'icons/down-arrow.png' %}");
+                $(this).parent().removeClass('CirculoCentralImageOver');
+                $(this).removeClass('text-white');
+                $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
+            });
+        }
+        if ($('.BlogItem').length) {
+            $(".BlogItem").hover(function () {
+                $(this).find(".MoreButton_Over").addClass("MoreButton_Over_Active");
+                $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
+            }, function () {
+                $(this).find(".MoreButton_Over").removeClass("MoreButton_Over_Active");
+                $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
+            })
+        }
+
+        if ($('.TalkAdmission_holder').length) {
+            $(".TalkAdmission_holder").hover(function () {
+                $(this).find(".MoreButton_Over").addClass("MoreButton_Over_Active");
+                $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
+            }, function () {
+                $(this).find(".MoreButton_Over").removeClass("MoreButton_Over_Active");
+                $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
+            })
+        }
+        if ($('.SidButtonMini_holder').length) {
+            $(".SidButtonMini_holder").hover(function () {
+                $(this).find(".MoreButton_Over").addClass("MoreButton_Over_Active_40");
+                $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
+            }, function () {
+                $(this).find(".MoreButton_Over").removeClass("MoreButton_Over_Active_40");
+                $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
+            })
+        }
+        if ($('.HeroBannerApplyButton').length) {
+            $(".HeroBannerApplyButton").hover(function() {
+                $(this).css('cursor','pointer');
+                $(this).parent().addClass('CirculoCentralImageOver');
+                $(this).addClass('text-white');
+                $(this).find('img').attr("src","{% static 'icons/down-arrow-2.png' %}");
+                $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
+            }, function () {
+                $(this).find('img').attr("src","{% static 'icons/down-arrow.png' %}");
+                $(this).parent().removeClass('CirculoCentralImageOver');
+                $(this).removeClass('text-white');
+                $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
+            });
+        }
     }
 
     function ApplyButtonActivation() {

@@ -1,0 +1,37 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags wagtailroutablepage_tags%}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="HeroBannerApplyCirculo blackAUM slideInUp wow">
+                <div class="CirculoCentralImage  mx-auto" style="background-color: #ffffff">
+                    <div class="HeroBannerApplyButton _BannerCirculoApply" onclick="window.open('{{ settings.home.ApplyBanner.link |safe }}');">
+                        <table class="Table-FullSize">
+                          <tbody>
+                            <tr>
+                                <td class="align-middle">
+                                    <h1>
+                                        {{ settings.home.ApplyBanner.bigtext }}
+                                    </h1>
+                                    <h4><img class="_replace" src="{% static 'icons/down-arrow.png' %}"></h4>
+
+                                    {% if settings.home.ApplyBanner.useTwolines %}
+                                        <h2>{{ settings.home.ApplyBanner.line1|safe }}</h2>
+                                        <h3>{{ settings.home.ApplyBanner.line2|safe }}</h3>
+                                    {% else %}
+                                        <h3>{{ settings.home.ApplyBanner.line1|safe }}</h3>
+                                    {% endif %}
+
+                                    <div class="HeroBannerApplyBarra">
+                                        <div class="BarraAnim_Idle"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

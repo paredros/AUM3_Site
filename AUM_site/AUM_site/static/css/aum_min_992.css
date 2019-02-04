@@ -19,3 +19,69 @@
 .CarouselBanner p{
     font-size: 1.5em !important;
 }
+.carousel-inner h1{
+    position: absolute;
+    top: 40%;
+    color: white;
+    font-size: 7em;
+    font-weight: 200;
+}
+.carousel-inner h2{
+    position: absolute;
+    top: 20%;
+    color: white;
+    font-size: 5em;
+    font-weight: 200;
+}
+.aumblog_PostContainer{
+    background-color: #FFFFFF;
+    width: 75%;
+    padding: 50px;
+}
+.aumblog_Title{
+    font-size: 3em;
+}
+.HeroGeneralText {
+    font-size: 2em;
+}
+.HeroGeneralMidTitle_rich {
+    font-size: 4em;
+}
+.HeroProgramCircle {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    background-color: #FFFFFF;
+    width: 200px;
+    height: 200px;
+}
+.HeroProgramCircle p{
+    font-family: Roboto, sans-serif;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    line-height: 200px;
+    color: #121212;
+    font-size: 5.5em;
+    font-weight: 900;
+}
+.HeroProgramTitleHolder{
+    position: absolute;
+    left: 220px;
+    height: 200px !important;
+}
+.HeroProgramTitle{
+    width: 55vw;
+    font-size: 3em;
+    line-height: 1em;
+}
+.HeroProgramText {
+    font-size: 2em;
+}
+.SeparatorTwoColumns_dark{
+    border-right: 2px solid #121212;
+}
+.SeparatorTwoColumns_white{
+    border-right: 2px solid #ffffff;
+}

@@ -10,6 +10,15 @@ body {
 b {
     font-weight: 900!important;
 }
+.Space-nano{
+    height: 10px;
+}
+.Space-mini{
+    height: 25px;
+}
+.Space-xsmall{
+    height: 50px;
+}
 .Space-small{
     height: 100px;
 }
@@ -81,6 +90,24 @@ b {
     color: #1ba7c1;
 }
 
+.backgroundImgResponsive{
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    /*min-height: 717px;*/
+}
+
+.easy-fill-screen{
+    width: 100%;
+    height: 100vh;
+}
+
+.ForceMinHeight{
+    min-height: 600px !important;
+}
+.fullViewportHeight{
+    height: 100vh;
+}
 .backgroundWhite{
     background-color: white;
 }
@@ -718,9 +745,9 @@ LIGHT BOX
     /*overflow: hidden;*/
 }
 .CarouselTest_NoEffect{
-    border-radius: 0%;
-    -moz-border-radius: 0%;
-    -webkit-border-radius: 0%;
+    border-radius: 0%!important;
+    -moz-border-radius: 0%!important;
+    -webkit-border-radius: 0%!important;
 }
 
 .carousel-indicators li {
@@ -802,4 +829,614 @@ GRUPO CAROUSEL BANNER
 }
 .CarouselBanner .BannerSuperText strong{
     font-weight: 600 !important;
+}
+.carousel-inner h1{
+    position: absolute;
+    top: 20%;
+    color: white;
+    font-size: 5em;
+    font-weight: 200;
+}
+.carousel-inner h2{
+    position: absolute;
+    top: 20%;
+    color: white;
+    font-size: 2em;
+    font-weight: 200;
+}
+
+/*====================================
+GRUPO BLOG POST
+======================= */
+
+.aumblog_ImageCard{
+    height: 100px;
+}
+.aumblog_PostContainer{
+    background-color: #FFFFFF;
+    width: 100%;
+    padding: 50px;
+}
+.aumblog_PostContainer a{
+    color: #ce1731;
+}
+.aumblog_PostContainer_TopImage{
+    width: 75%;
+    height: auto;
+    padding: 0px;
+    overflow: hidden;
+    display: block!important;
+}
+
+/*.aumblog_PostContainer_TopImage img{
+    object-fit: cover;
+    object-position: center;
+}*/
+.aumblog_PostContainer_TopImage_Holder{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+
+}
+.backBlueAum{
+    color: white!important;
+    background-color: #084b85;
+    border: none!important;
+    transition: all 0.2s ease;
+}
+.backRedAum{
+    color: white!important;
+    background-color: #ce1731;
+    border: none!important;
+    transition: all 0.2s ease;
+}
+.backBlueAum:hover{
+    background-color: #ce1731;
+}
+.backRedAum:hover{
+    background-color: #333333;
+}
+
+.card-img-top-blog-all {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+
+.aumblog_Title{
+    font-size: 1.5em;
+    line-height: 1em;
+    font-weight: 300;
+    background-color: white;
+    padding: 10px;
+    margin: 25px;
+}
+.aumblog_Title strong{
+    font-weight: bold;
+}
+.aumBlog_Related{
+    margin-right: 25px;
+    margin-left: 25px;
+    background-color: white;
+}
+.aumBlog_Related a{
+    color: #333333;
+}
+.aumBlog_ContainerAll{
+    width: 300px;
+}
+.aumBlog_ContainerAll a{
+    color: #ce1731;
+}
+
+.HeroGeneralTitleHolder{
+    /*position: absolute;
+    left: 0px;*/
+    /*height: 240px !important;*/
+    font-size: 1em;
+    line-height: 1em;
+}
+
+.HeroGeneralTitle_rich{
+    width: 60vw;
+    font-size: 8em;
+    line-height: 1em;
+    font-weight: 100!important;
+}
+.HeroGeneralTitle_rich strong{
+    font-weight: 900!important;
+}
+.HeroGeneralMidTitle_rich{
+    width: 60vw;
+    font-size: 2.5em;
+    line-height: 1em;
+    font-weight: 100!important;
+}
+.HeroGeneralText{
+    font-size: 1.5em;
+    line-height: 1em;
+    /*margin-top: 120px;*/
+    font-weight: 200;
+}
+.HeroGeneralText strong{
+    font-weight: 800;
+}
+
+.HeroBannerApplyCirculo{
+    /*margin-top: -200px !important;*/
+    height: 300px;
+
+    margin-top: -150px;
+    text-align: center !important;
+}
+
+.HeroBannerApplyCirculo .CirculoCentralImage{
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    width: 300px;
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    z-index: -100;
+    transition: all 0.5s ease;
+}
+
+.HeroBannerApplyCirculo h1{
+    margin-top: 50px;
+    font-family: 'Saira Condensed', sans-serif;
+    line-height: 0.8;
+    font-weight: 900 !important;
+    font-size: 5em !important;
+}
+.HeroBannerApplyCirculo h2{
+    margin-top: -20px;
+    font-weight: lighter !important;
+    font-size: 1.2em !important;
+}
+.HeroBannerApplyCirculo h3{
+    margin-top: -10px;
+    font-weight: bold !important;
+    font-size: 1.8em !important;
+}
+.HeroBannerApplyCirculo h4 img{
+    margin-top: -25px;
+    width: 20px;
+}
+.HeroBannerApplyCirculo .lineaVertical{
+    margin-top: 35px;
+    height: 230px;
+    width: 50%;
+    border-right: 1px solid #121212;
+}
+.HeroBannerApplyCirculo h5{
+    margin-top: 40px;
+    text-align: left;
+    font-weight: normal !important;
+    font-size: 2.5em !important;
+}
+.HeroBannerApplyCirculo p{
+    margin-top: -5px;
+    text-align: left;
+    font-weight: 200 !important;
+    font-size: 1.5em !important;
+    line-height: 1;
+}
+.HeroBannerApplyCirculo h6 {
+    text-align: left;
+}
+.HeroBannerApplyCirculo h6 img{
+    position: absolute;
+    bottom: 50px;
+    margin-bottom: 0px;
+    width: 80px;
+}
+
+.CirculoCentralImage .HeroBannerApplyBarra{
+    position: relative !important;
+    width: 60% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*====================================
+GRUPO BLOG
+======================= */
+
+.CardBlog {
+    margin: 50px auto;
+    width: 340px;
+    height: 420px;
+    position: relative;
+    transform: scale(1);
+    opacity: 1;
+    transition: all 0.5s;
+}
+
+.CardBlog .BlogImgResponsive{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    width: 340px;
+    background-size: 200%;
+    background-position: center;
+    min-height: 340px;
+    z-index: -100;
+    transition: all 0.5s ease;
+}
+.CardBlog:hover .BlogImgResponsive{
+    background-size: 150%;
+}
+
+.CardBlog .BlogTxtResponsive{
+    position: absolute;
+    width:340px;
+    height:340px;
+     -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    top:0;
+    left: 0px;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.CardBlog:hover .BlogTxtResponsive{
+    cursor: pointer;
+    opacity:1;
+}
+.CardBlog .BlogTxtResponsive h1{
+    margin-top: 30px;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.CardBlog h3{
+    position: absolute;
+    top:350px;
+    font-weight: 200 !important;
+    font-size: 0.5em !important;
+    line-height: 1;
+    width: 290px;
+    background-color: #fff;
+    /*background-color: rgba(255,255,255,0);
+    transition: all 0.5s ease;*/
+}
+.CardBlog h2 {
+    position: absolute;
+    top:365px;
+    font-weight: 200 !important;
+    font-size: 1em !important;
+    line-height: 1;
+    width: 100%;
+    background-color: #fff;
+    /*background-color: rgba(255,255,255,0);
+    transition: all 0.5s ease;*/
+}
+.CardBlog h2 strong{
+    font-weight: 700 !important;
+}
+
+.HeroProgramCircle {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    background-color: #FFFFFF;
+    width: 100px;
+    height: 100px;
+}
+.HeroProgramCircle p{
+    font-family: Roboto, sans-serif;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    line-height: 100px;
+    color: #121212;
+    font-size: 3.5em;
+    font-weight: 900;
+}
+.HeroProgramTitle_rich{
+    width: 55vw;
+    font-size: 4em;
+    line-height: 1em;
+    font-weight: 100!important;
+}
+.HeroProgramTitle{
+    width: 55vw;
+    font-size: 1.5em;
+    line-height: 1em;
+}
+.HeroProgramTitleHolder{
+    position: absolute;
+    left: 120px;
+    height: 100px !important;
+}
+.HeroProgramText{
+    font-size: 1.5em;
+    line-height: 1em;
+    margin-top: 20px;
+}
+.HeroProgramText strong {
+
+    font-weight: 900;
+    /*border-bottom: 1px solid #fff*/
+}
+
+.textaum_giant{
+    font-size: 5em;
+    line-height: 1em;
+}
+.textaum_big{
+    font-size: 4em;
+    line-height: 1em;
+}
+.textaum_medium{
+    font-size: 3em;
+    line-height: 1em;
+}
+.textaum_normal{
+    font-size: 2em;
+    line-height: 1em;
+}
+.textaum_small{
+    font-size: 1em;
+    line-height: 1em;
+}
+
+
+
+
+/*====================================
+TEMPLATE PROGRAMS
+======================= */
+.tempProgram_BigText{
+    font-size: 7em;
+    line-height: 1em;
+    font-weight: 300;
+}
+.tempProgram_BigText strong{
+    font-weight: bold;
+}
+.tempProgram_Bachelor{
+    font-size: 0.8em;
+}
+.tempProgram_TitleProgram{
+    font-size: 1.7em;
+    line-height: 0.9em;
+    font-weight: 600;
+}
+.tempProgram_TitleAproval{
+    margin-top: 5px;
+    font-size: 0.6em;
+}
+.tempProgram_BigYears_holder{
+    height: 103px;
+    /*background-color: #00ad9c;*/
+}
+.tempProgram_BigYears{
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto, sans-serif;
+    font-size: 8em;
+    line-height: 1em;
+}
+.tempProgram_BigYears_sub{
+    position: absolute;
+    bottom: 0px;
+    left: 80px;
+    font-family: 'Muli', sans-serif !important;
+    font-size: 1em !important;
+    line-height: 1em;
+}
+.tempProgram_BigTuition_holder{
+    height: 103px;
+    font-weight: 900;
+    /*background-color: #00FF00;*/
+}
+.tempProgram_BigTuition{
+    position: absolute;
+    bottom: 18px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto, sans-serif;
+    font-size: 3.4em;
+    line-height: 1em;
+}
+.tempProgram_BigTuition_sub{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    font-family: 'Muli', sans-serif !important;
+    font-size: 1em !important;
+    line-height: 1em;
+}
+.tempProgram_BigTuition_Comment{
+    margin-top: 30px;
+    font-size: 0.7em;
+    line-height: 1em;
+}
+.tempProgram_Description2{
+    margin-top: 40px;
+    margin-left: 10px;
+    font-size: 1.5em;
+    line-height: 1em;
+}
+.tempProgram_FlechaDown img{
+    width: 20px;
+}
+.tempProgram_Credits_holder{
+    height: 70px;
+}
+.tempProgram_Credits_Credit{
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto, sans-serif;
+    font-size: 4em;
+    line-height: 1em;
+}
+.tempProgram_Credits_Credit_sub{
+    position: absolute;
+    top: 55px;
+    left: 10px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.5em;
+    line-height: 1em;
+}
+.tempProgram_Credits_Outline{
+    text-align: right;
+    font-size: 2.5em;
+    line-height: 1em;
+}
+/*====================================
+TABS GENERAL
+======================= */
+.tabAUM{
+    border: none;
+}
+.tabAUM .nav-link{
+    /*background-color: #00FF00;*/
+    border-bottom: 4px solid #1ba7c1;
+    font-size: 1.5em;
+
+}
+.tabAUM a{
+    color: #121212!important;
+    line-height: 1em;
+
+
+}
+.tabAUM a:hover{
+    /*background-color: #00ad9c!important;*/
+    border: 0px!important;
+    border-bottom: 4px solid #ce1731 !important;
+}
+.tabAUM .active{
+    border: 0px!important;
+    border-bottom: 4px solid #f4f4a9!important;
+    background-color: #00ad9c;
+    /*background-color: #00ad9c!important;*/
+}
+/*====================================
+TABLAS AUM
+======================= */
+.TableAUM_Title{
+    margin-top: -10px;
+    font-weight: bolder;
+    color: #1ba7c1;
+    margin-bottom: -10px;
+}
+.TableAUM_Item{
+    margin-top: 10px;
+    line-height: 1em;
+}
+.TableAUM_Item_LineBelow{
+    border-bottom: 1px solid #eaebed;
+}
+.TableAUM_Item h1{
+    font-size: 1.2em;
+}
+.TableAUM_Item h2{
+    font-size: 1.2em;
+    font-weight: 900;
+}
+.TableAUM_Item_Detail{
+    margin-top: 10px;
+    margin-bottom: -10px;
+    font-size: 0.7em;
+    color: #a4bac3;
+    line-height: 1em;
+}
+.TableAUM_Total{
+    margin-top: 10px;
+    font-size: 1.3em;
+    color: #a4bac3;
+}
+.TableAUM_Total strong{
+    font-weight: 900;
+}
+/*====================================
+SIDEBUTTONS
+======================= */
+.TalkAdmission_holder{
+    font-size: 0.7em;
+    cursor: pointer;
+}
+.TalkAdmission_icon{
+    width: 80px;
+}
+.TalkAdmission_big{
+    width: 120px;
+}
+.TalkAdmission_text{
+    font-size: 1.5em;
+    margin-top: 10px;
+    line-height: 1em;
+    margin-bottom: 5px;
+}
+.TalkAdmission_text strong{
+    font-weight: 900;
+}
+.SidButtonMini_holder{
+    font-size: 0.5em;
+    cursor: pointer;
+}
+.SidButtonMini_text{
+    font-size: 1.5em;
+    margin-top: 10px;
+    line-height: 1em;
+    margin-bottom: 5px;
+}
+.SidButtonMini_icon{
+    width: 50px;
+}
+.SideApply h1{
+    margin-top: 50px;
+    font-family: 'Saira Condensed', sans-serif;
+    line-height: 0.8;
+    font-weight: 900 !important;
+    font-size: 5em !important;
+}
+.SideApply h2{
+    margin-top: -20px;
+    font-weight: lighter !important;
+    font-size: 1.2em !important;
+}
+.SideApply h3{
+    margin-top: -10px;
+    font-weight: bold !important;
+    font-size: 1.8em !important;
+}
+.SideApply h4 img{
+    margin-top: -25px;
+    width: 20px;
+}
+
+.HeroBannerApplyBarra{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+.SeparatorTwoColumns_dark{
+    /*border-right: 2px solid #121212;*/
+}
+.SeparatorTwoColumns_white{
+    /*border-right: 2px solid #ffffff;*/
 }

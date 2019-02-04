@@ -90,3 +90,85 @@
     border-bottom: none;
     margin-left: 0px;
 }
+.carousel-inner h1{
+    position: absolute;
+    top: 25%;
+    color: white;
+    font-size: 6em;
+    font-weight: 200;
+}
+.carousel-inner h2{
+    position: absolute;
+    top: 20%;
+    color: white;
+    font-size: 3.5em;
+    font-weight: 200;
+}
+.aumblog_PostContainer{
+    background-color: #FFFFFF;
+    width: 90%;
+    padding: 50px;
+}
+
+.aumblog_Title{
+    font-size: 2em;
+}
+.HeroGeneralText {
+    font-size: 2em;
+}
+.HeroGeneralMidTitle_rich {
+    font-size: 4em;
+}
+
+.HeroProgramCircle {
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    background-color: #FFFFFF;
+    width: 150px;
+    height: 150px;
+}
+.HeroProgramCircle p{
+    font-family: Roboto, sans-serif;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    line-height: 150px;
+    color: #121212;
+    font-size: 4.5em;
+    font-weight: 900;
+}
+.HeroProgramTitleHolder{
+    position: absolute;
+    left: 170px;
+    height: 150px !important;
+}
+.HeroProgramTitle{
+    width: 55vw;
+    font-size: 2.5em;
+    line-height: 1em;
+}
+.HeroProgramText {
+    font-size: 1.7em;
+}
+.textaum_giant{
+    font-size: 7em;
+    line-height: 1em;
+}
+.textaum_big{
+    font-size: 5em;
+    line-height: 1em;
+}
+.textaum_medium{
+    font-size: 3.5em;
+    line-height: 1em;
+}
+.textaum_normal{
+    font-size: 2em;
+    line-height: 1em;
+}
+.textaum_small{
+    font-size: 1em;
+    line-height: 1em;
+}

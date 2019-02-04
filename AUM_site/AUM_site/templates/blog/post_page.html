@@ -1,33 +1,120 @@
-{% load wagtailcore_tags wagtailroutablepage_tags%}
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags utils_tags wagtailroutablepage_tags%}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
 
 {% block content %}
+    {% comment %}
     <h1>{{ post.title }}</h1>
 
-    {{ post.body|richtext }}
+    {{ post.body }}
 
     <p><a href="{{ post.get_parent.url }}">Return to blog</a></p>
 
+
+
+
+    {% if page.tags.all.count %}
+        <div class="tags">
+            <h3>Tags</h3>
+            {% for tag in page.tags.all %}
+                <a href="{% routablepageurl blog_page "post_by_tag" tag.slug %}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% with categories=page.categories.all %}
+        {% if categories %}
+            <h3>Categories</h3>
+            <ul>
+                {% for category in categories %}
+                    <li style="display: inline">
+                        <a href="{% routablepageurl blog_page "post_by_category" category.slug %}">{{ category.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% endcomment %}
+
+    {% include "snips/simple_hero_img.html" with texttop=post.title textbody=post.summary %}
+    {% include "snips/banner_circ_apply.html" %}
+    <div class="Space-50"></div>
+    <div class="Space-10"></div>
+    <div class="container aumblog_PostContainer_TopImage" style="background-color: #FFFFFF">
+        <div class="card">
+        {% image post.image_big width-1920 as tmp_photo %}
+        <img class="aumblog_PostContainer_TopImage_Holder" src="{{ tmp_photo.url }}" alt="">
+            <div class="card-img-overlay">
+                <div class="d-flex justify-content-end">
+                    {% comment %}
+                    {% if post.professorRelated.count > 0 or post.programRelated.count > 0 %}
+                    <small class="text-muted bg-white p-1 aumBlog_Related">
+                        {% for page in post.professorRelated.all %}
+                            <a href="/faculty/{{ page.pk }}">{{ page.name | safe }}</a> /
+                        {% endfor %}
+                        {% for page in post.programRelated.all %}
+                            <a href="/programs/{{ page.pk }}">{{ page.title | safe }}</a> /
+                        {% endfor %}
+                    </small>
+                    {% endif %}
+                    {% endcomment %}
+
+                    {% with categories=page.categories.all %}
+                        {% if categories %}
+                            {% for category in categories %}
+                                <small class="text-muted bg-white p-1 aumBlog_Related">
+                                    <a href="{% routablepageurl blog_page "post_by_category" category.slug %}">{{ category.name }}</a>
+                                </small>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <div class="d-flex align-items-end" style="height: 100%">
+                    <div class="aumblog_Title">
+                        {{ post.title | safe }}
+                    </div>
+                    <div class="Space-10"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container aumblog_PostContainer">
+
+
+        {{ post.body }}
+        <div class="Space-50"></div>
+        <div class="d-flex justify-content-end">
+            <small class="text-muted">
+                Created {{ post.date|timesince }} ago
+                {% comment %}
+                <a href="{% url 'blog' %}?author={{ post.author.pk }}">{{ post.author.get_full_name }}</a>
+                {% endcomment %}
+                {% if post.author %}
+
+                by <a href="{% routablepageurl blog_page "post_by_author" post.author.slug %}">{{ post.author.name }}</a>
+
+                {% endif %}
+            </small>
+        </div>
+        <div class="d-flex justify-content-end ">
+            {% comment %}
+            {% for tag in post.tags.all %}
+                <!--span class="badge badge-secondary m-1">{{ tag }}</span-->
+                <a href="{% url 'blog' %}?tag={{ tag }}" class="btn btn-primary badge-pill backRedAum btn-sm m-1">{{ tag }}</a>
+            {% endfor %}
+            {% endcomment %}
+            {% for tag in page.tags.all %}
+                <a href="{% routablepageurl blog_page "post_by_tag" tag.slug %}" class="btn btn-primary badge-pill backRedAum btn-sm m-1">{{ tag }}</a>
+            {% endfor %}
+        </div>
+
+    </div>
+    </div>
 {% endblock %}
 
-
-{% if page.tags.all.count %}
-    <div class="tags">
-        <h3>Tags</h3>
-        {% for tag in page.tags.all %}
-            <a href="{% routablepageurl blog_page "post_by_tag" tag.slug %}">{{ tag }}</a>
-        {% endfor %}
-    </div>
-{% endif %}
-
-{% with categories=page.categories.all %}
-    {% if categories %}
-        <h3>Categories</h3>
-        <ul>
-            {% for category in categories %}
-                <li style="display: inline">
-                    <a href="{% routablepageurl blog_page "post_by_category" category.slug %}">{{ category.name }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}

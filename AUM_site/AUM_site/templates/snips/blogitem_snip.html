@@ -1,0 +1,30 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags wagtailroutablepage_tags blogapp_tags%}
+
+<div class="CardBlog zoomIn wow BlogItem " onclick="window.location='{% pageurl post %}';">
+    {% image post.image_big width-400 as tmp_photo %}
+    <div class="BlogImgResponsive" style="background-image: url({{ tmp_photo.url }})">
+        </div>
+        <div class="BlogTxtResponsive text-center text-white">
+            <table class="Table-FullSize">
+              <tbody>
+                <tr>
+                    <td class="align-middle"><h1>{{ post.title }}</h1></td>
+                </tr>
+              </tbody>
+            </table>
+
+        </div>
+    <h3>{{ post.date|date }} by {{ post.author.name }}</h3>
+    <h2>
+        {{ post.summary | richtext}}
+        <div class="MoreButton">
+            <div class="MoreButton_Over">
+                View
+                <div class="MoreButtonBarra">
+                    <div class="BarraAnim_Idle"></div>
+                </div>
+            </div>
+            <img src="{% static 'icons/FlechaRight2.png' %}">
+        </div>
+    </h2>
+</div>

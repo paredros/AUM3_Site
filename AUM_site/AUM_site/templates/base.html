@@ -67,6 +67,8 @@
 
         </script>
 
+        {% include "snips/effects_js.html" with effects=home_page.effects %}
+        {% include "snips/global_js.html" %}
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}

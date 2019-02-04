@@ -1,0 +1,17 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="row">
+    <div class="col-3 tempProgram_BigYears_holder">
+        <div class="tempProgram_BigYears">{{ value.years }}</div>
+        <div class="tempProgram_BigYears_sub">Years</div>
+    </div>
+
+    <div class="col-5 tempProgram_BigTuition_holder">
+        <div class="tempProgram_BigTuition">{{ value.amount }}</div>
+        <div class="tempProgram_BigTuition_sub">Tuition Fee/Year</div>
+    </div>
+
+    <div class="col-4 tempProgram_BigTuition_Comment">
+        {{ value.detail | safe }}
+    </div>
+</div>

@@ -59,10 +59,16 @@ class CircleApplyWithPhoto(blocks.StructBlock):
 
 class VerticalSpace(blocks.StructBlock):
     size = blocks.ChoiceBlock(choices=[
+        ('nano', 'Nano'),
+        ('mini', 'Mini'),
+        ('xsmall', 'Xsmall'),
         ('small', 'Small'),
         ('medium', 'Medium'),
         ('large', 'Large'),
     ], icon='edit')
+
+    class Meta:
+        template = 'tmps/tmp_vertical_space.html'
 
 
 class ThreeColumnsMiniItem(blocks.StructBlock):
@@ -133,16 +139,22 @@ class BigTextBoxes(blocks.StructBlock):
 
 class CarouselWithBanner(blocks.StructBlock):
     anchor = blocks.CharBlock(label='Id of object to use as activator')
+
     text_big = blocks.RichTextBlock()
+    text_big_size = blocks.ChoiceBlock(choices=[
+        ('medium', 'Medium'),
+        ('big', 'Big'),
+    ], icon='edit', default='big')
     images = blocks.StreamBlock([
         ('image', ImageChooserBlock())
     ])
     use_banner = blocks.BooleanBlock(required=False)
+    use_banner_apply = blocks.BooleanBlock(required=False)
     use_button = blocks.BooleanBlock(required=False)
     link_button = blocks.PageChooserBlock(blank=True, null=True)
-    button_text_big = blocks.CharBlock()
-    button_text_line1 = blocks.CharBlock()
-    button_text_line2 = blocks.CharBlock()
+    button_text_big = blocks.CharBlock(required=False, label='Fill if you dont use Apply Banner')
+    button_text_line1 = blocks.CharBlock(required=False, label='Fill if you dont use Apply Banner')
+    button_text_line2 = blocks.CharBlock(required=False, label='Fill if you dont use Apply Banner')
     text_line1 = blocks.RichTextBlock()
     use_round_effect = blocks.BooleanBlock(required=False)
 
@@ -150,6 +162,126 @@ class CarouselWithBanner(blocks.StructBlock):
 class MagicCarouselUnround(blocks.StructBlock):
     anchor = blocks.CharBlock(label='Id of object to use as activator')
 
+class HeroProgram(blocks.StructBlock):
+    images = blocks.StreamBlock([
+        ('image', ImageChooserBlock())
+    ])
+    tint_overlay = blocks.FloatBlock(default=0.7, label='Amount of blue Tint')
+
+class FullText(blocks.StructBlock):
+    text_size = blocks.ChoiceBlock(choices=[
+        ('small', 'Small'),
+        ('normal', 'Normal'),
+        ('medium', 'Medium'),
+        ('big', 'Big'),
+        ('giant', 'Giant'),
+    ], icon='edit', default='big')
+    font_color = SnippetChooserBlock('home.Colors', blank=True)
+    text = blocks.RichTextBlock()
+    align = blocks.CharBlock(default="left", label='css align type [left, right, center, etc]')
+
+    class Meta:
+        template = 'tmps/tmp_full_text.html'
+
+
+class SectionNameProgram(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', required=False)
+
+    class Meta:
+        template = 'tmps/tmp_section_name_program.html'
+        icon = 'placeholder'
+        label = 'Block Name Program'
+
+class SectionButtonsProgram(blocks.StructBlock):
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+    #link_representative = blocks.CharBlock(label='Url of Representative')
+    has_leaflet = blocks.BooleanBlock(required=False)
+    link_leaflet = blocks.CharBlock(required=False,label='Url to Leaflet')
+    has_scholarship = blocks.BooleanBlock(required=False)
+    link_scholarship = blocks.PageChooserBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_buttons_program.html'
+        icon = 'placeholder'
+        label = 'Block Buttons Program'
+
+class SideApplyButton(blocks.StructBlock):
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+
+    class Meta:
+        template = 'tmps/tmp_side_apply.html'
+        icon = 'placeholder'
+        label = 'Side Apply Button'
+
+class TuitionFeeProgram(blocks.StructBlock):
+    years = blocks.CharBlock(label='Years Program')
+    amount = blocks.CharBlock(default="€15,500*", label='Amount With Symbols (€,*)')
+    detail = blocks.CharBlock(default="*Please note: All Maltese and EU Nationals that "
+                                      "have resided in Malta for five (5) of the last seven (7)"
+                                      " years are eligible for a 50% tuition discount",
+                              label='Details')
+
+    class Meta:
+        template = 'tmps/tmp_tuition_fee_year.html'
+        icon = 'placeholder'
+        label = 'Tuition Fee-Year Block'
+
+
+class SeparatorLittleArrow(blocks.StructBlock):
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+
+    class Meta:
+        template = 'tmps/tmp_separetor_arrow.html'
+        icon = 'placeholder'
+        label = 'Separator Little Arrow'
+
+
+class LeftColumnAum(blocks.StreamBlock):
+    paragraph = blocks.RichTextBlock()
+    program_name = SectionNameProgram()
+    buttons_program = SectionButtonsProgram()
+    vertical_space = VerticalSpace()
+    side_apply_button = SideApplyButton()
+
+    class Meta:
+        template = 'tmps/tmp_leftcolumn_aum.html'
+
+
+class RightColumnAum(blocks.StreamBlock):
+    paragraph = blocks.RichTextBlock()
+    tuition_fee_block = TuitionFeeProgram()
+    full_text = FullText()
+    vertical_space = VerticalSpace()
+    separator_arrow = SeparatorLittleArrow()
+
+    class Meta:
+        template = 'tmps/tmp_rightcolumn_aum.html'
+
+
+class TwoColumnAum(blocks.StructBlock):
+
+    left_column = LeftColumnAum(icon='arrow-left', label='Left column content')
+    right_column = RightColumnAum(icon='arrow-right', label='Right column content')
+    separator_color = SnippetChooserBlock('home.Colors', blank=True)
+    main_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+
+    class Meta:
+        template = 'tmps/tmp_twocolumns_aum.html'
+        icon = 'placeholder'
+        label = 'Two Columns Aum'
 
 
 

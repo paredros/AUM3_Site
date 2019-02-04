@@ -1,0 +1,8 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags wagtailroutablepage_tags%}
+<div class="container">
+    <div class="row">
+        {% for post_t in data %}
+            {% include 'snips/blogitem_snip.html' with post=post_t %}
+        {% endfor %}
+    </div>
+</div>
