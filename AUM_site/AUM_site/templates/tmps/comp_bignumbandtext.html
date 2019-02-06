@@ -1,0 +1,12 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="d-flex align-items-end" style="color: {{ value.text_color.color }}">
+    <div class="pages_Inline_ReallyBig mr-4">
+        {{ value.number_big | safe }}
+    </div>
+    <!--div-->
+    <div class="pages_Inline_NormalMini mr-4">{{ value.text_below1 | safe }}</div>
+    <div class="pages_Inline_NormalBig mr-4" style="margin-bottom: -15px">{{ value.text_big | safe }}</div>
+
+    <!--/div-->
+</div>

@@ -1,0 +1,155 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="row tempProgram_Credits_holder">
+    <div class="col-12">
+        <div class="tempProgram_Credits_Credit">{{ value.credits }}</div>
+        <div class="tempProgram_Credits_Credit_sub">Credits</div>
+        <div class="tempProgram_Credits_Outline">Your <strong>Plan</strong><br>Outline</div>
+    </div>
+</div>
+<div class="row">
+    <section class="container py-4">
+        <div class="row">
+            <div class="col-12">
+
+                <ul id="tabsJustified" class="nav nav-tabs nav-justified tabAUM">
+                    {% for x in value.years %}
+
+                        {% if forloop.first %}
+
+                            <li class="nav-item"><a href=""
+                                                    data-target="#tabla{{ forloop.counter }}"
+                                                    data-toggle="tab"
+                                                    class="nav-link small active">{{ x.value.name_year  | safe }}</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a href=""
+                                                    data-target="#tabla{{ forloop.counter }}"
+                                                    data-toggle="tab"
+                                                    class="nav-link small">{{ x.value.name_year  | safe }}</a>
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+                    {% comment %}
+                    {% for x in tabla.groups %}
+                        {% if forloop.first %}
+                            <li class="nav-item"><a href=""
+                                                    data-target="#tabla{{ forloop.counter }}"
+                                                    data-toggle="tab"
+                                                    class="nav-link small active">{{ x.title | safe }}</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a href=""
+                                                    data-target="#tabla{{ forloop.counter }}"
+                                                    data-toggle="tab"
+                                                    class="nav-link small">{{ x.title | safe }}</a>
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+                    {% endcomment %}
+                </ul>
+                <br>
+                <div id="tabsJustifiedContent" class="tab-content">
+                    {% for x in value.years %}
+                        {% if forloop.first %}
+                            <div id="tabla{{ forloop.counter }}" class="tab-pane fade active show">
+                        {% else %}
+                            <div id="tabla{{ forloop.counter }}" class="tab-pane fade">
+                        {% endif %}
+
+
+                        <div class="d-flex justify-content-between TableAUM_Title">
+                            <p>Semester 1</p>
+                            <p>Credits</p>
+                        </div>
+                        {% for record in x.value.semester_1 %}
+                            <div class="TableAUM_Item_Detail">{{ record.value.code | safe }}&nbsp;</div>
+                            <div class="d-flex justify-content-between TableAUM_Item">
+                                <h1>{{ record.value.name | safe }}</h1>
+                                <h2>{{ record.value.credits | safe }}</h2>
+                            </div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-end TableAUM_Total">
+                            <p>Total <strong>{{ x.value.total_semester_1 | safe }}</strong></p>
+                        </div>
+                        <div class="Space-50"></div>
+
+                        <div class="d-flex justify-content-between TableAUM_Title">
+                            <p>Semester 2</p>
+                            <p>Credits</p>
+                        </div>
+                        {% for record in x.value.semester_2 %}
+                            <div class="TableAUM_Item_Detail">{{ record.value.code | safe }}&nbsp;</div>
+                            <div class="d-flex justify-content-between TableAUM_Item">
+                                <h1>{{ record.value.name | safe }}</h1>
+                                <h2>{{ record.value.credits | safe }}</h2>
+                            </div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-end TableAUM_Total">
+                            <p>Total <strong>{{ x.value.total_semester_2 | safe }}</strong></p>
+                        </div>
+                        <!--div class="Space-50"></div-->
+
+                        {% comment %}
+                        {% for tables in x.tables %}
+                            <div class="d-flex justify-content-between TableAUM_Title">
+                                {% for columnatitulo in  tables.fieldstitle %}
+                                    <p>{{ columnatitulo | safe }}</p>
+                                {% endfor %}
+                            </div>
+                            {% for record in tables.records %}
+                                <div class="TableAUM_Item_Detail">{{ record.code | safe }}&nbsp;</div>
+                                <div class="d-flex justify-content-between TableAUM_Item">
+                                    <h1>{{ record.title | safe }}</h1>
+                                    <h2>{{ record.credits | safe }}</h2>
+                                </div>
+                            {% endfor %}
+
+                            <div class="d-flex justify-content-end TableAUM_Total">
+                                <p>Total <strong>{{ tables.total | safe }}</strong></p>
+                            </div>
+                            <div class="Space-50"></div>
+                        {% endfor %}
+                        {% endcomment %}
+                    </div>
+
+                    {% endfor %}
+
+                    {% comment %}
+                    {% for x in tabla.groups %}
+                        {% if forloop.first %}
+                            <div id="tabla{{ forloop.counter }}" class="tab-pane fade active show">
+                        {% else %}
+                            <div id="tabla{{ forloop.counter }}" class="tab-pane fade">
+                        {% endif %}
+
+                        {% for tables in x.tables %}
+                            <div class="d-flex justify-content-between TableAUM_Title">
+                                {% for columnatitulo in  tables.fieldstitle %}
+                                    <p>{{ columnatitulo | safe }}</p>
+                                {% endfor %}
+                            </div>
+                            {% for record in tables.records %}
+                                <div class="TableAUM_Item_Detail">{{ record.code | safe }}&nbsp;</div>
+                                <div class="d-flex justify-content-between TableAUM_Item">
+                                    <h1>{{ record.title | safe }}</h1>
+                                    <h2>{{ record.credits | safe }}</h2>
+                                </div>
+                            {% endfor %}
+
+                            <div class="d-flex justify-content-end TableAUM_Total">
+                                <p>Total <strong>{{ tables.total | safe }}</strong></p>
+                            </div>
+                            <div class="Space-50"></div>
+                        {% endfor %}
+                    </div>
+
+                    {% endfor %}
+                    {% endcomment %}
+                    </div>
+                </div>
+            </div>
+    </section>
+</div>

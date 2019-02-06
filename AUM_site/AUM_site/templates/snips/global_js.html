@@ -97,6 +97,20 @@
                 $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
             });
         }
+        if ($('.CyanSection_CirculoMiniBlanco').length) {
+            $('.CyanSection_CirculoMiniBlanco').textfill({changeLineHeight: true});
+        }
+        if ($('.AutoSizeTextOneLine').length) {
+            $('.AutoSizeTextOneLine').textfill({maxFontPixels: 200});
+        }
+        $(window).resize(function() {
+            if ($('.CyanSection_CirculoMiniBlanco').length) {
+                $('.CyanSection_CirculoMiniBlanco').textfill({changeLineHeight: true});
+            }
+            if ($('.AutoSizeTextOneLine').length) {
+                $('.AutoSizeTextOneLine').textfill({maxFontPixels: 200});
+            }
+        });
     }
 
     function ApplyButtonActivation() {

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% comment %}
+Delete the line below if you're just getting started and want to remove the welcome screen!
+{% endcomment %}
+{% endblock extra_css %}
+
+{% block content %}
+    {% comment %}
+    {% include "snips/herocarousel_program.html" with value=content_page.herocarrousel.0.value %}
+    {% endcomment %}
+    {% include_block content_page.herocarrousel.0 %}
+    <div class="HeroLogo">
+        <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
+    </div>
+
+
+
+    {% if content_page.herobanner.0.block_type == 'large_banner' %}
+        {% include "snips/banner.html" with data=content_page.herobanner.0.value %}
+    {% elif content_page.herobanner.0.block_type == 'circle_banner' %}
+        {% include "snips/banner_circ_apply.html" %}
+    {% endif %}
+
+    {% with blocks=content_page.body %}
+
+        {% for block in blocks %}
+            {% if block.block_type == 'programs_list' %}
+                {% include "snips/programs_list.html" with data=programs%}
+            {% elif block.block_type == 'vertical_space' %}
+                {% include "snips/vertical_space.html" with data=block.value%}
+            {% elif block.block_type == 'blog_list'%}
+                {% include "snips/blog_block.html" with data=blogposts%}
+                {% comment %}
+            {% elif block.block_type == 'two_columns_aum' %}
+                {% include "tmps/tmp_twocolumns_aum.html" with value=block.value%}
+                {% endcomment %}
+            {% else %}
+                {% include_block block %}
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
+{% endblock content %}
+{% block extra_js %}
+
+{% endblock extra_js %}

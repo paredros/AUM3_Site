@@ -1,0 +1,15 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="pages_EAP_bignumbers" style="color: {{ value.text_color.color }}">
+    <div class="d-flex">
+        <p>{{ value.text_mini_top | safe }}</p>
+        <div class="mr-4 mt-1">
+            <h1>{{ value.number_big1 | safe }}</h1>
+            <h2>{{ value.text_below1 | safe }}</h2>
+        </div>
+        <div class="mr-4 mt-1">
+            <h1>{{ value.number_big2 | safe }}</h1>
+            <h2>{{ value.text_below2 | safe }}</h2>
+        </div>
+    </div>
+</div>

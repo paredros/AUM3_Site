@@ -107,12 +107,15 @@ class MagicPinColor(blocks.StructBlock):
 
 
 class CentralCircle(blocks.StructBlock):
-    anchor = blocks.CharBlock(label='Id of object to use as activator')
+    anchor = blocks.CharBlock(label='Id of object to use as activator', required=False)
     font_color = SnippetChooserBlock('home.Colors', blank=True)
     back_color = SnippetChooserBlock('home.Colors', blank=True)
-    text_big = blocks.RichTextBlock()
-    text_line1 = blocks.RichTextBlock()
-    text_line2 = blocks.RichTextBlock()
+    text_big = blocks.RichTextBlock(required=False)
+    text_line1 = blocks.RichTextBlock(required=False)
+    text_line2 = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_centralcircle_aum.html'
 
 
 class CircleImageItem(blocks.StructBlock):
@@ -158,15 +161,33 @@ class CarouselWithBanner(blocks.StructBlock):
     text_line1 = blocks.RichTextBlock()
     use_round_effect = blocks.BooleanBlock(required=False)
 
+    class Meta:
+        template = 'tmps/tmp_carousel_with_banner.html'
+
 
 class MagicCarouselUnround(blocks.StructBlock):
     anchor = blocks.CharBlock(label='Id of object to use as activator')
+    duration = blocks.CharBlock(default="300",label="Duration in Pixels ej: 500, or % of screen")
 
 class HeroProgram(blocks.StructBlock):
     images = blocks.StreamBlock([
         ('image', ImageChooserBlock())
     ])
     tint_overlay = blocks.FloatBlock(default=0.7, label='Amount of blue Tint')
+
+
+class HeroAcademic(blocks.StructBlock):
+    images = blocks.StreamBlock([
+        ('image', ImageChooserBlock())
+    ])
+    tint_overlay = blocks.FloatBlock(default=0.7, label='Amount of blue Tint')
+    letters = blocks.CharBlock(max_length=3, default="AA", label='Initial or Code Letters')
+    big_text = blocks.RichTextBlock()
+    detail_text = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_hero_academic.html'
+
 
 class FullText(blocks.StructBlock):
     text_size = blocks.ChoiceBlock(choices=[
@@ -179,9 +200,31 @@ class FullText(blocks.StructBlock):
     font_color = SnippetChooserBlock('home.Colors', blank=True)
     text = blocks.RichTextBlock()
     align = blocks.CharBlock(default="left", label='css align type [left, right, center, etc]')
+    use_container = blocks.BooleanBlock(required=False, default=False)
+    use_background_color = blocks.BooleanBlock(required=False)
+    back_color = SnippetChooserBlock('home.Colors', blank=True, required=False)
+    padding = blocks.CharBlock(default="none", label='css padding value', required=False)
+    margin = blocks.CharBlock(default="none", label='css margin value', required=False)
 
     class Meta:
         template = 'tmps/tmp_full_text.html'
+
+
+class FastFullText(blocks.StructBlock):
+    text_size = blocks.ChoiceBlock(choices=[
+        ('small', 'Small'),
+        ('normal', 'Normal'),
+        ('medium', 'Medium'),
+        ('big', 'Big'),
+        ('giant', 'Giant'),
+    ], icon='edit', default='big')
+    font_color = SnippetChooserBlock('home.Colors', blank=True)
+    text = blocks.RichTextBlock()
+    align = blocks.CharBlock(default="left", label='css align type [left, right, center, etc]')
+    use_container = blocks.BooleanBlock(required=False, default=False)
+
+    class Meta:
+        template = 'tmps/tmp_fast_full_text.html'
 
 
 class SectionNameProgram(blocks.StructBlock):
@@ -219,6 +262,7 @@ class SideApplyButton(blocks.StructBlock):
         icon = 'placeholder'
         label = 'Side Apply Button'
 
+
 class TuitionFeeProgram(blocks.StructBlock):
     years = blocks.CharBlock(label='Years Program')
     amount = blocks.CharBlock(default="€15,500*", label='Amount With Symbols (€,*)')
@@ -244,6 +288,158 @@ class SeparatorLittleArrow(blocks.StructBlock):
         icon = 'placeholder'
         label = 'Separator Little Arrow'
 
+class PlanOutline_Task(blocks.StructBlock):
+    code = blocks.CharBlock(default="", required=False)
+    name = blocks.CharBlock(default="")
+    credits = blocks.CharBlock(default="", required=False)
+
+
+class PlanOutline_Year(blocks.StructBlock):
+    name_year = blocks.CharBlock(default="Year 1", label='The Year Name')
+    semester_1 = blocks.StreamBlock([
+        ('program_task', PlanOutline_Task())
+    ])
+    total_semester_1 = blocks.CharBlock(label='Total Credits For Semester 1')
+    semester_2 = blocks.StreamBlock([
+        ('program_task', PlanOutline_Task())
+    ])
+    total_semester_2 = blocks.CharBlock(label='Total Credits For Semester 2')
+
+
+class PlanOutline(blocks.StructBlock):
+    credits = blocks.CharBlock(default="120", label='Credits Total Program')
+    years = blocks.StreamBlock([
+        ('year_outline', PlanOutline_Year())
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_planoutline.html'
+        icon = 'placeholder'
+        label = 'Outline Table for Programs'
+
+
+class SimpleTableLikeOutline(blocks.StructBlock):
+    name_big = blocks.CharBlock(default="", required=False)
+    name_sub = blocks.CharBlock(default="", required=False)
+    name_sub_mini = blocks.CharBlock(default="", required=False)
+    title_column_1 = blocks.CharBlock(default="", required=False)
+    title_column_2 = blocks.CharBlock(default="", required=False)
+    text_end = blocks.CharBlock(default="", required=False)
+    fields = blocks.StreamBlock([
+        ('tasks', PlanOutline_Task())
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_tableoutline.html'
+        icon = 'placeholder'
+        label = 'Table Like Outline'
+
+
+class CircleKeyValues(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    background_color = SnippetChooserBlock('home.Colors', blank=True)
+    key_value = blocks.StreamBlock([
+        ('key_value', blocks.CharBlock())
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_circle_key_value_aum.html'
+        icon = 'placeholder'
+        label = 'Little Circles with Value'
+
+
+class StoryItem(blocks.StructBlock):
+    image = ImageChooserBlock()
+    text = blocks.RichTextBlock()
+
+
+class StoriesBloc(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+    title = blocks.CharBlock()
+    story = blocks.StreamBlock([
+        ('story', StoryItem())
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_stories_aum.html'
+        icon = 'placeholder'
+        label = 'Stories Block'
+
+
+
+class Comp_TwoBigNumbers(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    text_mini_top = blocks.CharBlock(required=False)
+    number_big1 = blocks.CharBlock(required=False)
+    text_below1 = blocks.CharBlock(required=False)
+    number_big2 = blocks.CharBlock(required=False)
+    text_below2 = blocks.CharBlock(required=False)
+
+    class Meta:
+        template = 'tmps/comp_twobignumb.html'
+        icon = 'placeholder'
+        label = 'Two Big Numbers and Text'
+
+class Comp_BigNumbAndText(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    number_big = blocks.CharBlock(required=False)
+    text_below1 = blocks.CharBlock(required=False)
+    text_big = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'tmps/comp_bignumbandtext.html'
+        icon = 'placeholder'
+        label = 'Big Number and Text'
+
+
+
+class Comp_Two_Big_Text(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    text_big1 = blocks.RichTextBlock(required=False)
+    text_big2 = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'tmps/comp_twobigtext.html'
+        icon = 'placeholder'
+        label = 'Two Big Text'
+
+
+class Comp_TextBanner(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    text_big1 = blocks.CharBlock(required=False)
+    text_big2 = blocks.RichTextBlock(required=False)
+    text_small = blocks.RichTextBlock(required=False)
+    has_button = blocks.BooleanBlock(required=False)
+    link = blocks.PageChooserBlock(required=False)
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+
+    class Meta:
+        template = 'tmps/comp_textbanner.html'
+        icon = 'placeholder'
+        label = 'Text Banner'
+
+
+class CompositionsBlock(blocks.StructBlock):
+    compositions = blocks.StreamBlock([
+        ('two_big_numbers', Comp_TwoBigNumbers()),
+        ('big_numb_and_text', Comp_BigNumbAndText()),
+        ('two_big_text', Comp_Two_Big_Text()),
+        ('text_banner', Comp_TextBanner()),
+        ('vertical_space', VerticalSpace()),
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_compositions.html'
+        icon = 'placeholder'
+        label = 'Compositions Block'
+
 
 class LeftColumnAum(blocks.StreamBlock):
     paragraph = blocks.RichTextBlock()
@@ -256,15 +452,46 @@ class LeftColumnAum(blocks.StreamBlock):
         template = 'tmps/tmp_leftcolumn_aum.html'
 
 
+class LeftColumnAumGeneric(blocks.StreamBlock):
+    paragraph = blocks.RichTextBlock()
+    buttons_program = SectionButtonsProgram()
+    vertical_space = VerticalSpace()
+    side_apply_button = SideApplyButton()
+    fast_text = FastFullText()
+    full_text = FullText()
+
+    class Meta:
+        template = 'tmps/tmp_leftcolumn_aum.html'
+
+
 class RightColumnAum(blocks.StreamBlock):
     paragraph = blocks.RichTextBlock()
     tuition_fee_block = TuitionFeeProgram()
     full_text = FullText()
     vertical_space = VerticalSpace()
     separator_arrow = SeparatorLittleArrow()
+    plan_outline = PlanOutline()
+    stories_block = StoriesBloc()
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'
+
+
+class RightColumnAumGeneric(blocks.StreamBlock):
+    paragraph = blocks.RichTextBlock()
+    full_text = FullText()
+    fast_full_text = FastFullText()
+    vertical_space = VerticalSpace()
+    separator_arrow = SeparatorLittleArrow()
+    stories_block = StoriesBloc()
+    plan_outline = PlanOutline()
+    tuition_fee_block = TuitionFeeProgram()
+    table_like_outline = SimpleTableLikeOutline()
+    compositions_block = CompositionsBlock()
+
+    class Meta:
+        template = 'tmps/tmp_rightcolumn_aum.html'
+
 
 
 class TwoColumnAum(blocks.StructBlock):
@@ -284,4 +511,61 @@ class TwoColumnAum(blocks.StructBlock):
         label = 'Two Columns Aum'
 
 
+class TwoColumnAumGeneric(blocks.StructBlock):
+
+    left_column = LeftColumnAumGeneric(icon='arrow-left', label='Left column content')
+    right_column = RightColumnAumGeneric(icon='arrow-right', label='Right column content')
+    separator_color = SnippetChooserBlock('home.Colors', blank=True)
+    main_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+
+    class Meta:
+        template = 'tmps/tmp_twocolumns_aum.html'
+        icon = 'placeholder'
+        label = 'Two Columns Aum'
+
+
+class CircleApplyBanner(blocks.StructBlock):
+    anchor = blocks.CharBlock(label='Id of object to use as activator', required=False)
+
+    class Meta:
+        template = 'tmps/tmp_cicleapply_aum.html'
+        icon = 'radio-empty'
+        label = 'Circle Apply'
+
+
+class BigNumbersText(blocks.StructBlock):
+    numbers_1 = blocks.CharBlock()
+    numbers_1_sub = blocks.CharBlock(required=False)
+    numbers_2 = blocks.CharBlock()
+    numbers_2_sub = blocks.CharBlock(required=False)
+    text = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_bignumberstext.html'
+        icon = 'placeholder'
+        label = 'Big Number and Text'
+
+
+class CardItem(blocks.StructBlock):
+    text = blocks.RichTextBlock()
+    index = blocks.CharBlock(required=False, label='A Number o Letter Bellow')
+
+
+class GroupCards(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    index_color = SnippetChooserBlock('home.Colors', blank=True)
+    background_color = SnippetChooserBlock('home.Colors', blank=True)
+
+    cards = blocks.StreamBlock([
+        ('card', CardItem())
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_groupcards.html'
+        icon = 'placeholder'
+        label = 'Group Cards'
 

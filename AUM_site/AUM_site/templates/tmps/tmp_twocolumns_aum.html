@@ -6,8 +6,8 @@
 
 
 <div class="container">
-    <div class="row text-black" style="color: {{ value.main_text_color.color }}">
-        <div class="col-lg-1">
+    <div class="row text-black d-flex" style="color: {{ value.main_text_color.color }}">
+        <div class="col-lg-auto col-xl-1 order-0">
         </div>
         {% comment %}
         <div class="col-lg-3 {{ forcewhite|yesno:'BordeRightWhite,BordeRight'}} {{ forcewhite|yesno:'whiteAUM_force,' }}">
@@ -18,7 +18,7 @@
         </div>
         {% endcomment %}
         <!--div class="col-md-3 SeparatorTwoColumns_{{ value.theme }}" style="border-right: 2px solid {{ value.separator_color.color }}"-->
-        <div class="col-lg-3 SeparatorTwoColumns_{{ value.theme }}">
+        <div class="col-lg-4 col-xl-3 order-2 order-lg-1 p-5 p-lg-0 SeparatorTwoColumns_{{ value.theme }}">
             {% comment %}
             {{ value.left_column }}
 
@@ -27,7 +27,7 @@
 
         </div>
 
-        <div class="col-lg-7">
+        <div class="col-lg-7 order-1 order-lg-2">
 
             {% comment %}
             {{ value.right_column }}
@@ -36,7 +36,7 @@
             {% include "tmps/tmp_rightcolumn_aum.html" with value=value.right_column %}
         </div>
 
-        <div class="col-lg-1">
+        <div class="col-lg-auto order-4">
         </div>
     </div>
 </div>

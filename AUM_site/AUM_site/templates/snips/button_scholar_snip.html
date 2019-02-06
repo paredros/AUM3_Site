@@ -1,8 +1,10 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
-<div id="MiniButtonLeaf1" class="SidButtonMini_holder" onclick="window.location='{% pageurl value.link_scholarship %}';">
+<div id="MiniButtonLeaf1" class="SidButtonMini_holder text-center text-lg-left" onclick="window.location='{% pageurl value.link_scholarship %}';">
+    <div class="d-flex d-lg-block justify-content-center">
     <img class="SidButtonMini_icon" src="{% static 'icons/scholar.png' %}" class="img-fluid">
     <div class="SidButtonMini_text">{{ settings.home.GlobalSettings.scholarship_text | safe }}</div>
+    </div>
     <div class="MoreButton MoreButton_H30">
         <div class="MoreButton_Over MoreButton_H30">
             {{ settings.home.GlobalSettings.scholarship_short | safe }}

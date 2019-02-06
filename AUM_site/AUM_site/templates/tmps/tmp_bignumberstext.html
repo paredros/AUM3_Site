@@ -1,0 +1,35 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 pages_GEP_bigNumbers">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <h1>{{value.numbers_1 | safe }} </h1>
+                    <h2 class="text-right">{{ value.numbers_1_sub | safe }}</h2>
+                </div>
+
+                <div>
+                    <h1>{{ value.numbers_2 | safe }}</h1>
+                    <h2 class="text-right">{{ value.numbers_1_sub | safe }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="text-center pages_MediumText">
+                <p>{{ value.text | richtext }}</p>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+

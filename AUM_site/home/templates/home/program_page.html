@@ -59,6 +59,8 @@ Delete the line below if you're just getting started and want to remove the welc
                 {% include "snips/programs_list.html" with data=programs%}
             {% elif block.block_type == 'vertical_space' %}
                 {% include "snips/vertical_space.html" with data=block.value%}
+            {% elif block.block_type == 'blog_list'%}
+                {% include "snips/blog_block.html" with data=blogposts%}
                 {% comment %}
             {% elif block.block_type == 'two_columns_aum' %}
                 {% include "tmps/tmp_twocolumns_aum.html" with value=block.value%}

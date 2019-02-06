@@ -1,0 +1,23 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+<h1>
+    <strong>{{ value.title }}</strong>
+</h1>
+{% for story in value.story %}
+    {% if value.theme == 'white' %}
+<div class="card_Story" style="background-color: white;">
+    {% else %}
+<div class="card_Story" style="background-color: #121212;">
+    {% endif %}
+    <p>
+        {% image story.value.image width-600%}
+    </p>
+    <p>
+        <small style="color: {{ value.text_color.color }}">
+            {{ story.value.text }}
+        </small>
+    </p>
+</div>
+<p>&nbsp;</p>
+{% endfor %}

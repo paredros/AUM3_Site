@@ -1,0 +1,23 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="row">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-12 col-lg-10 d-flex flex-wrap justify-content-center">
+        {% for keyv in value.key_value %}
+            <div class="CyanSection_CirculoMiniBlanco">
+                <table class="Table-FullSize">
+                    <tbody class="text-center">
+                    <tr>
+                        <td class="align-middle">
+                            <span>{{ keyv.value | safe }}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="col-lg-1">
+    </div>
+</div>

@@ -63,7 +63,7 @@
     text-align: center;
     line-height: 200px;
     color: #121212;
-    font-size: 5.5em;
+    font-size: 5em;
     font-weight: 900;
 }
 .HeroProgramTitleHolder{
@@ -78,10 +78,62 @@
 }
 .HeroProgramText {
     font-size: 2em;
+    width: 90%;
 }
 .SeparatorTwoColumns_dark{
+    border-top: none;
+    border-bottom: none;
     border-right: 2px solid #121212;
 }
 .SeparatorTwoColumns_white{
+    border-top: none;
+    border-bottom: none;
     border-right: 2px solid #ffffff;
+}
+
+.TalkAdmission_holder{
+    font-size: 0.7em;
+    cursor: pointer;
+}
+.TalkAdmission_icon{
+    width: 80px;
+    height: 80px;
+    margin-right: 0px;
+}
+.TalkAdmission_big{
+    width: 120px;
+}
+.TalkAdmission_text{
+    font-size: 1.5em;
+    margin-top: 10px;
+    line-height: 1em;
+    margin-bottom: 5px;
+    width: 90%;
+}
+.TalkAdmission_text strong{
+    font-weight: 900;
+}
+
+.SidButtonMini_icon{
+    width: 50px;
+    height: 50px;
+    margin-right: 0px;
+}
+.SidButtonMini_text{
+    width: 90%;
+}
+.CyanSection_CirculoMiniBlanco {
+    width: 200px;
+    height: 200px;
+    padding: 30px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    line-height: 0.8em;
+    font-weight: 200;
+    font-size: 1em;
+}
+
+.CyanSection_CirculoMiniBlanco strong{
+    font-weight: 700;
 }

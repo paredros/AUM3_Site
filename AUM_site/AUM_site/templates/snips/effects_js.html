@@ -22,10 +22,10 @@
                         .addTo(controller);
 
         {% elif effect.block_type == 'unround_carousel' %}
-            pin_holder = new ScrollMagic.Scene({triggerElement:"#{{ effect.value.anchor }}", triggerHook: "0", duration: 300})
+            pin_holder = new ScrollMagic.Scene({triggerElement:"#{{ effect.value.anchor }}", triggerHook: "0", duration: {{effect.value.duration}}})
                                         .setTween(".CarouselTest", {borderRadius:"0%",ease:Power0.easeNone})
 										.addTo(controller);
-            pin_holder = new ScrollMagic.Scene({triggerElement:"#{{ effect.value.anchor }}", triggerHook: "0", duration: 300, loglevel: 3})
+            pin_holder = new ScrollMagic.Scene({triggerElement:"#{{ effect.value.anchor }}", triggerHook: "0", duration: {{effect.value.duration}}})
                                         .setTween("#{{ effect.value.anchor }}_internal",{width:"100%",ease:Power0.easeNone})
 										.addTo(controller);
         {% endif %}

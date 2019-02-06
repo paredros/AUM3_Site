@@ -1,7 +1,17 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+{% if value.use_container %}
 <div class="container">
+{% endif %}
     <div class="textaum_{{ value.text_size }}" style="color: {{ value.font_color.color }};
-            text-align: {{ value.align }};">
-        <p>{{ value.text | richtext }}</p>
+            text-align: {{ value.align }};
+            padding: {{ value.padding }};
+            margin: {{ value.margin }};
+            {% if value.use_background_color %}
+                background-color: {{ value.back_color.color }};
+            {% endif %}
+            ">
+        {{ value.text | richtext }}
     </div>
+{% if value.use_container %}
 </div>
+{% endif %}

@@ -1,8 +1,10 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
-<div id="MiniButtonLeaf1" class="SidButtonMini_holder" onclick="window.open('{{ value.link_leaflet |safe }}');">
+<div id="MiniButtonLeaf1" class="SidButtonMini_holder text-center text-lg-left" onclick="window.open('{{ value.link_leaflet |safe }}');">
+    <div class="d-flex d-lg-block justify-content-center">
     <img class="SidButtonMini_icon" src="{% static 'icons/leaflet.png' %}" class="img-fluid">
     <div class="SidButtonMini_text">{{ settings.home.GlobalSettings.get_leaf_text | safe }}</div>
+    </div>
     <div class="MoreButton MoreButton_H30">
         <div class="MoreButton_Over MoreButton_H30">
             {{ settings.home.GlobalSettings.get_leaf_short | safe }}

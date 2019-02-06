@@ -1140,7 +1140,7 @@ GRUPO BLOG
     text-align: center;
     line-height: 100px;
     color: #121212;
-    font-size: 3.5em;
+    font-size: 2.7em;
     font-weight: 900;
 }
 .HeroProgramTitle_rich{
@@ -1154,6 +1154,7 @@ GRUPO BLOG
     font-size: 1.5em;
     line-height: 1em;
 }
+
 .HeroProgramTitleHolder{
     position: absolute;
     left: 120px;
@@ -1378,7 +1379,9 @@ SIDEBUTTONS
     cursor: pointer;
 }
 .TalkAdmission_icon{
-    width: 80px;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
 }
 .TalkAdmission_big{
     width: 120px;
@@ -1403,7 +1406,9 @@ SIDEBUTTONS
     margin-bottom: 5px;
 }
 .SidButtonMini_icon{
-    width: 50px;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
 }
 .SideApply h1{
     margin-top: 50px;
@@ -1435,8 +1440,217 @@ SIDEBUTTONS
 }
 
 .SeparatorTwoColumns_dark{
-    /*border-right: 2px solid #121212;*/
+    border-top: 2px solid #121212;
+    /*border-bottom: 2px solid #121212;*/
 }
 .SeparatorTwoColumns_white{
+    border-top: 2px solid #ffffff;
+    /*border-bottom: 2px solid #ffffff;*/
     /*border-right: 2px solid #ffffff;*/
+}
+
+.CyanSection_CirculoMiniBlanco {
+    background-color: white;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 6px;
+    line-height: 0.8em;
+    font-weight: 200;
+    font-size: 1em;
+}
+
+.CyanSection_CirculoMiniBlanco strong{
+    font-weight: 700;
+}
+
+.card_Story{
+    font-size: 18px;
+    color: #121212;
+    padding: 10px;
+    /*-webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    border: none;*/
+}
+.card_Story img{
+    /*-webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: none;*/
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-bottom: 20px;
+}
+.card_Story p{
+    /*padding: 20px;*/
+}
+
+.fast_text p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    line-height: 1em!important;
+}
+.fast_text h2{
+    line-height: 1em!important;
+}
+
+.pages_GEP_bigNumbers h1{
+    line-height: 1em;
+    font-size: 6em;
+    font-weight: 200;
+}
+.pages_GEP_bigNumbers h1 strong{
+    font-weight: bold;
+}
+.pages_GEP_bigNumbers h2{
+    line-height: 1em;
+    font-size: 1em;
+    font-weight: 200;
+    margin-top: -15px;
+    position: relative;
+}
+
+.pages_MediumText{
+    font-size: 2em;
+    line-height: 1em;
+    font-weight: 300;
+}
+.pages_MediumText a{
+    color: #ce1731;
+}
+.pages_MediumText strong{
+    font-weight: bold;
+}
+
+.pages_GEP_Table_Page h1{
+    font-size: 4em;
+    line-height: 1em;
+    font-weight: 900;
+}
+.pages_GEP_Table_Page h2{
+    max-width: 50vw;
+    font-size: 1.2em;
+    line-height: 1em;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.pages_GEP_Table_Page h3{
+    max-width: 50vw;
+    font-size: 0.9em;
+    line-height: 1em;
+    font-weight: 200;
+}
+.pages_BorderBottom1{
+    border-bottom: 1px solid #c8c8c8;
+}
+
+.pages_Card1{
+    border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+    border: none!important;
+}
+.pages_Card1_Letter{
+    font-family: Roboto, sans-serif;
+    font-size: 3em;
+    line-height: 1em;
+    font-weight: 900;
+
+}
+
+.pages_CardText a{
+    color: #ce1731;
+}
+
+.pages_EAP_bignumbers{
+    line-height: 1em;
+    margin-left: 6px;
+}
+.pages_EAP_bignumbers p{
+    position: absolute;
+    font-size: 1em;
+}
+.pages_EAP_bignumbers h1{
+    font-size: 7em;
+    font-weight: 900;
+    line-height: 1em;
+}
+.pages_EAP_bignumbers h2{
+    font-size: 1em;
+    font-weight: 200;
+    line-height: 1em;
+    margin-top: -20px;
+    text-align: right;
+}
+
+
+.pages_Inline_ReallyBig{
+    font-size: 7em;
+    font-weight: 900;
+    line-height: 0.8em;
+}
+.pages_Inline_NormalMini{
+    font-size: 1em;
+    font-weight: 200;
+    line-height: 1em;
+}
+.pages_Inline_NormalMini strong{
+    font-weight: 900;
+}
+.pages_Inline_NormalBig{
+    font-size: 2em;
+    font-weight: 200;
+    line-height: 0.9em;
+}
+.pages_Inline_NormalBig strong{
+    font-weight: 900;
+}
+.pages_Inline_Normal{
+    font-size: 1.5em;
+    font-weight: 200;
+    line-height: 0.9em;
+}
+.pages_Inline_Normal strong{
+    font-weight: 900;
+}
+.pages_Inline_Big{
+    font-size: 2.5em;
+    font-weight: 200;
+    line-height: 0.9em;
+}
+.pages_Inline_Big strong{
+    font-weight: 900;
+}
+.pages_InlineBanner_BigText{
+    margin-right: 10px;
+}
+.pages_InlineBanner_BigText .AutoSizeTextOneLine{
+    width: 200px;
+    height: 100px;
+
+    font-weight: 900;
+}
+.pages_InlineBanner_BigText h2{
+    margin-top: -15px;
+    font-size: 1em;
+}
+.pages_InlineBanner h3{
+    margin-top: 20px;
+    font-size: 1.5em;
+    line-height: 1em;
+    font-weight: 200;
+}
+.pages_InlineBanner h3 strong{
+    font-weight: 900;
+}
+.pages_InlineBanner_ShortDescription{
+    font-size: 2em!important;
 }

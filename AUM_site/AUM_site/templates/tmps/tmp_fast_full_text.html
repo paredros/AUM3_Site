@@ -1,0 +1,13 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+{% if value.use_container %}
+<div class="container">
+{% endif %}
+    <div class="textaum_{{ value.text_size }} fast_text" style="color: {{ value.font_color.color }};
+            text-align: {{ value.align }};
+            line-height: 1em;
+            ">
+        {{ value.text | richtext }}
+    </div>
+{% if value.use_container %}
+</div>
+{% endif %}

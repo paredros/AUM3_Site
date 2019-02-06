@@ -1,0 +1,19 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container">
+    <div class="row">
+        <div class="card-columns">
+            {% for card in value.cards %}
+                <div class="card pages_Card1" style="background-color: {{ value.background_color.color }}">
+                    <div class="card-body">
+                        <div class="card-text pages_CardText" style="color: {{ value.text_color.color }}!important;">
+                            {{ card.value.text |safe }}
+                        </div>
+                        <div class="Space-25"></div>
+                        <div class="pages_Card1_Letter" style="color: {{ value.index_color.color }}">{{ card.value.index }}</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

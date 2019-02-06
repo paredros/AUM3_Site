@@ -1,0 +1,49 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% comment %}
+<div class="row tempProgram_Credits_holder">
+    <div class="col-12">
+        <div class="tempProgram_Credits_Credit">{{ value.credits }}</div>
+        <div class="tempProgram_Credits_Credit_sub">Credits</div>
+        <div class="tempProgram_Credits_Outline">Your <strong>Plan</strong><br>Outline</div>
+    </div>
+</div>
+{% endcomment %}
+
+<div class="d-flex justify-content-between align-items-end pages_GEP_Table_Page pages_BorderBottom1 mb-lg-4">
+    <div>
+        <h1>{{ value.name_big }}</h1>
+    </div>
+    <div>
+        <h2 class="text-right">{{ value.name_sub }}</h2>
+        <h3 class="text-right">{{ value.name_sub_mini }}</h3>
+    </div>
+</div>
+<div class="d-flex justify-content-between TableAUM_Title">
+    {% comment %}
+    {% for columnatitulo in  column2item.fieldstitle %}
+        <p>{{ columnatitulo | safe }}</p>
+    {% endfor %}
+    {% endcomment %}
+    <p>{{ value.title_column_1 | safe }}</p>
+    <p>{{ value.title_column_2 | safe }}</p>
+</div>
+{% for record in value.fields %}
+    <div class="TableAUM_Item_Detail">{{ record.value.code | safe }}&nbsp;</div>
+    <div class="d-flex justify-content-between TableAUM_Item">
+        <h1>{{ record.value.name | safe }}</h1>
+        <h2>{{ record.value.credits | safe }}</h2>
+    </div>
+{% endfor %}
+<div class="d-flex justify-content-end TableAUM_Total">
+    <p>{{ value.text_end | safe }}</p>
+</div>
+{% comment %}
+{% for record in column2item.records %}
+    <div class="TableAUM_Item_Detail">{{ record.code | safe }}</div>
+    <div class="d-flex justify-content-between TableAUM_Item TableAUM_Item_LineBelow">
+        <h1>{{ record.title | safe }}</h1>
+        <h2>{{ record.value | safe }}</h2>
+    </div>
+{% endfor %}
+{% endcomment %}

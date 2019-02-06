@@ -1,9 +1,9 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
 {% if value.text_color %}
-<div style="color: {{ value.text_color.color }}">
+<div class="text-center text-lg-left w-100 mb-5 mb-lg-0" style="color: {{ value.text_color.color }}">
 {% else %}
-<div>
+<div class="text-center text-lg-left w-100 mb-5 mb-lg-0">
 {% endif %}
 
     <div class="tempProgram_Bachelor">{{ program_page.group | safe }}</div>

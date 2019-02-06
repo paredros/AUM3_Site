@@ -80,7 +80,7 @@ class HomePage(Page):
                 StreamFieldPanel('body'),
             ],
             heading="Body",
-            classname="collapsible collapsed"
+            classname="collapsible collapsed full"
         ),
         MultiFieldPanel(
             [
@@ -134,6 +134,13 @@ class ProgramPage(Page):
         ('full_text', FullText()),
         ('two_columns_aum', TwoColumnAum()),
         ('separator_arrow', SeparatorLittleArrow()),
+        ('circle_key_values', CircleKeyValues()),
+        ('circle_apply_banner', CircleApplyBanner()),
+    ], null=True, blank=True)
+
+    effects = StreamField([
+        ('pin_color', MagicPinColor()),
+        ('unround_carousel', MagicCarouselUnround())
     ], null=True, blank=True)
 
 
@@ -151,21 +158,21 @@ class ProgramPage(Page):
             heading="Hero",
             classname="collapsible collapsed"
         ),
+        StreamFieldPanel('body'),
         MultiFieldPanel(
             [
-                StreamFieldPanel('body'),
+                StreamFieldPanel('effects'),
             ],
-            heading="Body",
+            heading="Effects",
             classname="collapsible collapsed"
         ),
-
     ]
 
     def get_programs(self):
-        return ProgramPage.objects.descendant_of(self).live()
+        return ProgramPage.objects.live()
 
     def get_blogposts(self):
-        return PostPage.objects.descendant_of(self).live()[:6]
+        return PostPage.objects.live()[:6]
 
 
     def get_context(self, request, *args, **kwargs):
@@ -174,6 +181,72 @@ class ProgramPage(Page):
         context['blogposts'] = self.get_blogposts()
         context['program_page'] = self
         return context
+
+
+class ContentPage(Page):
+    herocarrousel = StreamField([('item', HeroAcademic())], null=True, blank=True)
+    herobanner = StreamField([('large_banner', Banner()),
+                              ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site"))
+                              ], null=True, blank=True)
+
+    body = StreamField([
+        ('central_circle', CentralCircle(icon="radio-empty")),
+        ('two_columns', TwoColumnBlock()),
+        ('vertical_space', VerticalSpace()),
+        ('circle_image_block', CircleImageBlock(icon="placeholder")),
+        ('big_text_boxes', BigTextBoxes(icon="placeholder")),
+        ('carousel_with_banner', CarouselWithBanner(icon="placeholder")),
+        ('three_columns_mini', ThreeColumnsMini()),
+        ('programs_list', blocks.StaticBlock(label="Show the list of Programs", icon="site")),
+        ('blog_list', blocks.StaticBlock(label="Show the list of Blog Post", icon="site")),
+        ('full_text', FullText()),
+        ('fast_full_text', FastFullText()),
+        ('two_columns_aum', TwoColumnAumGeneric()),
+        ('separator_arrow', SeparatorLittleArrow()),
+        ('circle_key_values', CircleKeyValues()),
+        ('circle_apply_banner', CircleApplyBanner()),
+        ('big_numbers_text', BigNumbersText()),
+        ('group_cards', GroupCards()),
+    ], null=True, blank=True)
+
+    effects = StreamField([
+        ('pin_color', MagicPinColor()),
+        ('unround_carousel', MagicCarouselUnround())
+    ], null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('herocarrousel'),
+                StreamFieldPanel('herobanner'),
+            ],
+            heading="Hero",
+            classname="collapsible collapsed"
+        ),
+        StreamFieldPanel('body'),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('effects'),
+            ],
+            heading="Effects",
+            classname="collapsible collapsed"
+        ),
+    ]
+
+    def get_programs(self):
+        return ProgramPage.objects.live()
+
+    def get_blogposts(self):
+        return PostPage.objects.live()[:6]
+
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(ContentPage, self).get_context(request, *args, **kwargs)
+        context['programs'] = self.get_programs()
+        context['blogposts'] = self.get_blogposts()
+        context['content_page'] = self
+        return context
+
 
 
 @register_setting
