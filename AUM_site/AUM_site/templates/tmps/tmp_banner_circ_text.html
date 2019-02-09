@@ -1,0 +1,30 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags wagtailroutablepage_tags%}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="HeroBannerApplyCirculo blackAUM slideInUp wow">
+                <div class="CirculoCentralImage  mx-auto" style="background-color: #ffffff">
+                    <div class="" style="height: 300px">
+                        <table class="Table-FullSize">
+                          <tbody>
+                            <tr>
+                                <td class="align-middle">
+
+                                    <div class="HeroBannerData">
+                                        {{ value.text | safe }}
+                                    </div>
+
+
+
+                                </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

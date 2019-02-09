@@ -1,0 +1,9 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container">
+    <div class="row">
+        <div class="pages_BlockStar mx-auto" style="color: {{ value.text_color.color }};
+                background-color: {{ value.back_color.color }};
+                ">{{ value.text | safe }}</div>
+    </div>
+</div>

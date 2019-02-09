@@ -1,0 +1,41 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+<div class="container">
+    <div class="row text-black d-flex" style="color: {{ value.main_text_color.color }}">
+        <div class="col-lg-auto col-xl-1 order-0">
+        </div>
+        {% comment %}
+        <div class="col-lg-3 {{ forcewhite|yesno:'BordeRightWhite,BordeRight'}} {{ forcewhite|yesno:'whiteAUM_force,' }}">
+            {% include "snip/column_short_snip.html" with ccols=blocks1.column1 %}
+        </div>
+        <div class="col-lg-7 {{ forcewhite|yesno:'whiteAUM_force,' }}">
+            {% include "snip/column_wide_snip.html" with ccols=blocks1.column2 %}
+        </div>
+        {% endcomment %}
+        <!--div class="col-md-3 SeparatorTwoColumns_{{ value.theme }}" style="border-right: 2px solid {{ value.separator_color.color }}"-->
+
+
+        <div class="col-lg-8 order-1 order-lg-1 p-5 px-lg-3 py-lg-0 SeparatorTwoColumns_inv_{{ value.theme }}">
+
+            {% comment %}
+            {{ value.right_column }}
+
+            {% endcomment %}
+            {% include "tmps/tmp_leftcolumn_aum.html" with value=value.left_column %}
+        </div>
+
+        <div class="col-lg-3 col-xl-3 order-2 order-lg-2 ">
+            {% comment %}
+            {{ value.left_column }}
+
+            {% endcomment %}
+            {% include "tmps/tmp_rightcolumn_aum.html" with value=value.right_column %}
+
+
+        </div>
+
+        <div class="col-lg-auto order-4">
+        </div>
+    </div>
+</div>

@@ -123,7 +123,7 @@ class ProgramPage(Page):
 
     body = StreamField([
         ('central_circle', CentralCircle(icon="radio-empty")),
-        ('two_columns', TwoColumnBlock()),
+        #('two_columns', TwoColumnBlock()),
         ('vertical_space', VerticalSpace()),
         ('circle_image_block', CircleImageBlock(icon="placeholder")),
         ('big_text_boxes', BigTextBoxes(icon="placeholder")),
@@ -184,9 +184,16 @@ class ProgramPage(Page):
 
 
 class ContentPage(Page):
-    herocarrousel = StreamField([('item', HeroAcademic())], null=True, blank=True)
+    herocarrousel = StreamField([
+                                ('academic', HeroAcademic()),
+                                ('mini_photo', HeroWithMiniFoto()),
+                                ('solo_text', HeroSoloText()),
+                                ('photo_or_letters', HeroWithFotoOrLetter()),
+                                 ], null=True, blank=True)
     herobanner = StreamField([('large_banner', Banner()),
-                              ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site"))
+                              ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
+                              ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
                               ], null=True, blank=True)
 
     body = StreamField([
@@ -207,6 +214,10 @@ class ContentPage(Page):
         ('circle_apply_banner', CircleApplyBanner()),
         ('big_numbers_text', BigNumbersText()),
         ('group_cards', GroupCards()),
+        ('two_columns_inverted', TwoColumnsInverted()),
+        ('professor_list', MiniProfessorList()),
+        ('round_frame_text', RoundFrameText()),
+        ('vertical_paragraph', VerticalParagraph()),
     ], null=True, blank=True)
 
     effects = StreamField([

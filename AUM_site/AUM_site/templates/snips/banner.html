@@ -8,7 +8,7 @@
                 <div class="col-9" >
                     <div class="row backgroundWhite" style="height: auto;">
                         <div class="col-md-4 col-xs-12 ApplyButton m-0 p-0" onclick="window.open('{{ settings.home.ApplyBanner.link |safe }}');">
-                            <h1>{{ settings.home.ApplyBanner.bigtext }}</h1>
+                            <div class="px-1"> <h1>{{ settings.home.ApplyBanner.bigtext }}</h1></div>
                             <h4><img class="_replace" src="{% static 'icons/down-arrow.png' %}"></h4>
                             {% if settings.home.ApplyBanner.useTwolines %}
                                 <h2>{{ settings.home.ApplyBanner.line1|safe }}</h2>

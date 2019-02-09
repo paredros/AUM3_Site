@@ -1,0 +1,18 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% comment %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 col-md-auto col-lg-1 col-xl-2"></div>
+        <div class="col-8 col-md-12 col-lg-10 col-xl-8">
+            <div class="d-md-flex">
+                {% include "snips/theecolumnsmini_item.html" with card=value.column_one %}
+                {% include "snips/theecolumnsmini_item.html" with card=value.column_two %}
+                {% include "snips/theecolumnsmini_item.html" with card=value.column_three %}
+            </div>
+        </div>
+        <div class="col-2 col-md-auto col-lg-1 col-xl-2"></div>
+    </div>
+</div>
+{% endcomment %}
+{% include "snips/threecolumnsmini.html" with data=value%}

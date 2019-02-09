@@ -13,6 +13,10 @@
         {{ card.text_top|richtext }}
     </h1>
 {% elif  card.type_text_top == "big" %}
+
+    <h1 class="darkgreyAUM pages_VerticalCard_BigTitle">
+        {{ card.text_top|richtext }}
+    </h1>
 {% endif %}
 {% if card.text_big_color == "dark" %}
     <h2 class="darkgreyAUM">{{ card.text_big|safe }}</h2>
@@ -29,7 +33,7 @@
     <div class="d-none d-md-block">
         <div class="Space-10"></div>
     </div>
-
+    {% if data.has_link %}
         <div class="MoreButton MoreButton_H30 text-left ml-3 ml-md-2">
             <div class="MoreButton_Over MoreButton_H30">
                 Go
@@ -44,5 +48,6 @@
             {% endif %}
         </div>
         <div class="Space-10"></div>
+    {% endif %}
     </div>
 </div>

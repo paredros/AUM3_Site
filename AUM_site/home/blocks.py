@@ -7,6 +7,7 @@ from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.snippets.blocks import SnippetChooserBlock
+from wagtail.embeds.blocks import EmbedBlock
 
 
 class ColumnBlock(blocks.StreamBlock):
@@ -52,6 +53,15 @@ class Banner(blocks.StructBlock):
         form_classname = 'apply-banner struct-block'
 
 
+class HeroBannerCircText(blocks.StructBlock):
+    text = blocks.RichTextBlock()
+
+    class Meta:
+        icon = 'placeholder'
+        template = 'tmps/tmp_banner_circ_text.html'
+
+
+
 class CircleApplyWithPhoto(blocks.StructBlock):
     idHash = blocks.CharBlock(label='To be identified by script')
     image = ImageChooserBlock()
@@ -85,7 +95,7 @@ class ThreeColumnsMiniItem(blocks.StructBlock):
     ], icon='edit')
     text_mini = blocks.RichTextBlock()
     has_link = blocks.BooleanBlock(required=False)
-    link = blocks.PageChooserBlock(blank=True, null=True)
+    link = blocks.PageChooserBlock(blank=True, null=True, required=False)
 
 
 class ThreeColumnsMini(blocks.StructBlock):
@@ -94,6 +104,7 @@ class ThreeColumnsMini(blocks.StructBlock):
     column_three = ThreeColumnsMiniItem()
 
     class Meta:
+        template = 'tmps/tmp_threecolmin.html'
         icon = 'placeholder'
         label = 'Three Columns Mini'
 
@@ -169,6 +180,7 @@ class MagicCarouselUnround(blocks.StructBlock):
     anchor = blocks.CharBlock(label='Id of object to use as activator')
     duration = blocks.CharBlock(default="300",label="Duration in Pixels ej: 500, or % of screen")
 
+
 class HeroProgram(blocks.StructBlock):
     images = blocks.StreamBlock([
         ('image', ImageChooserBlock())
@@ -189,8 +201,59 @@ class HeroAcademic(blocks.StructBlock):
         template = 'tmps/tmp_hero_academic.html'
 
 
+class HeroWithMiniFoto(blocks.StructBlock):
+    images = blocks.StreamBlock([
+        ('image', ImageChooserBlock())
+    ])
+    tint_overlay = blocks.FloatBlock(default=0.7, label='Amount of blue Tint')
+    mini_image = ImageChooserBlock(required=False)
+    big_text = blocks.RichTextBlock()
+    size_text = blocks.ChoiceBlock(choices=[
+        ('big', 'Big'),
+        ('normal', 'Normal'),
+    ], icon='edit', default="big")
+    detail_text = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_hero_with_mini_photo.html'
+
+
+class HeroSoloText(blocks.StructBlock):
+    images = blocks.StreamBlock([
+        ('image', ImageChooserBlock())
+    ])
+    tint_overlay = blocks.FloatBlock(default=0.7, label='Amount of blue Tint')
+    big_text = blocks.RichTextBlock()
+    detail_text = blocks.RichTextBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_hero_solo_text.html'
+
+
+class HeroWithFotoOrLetter(blocks.StructBlock):
+    images = blocks.StreamBlock([
+        ('image', ImageChooserBlock())
+    ])
+    tint_overlay = blocks.FloatBlock(default=0.7, label='Amount of blue Tint')
+    tint_R = blocks.IntegerBlock(default=0)
+    tint_G = blocks.IntegerBlock(default=74)
+    tint_B = blocks.IntegerBlock(default=135)
+    big_text = blocks.RichTextBlock()
+    detail_text = blocks.RichTextBlock(required=False)
+    use_image = blocks.BooleanBlock(required=False)
+    mini_image = ImageChooserBlock(required=False)
+    letters = blocks.CharBlock(required=False, max_length=3, label="Initial letters if dont use image")
+    letters_color = SnippetChooserBlock('home.Colors', blank=True,required=False)
+    letters_back = SnippetChooserBlock('home.Colors', blank=True,required=False)
+
+
+    class Meta:
+        template = 'tmps/tmp_hero_photo_letter.html'
+
+
 class FullText(blocks.StructBlock):
     text_size = blocks.ChoiceBlock(choices=[
+        ('xsmall', 'X-Small'),
         ('small', 'Small'),
         ('normal', 'Normal'),
         ('medium', 'Medium'),
@@ -212,6 +275,7 @@ class FullText(blocks.StructBlock):
 
 class FastFullText(blocks.StructBlock):
     text_size = blocks.ChoiceBlock(choices=[
+        ('xsmall', 'X-Small'),
         ('small', 'Small'),
         ('normal', 'Normal'),
         ('medium', 'Medium'),
@@ -371,6 +435,22 @@ class StoriesBloc(blocks.StructBlock):
 
 
 
+class GenericButtonAum(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+    title = blocks.CharBlock()
+    link = blocks.PageChooserBlock()
+
+    class Meta:
+        template = 'tmps/tmp_button_aum.html'
+        icon = 'placeholder'
+        label = 'Button Aum'
+
+
+
 class Comp_TwoBigNumbers(blocks.StructBlock):
     text_color = SnippetChooserBlock('home.Colors', blank=True)
     text_mini_top = blocks.CharBlock(required=False)
@@ -441,6 +521,110 @@ class CompositionsBlock(blocks.StructBlock):
         label = 'Compositions Block'
 
 
+class MiniProfessorItem(blocks.StructBlock):
+    name = blocks.CharBlock()
+    subtitle = blocks.CharBlock(label="Professor of...")
+    use_photo = blocks.BooleanBlock(required=False)
+    image = ImageChooserBlock(required=False)
+    letters = blocks.CharBlock(required=False, label="Inital Letter like AA if dont use picture")
+    letters_color = SnippetChooserBlock('home.Colors', blank=True, required=False)
+    letters_back = SnippetChooserBlock('home.Colors', blank=True, required=False)
+    link = blocks.PageChooserBlock()
+
+
+
+
+class MiniProfessorList(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+    items = blocks.StreamBlock([('professor_data',MiniProfessorItem())])
+
+    class Meta:
+        template = 'tmps/tmp_miniprofessor.html'
+        icon = 'placeholder'
+        label = 'Professor List'
+
+
+class SimpleTableItem(blocks.StructBlock):
+    fields = blocks.StreamBlock([('item', blocks.CharBlock())])
+
+
+class SimpleTableColumnDef(blocks.StructBlock):
+    width = blocks.CharBlock(label="From 1 to 12 using Grids (total must be 12)")
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    #items = blocks.StreamBlock([('items', blocks.CharBlock())])
+
+
+class SimpleTable(blocks.StructBlock):
+    columns_def = blocks.StreamBlock([('column_def',SimpleTableColumnDef())])
+    records = blocks.StreamBlock([('record',SimpleTableItem())])
+
+    class Meta:
+        template = 'tmps/tmp_simple_table.html'
+        icon = 'placeholder'
+        label = 'Simple Table'
+
+
+class RoundFrameText(blocks.StructBlock):
+    text = blocks.RichTextBlock()
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    back_color = SnippetChooserBlock('home.Colors', blank=True)
+
+    class Meta:
+        template = 'tmps/tmp_round_frame_text.html'
+        icon = 'placeholder'
+        label = 'Round Frame Text'
+
+
+class VerticalParagraph(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    blocks = blocks.StreamBlock(
+        [('text_block',blocks.CharBlock())]
+    )
+
+    class Meta:
+        template = 'tmps/tmp_vertical_para.html'
+        icon = 'placeholder'
+        label = 'Vertical Plain Paragraph'
+
+
+class YoutubeBlock(blocks.StructBlock):
+    video = blocks.CharBlock()
+
+    class Meta:
+        template = 'tmps/tmp_youtube.html'
+        icon = 'placeholder'
+        label = 'Youtube Video'
+
+
+class AccordionItem(blocks.StructBlock):
+    title = blocks.CharBlock()
+    text = blocks.RichTextBlock()
+
+
+class AccordionBlock(blocks.StructBlock):
+    anchor = blocks.CharBlock()
+    items = blocks.StreamBlock([
+        ("item", AccordionItem())
+    ])
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+    title_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    body_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    body_back_color = SnippetChooserBlock('home.Colors', blank=True)
+
+
+    class Meta:
+        template = 'tmps/tmp_accordion.html'
+        icon = 'placeholder'
+        label = 'Accordion Block'
+
+
 class LeftColumnAum(blocks.StreamBlock):
     paragraph = blocks.RichTextBlock()
     program_name = SectionNameProgram()
@@ -459,6 +643,7 @@ class LeftColumnAumGeneric(blocks.StreamBlock):
     side_apply_button = SideApplyButton()
     fast_text = FastFullText()
     full_text = FullText()
+    generic_button = GenericButtonAum()
 
     class Meta:
         template = 'tmps/tmp_leftcolumn_aum.html'
@@ -488,6 +673,10 @@ class RightColumnAumGeneric(blocks.StreamBlock):
     tuition_fee_block = TuitionFeeProgram()
     table_like_outline = SimpleTableLikeOutline()
     compositions_block = CompositionsBlock()
+    simple_table = SimpleTable()
+    #embed = EmbedBlock()
+    youtube = YoutubeBlock()
+    accordion_block = AccordionBlock()
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'
@@ -569,3 +758,18 @@ class GroupCards(blocks.StructBlock):
         icon = 'placeholder'
         label = 'Group Cards'
 
+
+class TwoColumnsInverted(blocks.StructBlock):
+    left_column = RightColumnAumGeneric(icon='arrow-right', label='Left column content')
+    right_column = LeftColumnAumGeneric(icon='arrow-left', label='Right column content')
+    separator_color = SnippetChooserBlock('home.Colors', blank=True)
+    main_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    theme = blocks.ChoiceBlock(choices=[
+        ('dark', 'Dark'),
+        ('white', 'White'),
+    ], icon='edit', default='dark')
+
+    class Meta:
+        template = 'tmps/tmp_twocolumns_inv.html'
+        icon = 'placeholder'
+        label = 'Two Columns Inverted'

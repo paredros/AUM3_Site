@@ -1,0 +1,27 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-9 col-lg-8">
+            <div class="HeroBanner_MiniApply">
+                    <div class="CirculoMiniBanner text-center text-white" onclick="window.open('{{ settings.home.ApplyBanner.link |safe }}');">
+                        <table class="Table-FullSize">
+                          <tbody>
+                            <tr>
+                                <td class="align-bottom">
+                                    <h1>
+                                        {{ settings.home.ApplyBanner.bigtext }}
+                                    </h1>
+                                    <img src="{% static 'icons/down-arrow-2.png' %}">
+                                </td>
+
+                            </tr>
+
+                          </tbody>
+                        </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

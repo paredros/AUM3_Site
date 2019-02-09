@@ -1,0 +1,42 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% comment %}
+<div class="container">
+    <div class="row">
+        {% for column in value.columnns_def %}
+            <div class="col-{{ column.width }} mb-1">
+                {% for item in column.items %}
+                    <div class="pages_FixedColumns_Normal" style="color: {{ column.text_color.color }}">
+                        {{ item.value |safe }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endcomment %}
+
+
+<div class="container">
+    <!--div class="row"-->
+        {% for record in value.records %}
+            <div class="row">
+            {% for column in value.columns_def %}
+                    {% for item in record.value.fields %}
+
+                        {% if forloop.counter == forloop.parentloop.counter %}
+                    <div class="col-{{ column.value.width }} mb-1">
+
+
+                        <div class="pages_FixedColumns_Normal" style="color: {{ column.value.text_color.color }}">
+                            {{ item.value}}
+                        </div>
+
+                    </div>
+                        {% endif %}
+                  {% endfor %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+    <!--/div-->
+</div>

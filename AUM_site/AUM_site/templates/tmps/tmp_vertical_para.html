@@ -1,0 +1,20 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <div class="d-flex">
+                {% for block in value.blocks %}
+                    <div class="p-1 MiFlex_Even">
+                        <div class="pages_VerticalParagraph text-left h-100">
+                            <h1 style="color: {{ value.text_color.color }}">{{ block.value }}</h1>
+                            <!--p>{{ segment.normaltext }}</p-->
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>

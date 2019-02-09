@@ -1,0 +1,45 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10 d-flex flex-wrap justify-content-center">
+            {% for prof in value.items %}
+                <div class="d-inline-flex p-1 pages_ProfessorMini mb-5 IsButton" onclick="window.location='{% pageurl prof.value.link %}';">
+                    {% if prof.value.use_photo %}
+                        <div class="pages_ProfessorMiniCircle float-left text-center"
+                             {% image prof.value.image width-200 as tmp_photo %}
+                             style="background-image: url({{ tmp_photo.url }})">
+
+                        </div>
+                    {% else %}
+                        <div class="pages_ProfessorMiniCircle float-left text-center" style="color: {{ prof.value.letters_color.color }};
+                                background-color: {{ prof.value.letters_back.color }};">
+                            {{ prof.value.letters }}
+                        </div>
+                    {% endif %}
+                    <div class="float-right ml-1">
+                        <h1>{{ prof.value.name | safe }}</h1>
+                        <h2>{{ prof.value.subtitle | safe }}</h2>
+                        <div class="MoreButton MoreButton_H30">
+                            <div class="MoreButton_Over MoreButton_H30">
+                                View
+                                <div class="MoreButtonBarra MoreButtonBarra_H30 MoreButtonBarra_50">
+                                    <div class="BarraAnim_Idle"></div>
+                                </div>
+                            </div>
+                            {% if value.theme == 'white' %}
+                                <img src="{% static 'icons/FlechaRight2White.png' %}">
+                            {% else %}
+                                <img src="{% static 'icons/FlechaRight2.png' %}">
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+</div>

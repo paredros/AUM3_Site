@@ -1,0 +1,182 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+<div id="carouselHero" class="carousel slide carousel-fade ForceMinHeight" data-ride="carousel">
+  <div class="carousel-inner">
+      {% for image in value.images %}
+        {% if forloop.first %}
+            <div class="carousel-item active">
+        {% else %}
+            <div class="carousel-item">
+        {% endif %}
+            {% image image.value width-1920 as tmp_photo %}
+                <div class="inline-block" style="
+                        width: 100vw;
+                        height: 100vh;
+                        min-height: 500px;
+                        background-attachment: fixed;
+                        background-color: #121212;
+                        background-image: url('{{ tmp_photo.url }}');
+                        background-size: cover;
+                        background-position: center;
+                        ">
+
+                </div>
+                <div class="inline-block " style="
+                    position: absolute;
+                    width: 100vw;
+                    height: 100vh;
+                    min-height: 500px;
+                    top: 0px;
+                    left: 0px;
+                    background-image: linear-gradient(
+                     rgba(0, 74, 135,{{ value.tint_overlay }}),
+                     rgba(0, 74, 135,{{ value.tint_overlay }})
+                     );
+                        ">
+                </div>
+            </div>
+      {% endfor %}
+  </div>
+</div>
+
+{% comment %}
+<div style="position: absolute;
+                left: 20px;
+                top: 20px;
+                width: 100%;">
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10">
+            <div class="Space-100"></div>
+            <div class="Space-50"></div>
+            <div class="row">
+
+                <table class="HeroProgramTitleHolder2">
+                    <tbody>
+                    <tr>
+                        <td class="align-bottom" >
+                            <div class="HeroProgramTitle text-white">{{ value.big_text |richtext }}</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div style="height: 100px;"></div>
+                {% image value.mini_image width-400 as tmp_photo %}
+                <div class="HeroProgramCircle ml-xl-5" style="
+                        background-image: url('{{ tmp_photo.url }}');
+                        background-size: cover;
+                        background-position: center;
+                        transform: scale(1.5);
+                        "><p></p></div>
+            </div>
+            <div class="row">
+                <div class="pl-0 col-lg-8 pr-5">
+                <div class="font-weight-light HeroProgramText text-white">{{ value.detail_text | richtext }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endcomment %}
+
+{% comment%}
+<div style="position: absolute;
+                left: 20px;
+                top: 20px;
+                width: 100%;">
+    <div class="row">
+
+        <div class="col-1">
+        </div>
+        <div class="col-10">
+            <div class="row Space-100 d-lg-none">
+            </div>
+
+            <div class="row" style="height: 360px">
+                {% if value.use_image %}
+                    {% image value.mini_image width-400 as tmp_photo %}
+                    <div class="HeroProfessorCircle" style="background-image: url({{ tmp_photo.url }})"><p></p></div>
+                {% else %}
+                    <div class="HeroProfessorCircle" style="background-color: {{ value.letters_back.color }};
+                                                    color: {{ value.letters_color.color }};
+                                                    "><p>{{ value.letters }}</p></div>
+                {% endif %}
+                <table class="HeroProfessorTitleHolder">
+                  <tbody>
+                    <tr>
+                        <td class="align-bottom text-white"><div class="{{ settingstop.usefontrich|yesno:'HeroProgramTitle_rich,HeroProgramTitle' }}">{{ value.big_text | safe }}</div></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+            </div>
+            <div class="row Space-100 d-lg-none">
+            </div>
+            <div class="row">
+                <div class="HeroProfessorText text-white">{{ value.detail_text | safe }}</div>
+            </div>
+            </div>
+    </div>
+</div>
+{% endcomment %}
+{% comment %}
+    <div class="row d-md-none w-100">
+        <div class="d-flex justify-content-center w-100">
+
+        {% if value.use_image %}
+            {% image value.mini_image width-400 as tmp_photo %}
+            <div class="HeroProfessorCircle" style="background-image: url({{ tmp_photo.url }})"><p></p></div>
+        {% else %}
+            <div class="HeroProfessorCircle" style="background-color: {{ value.letters_back.color }};
+                    color: {{ value.letters_color.color }};
+                    "><p>{{ value.letters }}</p></div>
+        {% endif %}
+
+        </div>
+
+    </div>
+<table class="HeroProfessorTitleHolder">
+                  <tbody>
+                    <tr>
+                        <td class="align-bottom text-white"><div class="{{ settingstop.usefontrich|yesno:'HeroProgramTitle_rich,HeroProgramTitle' }}">{{ value.big_text | safe }}</div></td>
+                    </tr>
+                  </tbody>
+                </table>
+    <div class="row">
+                <div class="HeroProfessorText text-white">{{ value.detail_text | safe }}</div>
+            </div>
+</div>
+
+{% endcomment %}
+
+<div style="position: absolute;
+                left: 20px;
+                top: 20px;
+                width: 100%";>
+    <div class="row">
+
+        <div class="col-1"></div>
+        <div class="col-8">
+            <div class="Space-100"></div>
+            <div class="row">
+                <div class="col-md-8 order-1 order-md-0">
+                    <div class="align-bottom text-white"><div class="{{ settingstop.usefontrich|yesno:'HeroProgramTitle_rich,HeroProgramTitle' }}">{{ value.big_text | safe }}</div></div>
+                    <div class="HeroProfessorText text-white">{{ value.detail_text | safe }}</div>
+                </div>
+                <div class="col-md-4 order-0 order-md-1">
+                    {% if value.use_image %}
+                    {% image value.mini_image width-400 as tmp_photo %}
+                    <div class="HeroProfessorCircle2" style="background-image: url({{ tmp_photo.url }})"></div>
+                    {% else %}
+                        <div class="HeroProfessorCircle2" style="background-color: {{ value.letters_back.color }};
+                    color: {{ value.letters_color.color }};
+                    "><p>{{ value.letters }}</p></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>

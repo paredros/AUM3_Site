@@ -10,6 +10,9 @@ body {
 b {
     font-weight: 900!important;
 }
+.IsButton:hover{
+    cursor: pointer;
+}
 .Space-nano{
     height: 10px;
 }
@@ -1151,14 +1154,30 @@ GRUPO BLOG
 }
 .HeroProgramTitle{
     width: 55vw;
-    font-size: 1.5em;
+    font-size: 3em;
     line-height: 1em;
 }
-
+.HeroProgramTitle_Normal{
+    width: 55vw;
+    font-size: 2.5em;
+    line-height: 1em;
+}
+.HeroProgramTitle h2{
+    font-size: 2.5em;
+}
+.HeroProgramTitle p{
+    width: 45vw;
+    font-size: 2em;
+    line-height: 1em;
+}
 .HeroProgramTitleHolder{
     position: absolute;
     left: 120px;
     height: 100px !important;
+}
+
+.HeroProgramTitleHolder2{
+    height: 250px !important;
 }
 .HeroProgramText{
     font-size: 1.5em;
@@ -1191,7 +1210,10 @@ GRUPO BLOG
     font-size: 1em;
     line-height: 1em;
 }
-
+.textaum_xsmall{
+    font-size: 0.7em;
+    line-height: 1em;
+}
 
 
 
@@ -1449,6 +1471,16 @@ SIDEBUTTONS
     /*border-right: 2px solid #ffffff;*/
 }
 
+.SeparatorTwoColumns_inv_dark{
+    border-bottom: 2px solid #121212;
+    /*border-bottom: 2px solid #121212;*/
+}
+.SeparatorTwoColumns_inv_white{
+    border-bottom: 2px solid #ffffff;
+    /*border-bottom: 2px solid #ffffff;*/
+    /*border-right: 2px solid #ffffff;*/
+}
+
 .CyanSection_CirculoMiniBlanco {
     background-color: white;
     -webkit-border-radius: 100%;
@@ -1653,4 +1685,214 @@ SIDEBUTTONS
 }
 .pages_InlineBanner_ShortDescription{
     font-size: 2em!important;
+}
+
+.HeroBanner_MiniApply{
+    position: absolute;
+    /*top: -280px;*/
+    top: -130px;
+    right: 0px;
+}
+
+.CirculoMiniBanner{
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    width: 120px;
+    background-color: #ce1731;
+    height: 120px;
+    z-index: -100;
+    transition: all 0.5s ease;
+
+}
+.CirculoMiniBanner h1{
+    font-family: 'Saira Condensed', sans-serif;
+    line-height: 0.8em;
+    font-weight: 900 !important;
+    font-size: 2.5em !important;
+    margin: 0px !important;
+}
+.CirculoMiniBanner img{
+    margin: 0px !important;
+    width: 10px;
+}
+.CirculoMiniBanner_Over{
+    background-color: #1ba7c1
+}
+
+.pages_ProfessorMini h1{
+    font-size: 1em;
+}
+.pages_ProfessorMini h2{
+    margin-top: -10px;
+    font-size: 0.8em;
+    color: #bebcc3;
+}
+
+.pages_ProfessorMini{
+    width: 300px;
+}
+.pages_ProfessorMiniCircle{
+    border-radius: 100px!important;
+    -moz-border-radius: 100px!important;
+    -webkit-border-radius: 100px!important;
+    border: none!important;
+    background-color: #ce1731;
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    line-height: 80px;
+    color: #ffffff;
+    font-size: 2em;
+    font-weight: 900;
+    background-size: cover;
+    background-position: center;
+}
+
+.HeroProfessorCircle {
+    /*position: absolute;
+    top: 120px;
+    right: 0px;*/
+    position: relative;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    background-color: #ce1731;
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+}
+.HeroProfessorCircle2 {
+    /*position: absolute;
+    top: 120px;
+    right: 0px;*/
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: none;
+    background-color: #ce1731;
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+}
+.HeroProfessorCircle p{
+    font-family: Roboto, sans-serif;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    line-height: 300px;
+    color: #ffffff;
+    font-size: 6.5em;
+    font-weight: 900;
+}
+.HeroProfessorCircle2 p{
+    font-family: Roboto, sans-serif;
+    width: 300px;
+    height: 300px;
+    text-align: center;
+    line-height: 300px;
+    color: #ffffff;
+    font-size: 6.5em;
+    font-weight: 900;
+}
+
+.HeroProfessorTitleHolder{
+    position: relative;
+    left: 0px;
+    /*height: 320px !important;*/
+    font-size: 1em;
+}
+.HeroProfessorText{
+    font-size: 2em;
+    line-height: 1em;
+    /*margin-top: 90px;*/
+    /*font-weight: 300!important;*/
+    width: 60%;
+}
+.HeroProfessorText strong{
+    font-weight: 800;
+}
+
+.HeroBannerData{
+    /*margin-top: 50px;
+    font-family: 'Saira Condensed', sans-serif;*/
+    line-height: 0.8;
+    font-weight: 100 !important;
+    font-size: 5em !important;
+    color: #bebcc3;
+}
+.HeroBannerData p{
+    line-height: 0.8;
+    font-weight: 100 !important;
+    font-size: 0.9em !important;
+    color: #bebcc3;
+    width: 100%;
+    text-align: center;
+}
+
+.pages_BlockStar_Star{
+    width: 100%;
+    text-align: center;
+    font-size: 8em;
+    font-weight: 900;
+    line-height: 1em;
+}
+.pages_BlockStar{
+    border-radius: 30px!important;
+    -moz-border-radius: 30px!important;
+    -webkit-border-radius: 30px!important;
+    border: none!important;
+    padding: 30px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /*background-color: #E9EAE4;*/
+    width: 600px;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 200;
+    line-height: 1em;
+}
+.pages_BlockStar strong{
+    font-weight: 800;
+}
+
+.panel-title{
+    border-bottom: 1px solid #c8c8c8;
+    padding-bottom: 15px;
+}
+.panel-title a{
+
+}
+.panel-body{
+    background-color: #E9EAE4;
+    padding: 10px;
+    padding-bottom: 40px;
+}
+.panel-body a{
+    color: #ce1731;
+}
+.panel-title > a:before {
+    float: left !important;
+    font-family: FontAwesome, "Font Awesome 5 Free";
+    line-height: 1em;
+    /*background-color: #aaa;*/
+    content:"\f068";
+    /*padding-right: 5px;*/
+    padding:2px;
+}
+.panel-title > a.collapsed:before {
+    float: left !important;
+    line-height: 1em;
+    font-family: FontAwesome, "Font Awesome 5 Free";
+    content:"\f067";
+    /*padding:4px;*/
+}
+.panel-title > a:hover,
+.panel-title > a:active,
+.panel-title > a:focus  {
+    text-decoration:none;
 }

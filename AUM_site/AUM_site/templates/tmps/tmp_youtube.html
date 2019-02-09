@@ -1,0 +1,10 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="youtube-embed-wrapper" style="height:0; overflow:hidden; padding-bottom:56.25%; padding-top:30px; position:relative">
+    <!--iframe allow=";" allowfullscreen="" frameborder="0" height="360" src="https://www.youtube.com/embed/w43VSK5Wm6o" style="position:absolute;top:0;left:0;width:100%;height:100%" width="640">
+
+    </iframe-->
+        <iframe allow=";" allowfullscreen="" frameborder="0" height="360" src="{{ value.video | safe }}" style="position:absolute;top:0;left:0;width:100%;height:100%" width="640">
+
+    </iframe>
+</div>

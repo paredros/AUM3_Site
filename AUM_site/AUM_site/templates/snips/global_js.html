@@ -97,6 +97,14 @@
                 $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');
             });
         }
+        if ($('.CirculoMiniBanner').length) {
+            $(".CirculoMiniBanner").hover(function () {
+                $(this).css('cursor', 'pointer');
+                $(this).addClass('CirculoCentralImageOver');
+            }, function () {
+                $(this).removeClass('CirculoCentralImageOver');
+            });
+        }
         if ($('.CyanSection_CirculoMiniBlanco').length) {
             $('.CyanSection_CirculoMiniBlanco').textfill({changeLineHeight: true});
         }
@@ -111,6 +119,7 @@
                 $('.AutoSizeTextOneLine').textfill({maxFontPixels: 200});
             }
         });
+
     }
 
     function ApplyButtonActivation() {

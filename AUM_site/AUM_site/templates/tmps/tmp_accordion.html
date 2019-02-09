@@ -1,0 +1,40 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container">
+    <div class="row ">
+
+        <div class="panel-group w-100" id="{{ value.anchor | safe }}" role="tablist"
+             aria-multiselectable="true">
+            <div class="panel panel-default">
+                {% for panels in value.items %}
+                    <div class="panel-heading" role="tab" id="{{ value.anchor | safe }}_head_{{ forloop.counter }}">
+                        {% if value.theme == "white" %}
+                        <h4 class="panel-title" style="border-bottom: 1px solid #ffffff;">
+                        {% else %}
+                        <h4 class="panel-title" style="border-bottom: 1px solid #c8c8c8;">
+                        {% endif %}
+                            <!--a class="collapsed blackAUM_force" data-toggle="collapse" data-parent="#{{ column2item.id }}accordion" href="#{{ column2item.id }}_block_{{ forloop.counter }}" aria-expanded="{{ forloop.first|yesno:'true,false' }}" aria-controls="{{ column2item.id }}_block_{{ forloop.counter }}"-->
+                            <a class="collapsed" data-toggle="collapse"
+                               data-parent="#{{ value.anchor | safe }}"
+                               href="#{{ value.anchor | safe }}_block_{{ forloop.counter }}" aria-expanded="false"
+                               aria-controls="{{ value.anchor | safe }}_block_{{ forloop.counter }}" style="color: {{ value.title_text_color.color }}">
+                                &nbsp; {{ panels.value.title | safe }}
+                            </a>
+                        </h4>
+
+                    </div>
+                    <!--div id="{{ column2item.id }}_block_{{ forloop.counter }}" class="panel-collapse collapse {{ forloop.first|yesno:'show,' }}" role="tabpanel" aria-labelledby="{{ column2item.id }}_head_{{ forloop.counter }}" style="background-color: #00ad9c"-->
+                    <div id="{{ value.anchor | safe }}_block_{{ forloop.counter }}" class="panel-collapse collapse"
+                         role="tabpanel" aria-labelledby="{{ value.anchor | safe }}_head_{{ forloop.counter }}"
+                         style="background-color: {{ value.body_back_color.color }}">
+                        <div class="panel-body" style="color: {{ value.body_text_color.colors }}">
+                            {{ panels.value.text | safe }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+    </div>
+</div>
