@@ -10,7 +10,10 @@ from wagtail.contrib.routable_page.models import route
 from wagtail.core.models import Page
 from wagtail.core import blocks
 from wagtail.core.fields import RichTextField, StreamField
-from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
+                                         InlinePanel, MultiFieldPanel,
+                                         PageChooserPanel, StreamFieldPanel,
+                                         )
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
@@ -26,12 +29,37 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
+from home.models import *
+from home.blocks import *
+
 # Create your models here.
 class BlogPage(RoutablePageMixin, Page):
     description = models.CharField(max_length=255, blank=True,)
 
+    herocarrousel = StreamField([
+        ('academic', HeroAcademic()),
+        ('mini_photo', HeroWithMiniFoto()),
+        ('solo_text', HeroSoloText()),
+        ('photo_or_letters', HeroWithFotoOrLetter()),
+    ], null=True, blank=True)
+
+    herobanner = StreamField([('large_banner', Banner()),
+                              ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
+                              ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
+                              ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ], null=True, blank=True)
+
     content_panels = Page.content_panels + [
-        FieldPanel('description', classname="full")
+        FieldPanel('description', classname="full"),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('herocarrousel'),
+                StreamFieldPanel('herobanner'),
+            ],
+            heading="Hero",
+            classname="collapsible collapsed"
+        ),
     ]
 
     def get_posts(self):
@@ -42,7 +70,7 @@ class BlogPage(RoutablePageMixin, Page):
         if not page_n:
             page_n = "1"
         #post_t = PostPage.objects.descendant_of(self).live().order_by('-date')
-        paginator = Paginator(post_t, 3)
+        paginator = Paginator(post_t, 6)
         posts_page = paginator.get_page(page_n)
         return posts_page
 
@@ -52,10 +80,18 @@ class BlogPage(RoutablePageMixin, Page):
         #context['posts'] = self.get_posts
         #context['posts'] = PostPage.objects.descendant_of(self).live()
         context['blog_page'] = self
+        context['showing_all'] = self.showing_all
         return context
+
+    @route(r'^view_all/')
+    def view_all(self, request, *args, **kwargs):
+        self.posts = self.get_posts()
+        self.showing_all = True
+        return Page.serve(self, request, *args, **kwargs)
 
     @route(r'^tag/(?P<tag>[-\w]+)/$')
     def post_by_tag(self, request, tag, *args, **kwargs):
+        self.showing_all = False
         self.search_type = 'tag'
         self.search_term = tag
         posts_p = self.get_posts().filter(tags__slug=tag)
@@ -64,6 +100,7 @@ class BlogPage(RoutablePageMixin, Page):
 
     @route(r'^category/(?P<category>[-\w]+)/$')
     def post_by_category(self, request, category, *args, **kwargs):
+        self.showing_all = False
         self.search_type = 'category'
         self.search_term = category
         posts_p = self.get_posts().filter(categories__slug=category)
@@ -72,6 +109,7 @@ class BlogPage(RoutablePageMixin, Page):
 
     @route(r'^author/(?P<author>[-\w]+)/$')
     def post_by_author(self, request, author, *args, **kwargs):
+        self.showing_all = False
         self.search_type = 'author'
         self.search_term = author
         posts_p = self.get_posts().filter(author__slug=author)
@@ -83,6 +121,7 @@ class BlogPage(RoutablePageMixin, Page):
     @route(r'^(\d{4})/(\d{2})/$')
     @route(r'^(\d{4})/(\d{2})/(\d{2})/$')
     def post_by_date(self, request, year, month=None, day=None, *args, **kwargs):
+        self.showing_all = False
         self.posts = self.get_posts().filter(date__year=year)
         if month:
             self.posts = self.posts.filter(date__month=month)
@@ -96,7 +135,7 @@ class BlogPage(RoutablePageMixin, Page):
     @route(r'^(\d{4})/(\d{2})/(\d{2})/(.+)/$')
     def post_by_date_slug(self, request, year, month, day, slug, *args, **kwargs):
         post_page = self.get_posts().filter(slug=slug).first()
-
+        self.showing_all = False
         if not post_page:
             raise Http404
         return Page.serve(post_page, request, *args, **kwargs)
@@ -111,12 +150,47 @@ class BlogPage(RoutablePageMixin, Page):
         #posts_page = paginator.get_page(page_n)
         #self.posts = posts_page
         #self.posts = self.get_posts()
+        self.showing_all = False
         posts_p = self.get_posts()
         self.posts = self.use_paginator(request, posts_p)
 
         return Page.serve(self, request, *args, **kwargs)
 
+"""
+class ViewAll(Page):
+    herocarrousel = StreamField([
+        ('academic', HeroAcademic()),
+        ('mini_photo', HeroWithMiniFoto()),
+        ('solo_text', HeroSoloText()),
+        ('photo_or_letters', HeroWithFotoOrLetter()),
+    ], null=True, blank=True)
 
+    herobanner = StreamField([('large_banner', Banner()),
+                              ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
+                              ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
+                              ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ], null=True, blank=True)
+
+    content_panels = Page.content_panels + [
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('herocarrousel'),
+                StreamFieldPanel('herobanner'),
+            ],
+            heading="Hero",
+            classname="collapsible collapsed"
+        ),
+    ]
+
+    def get_context(self, request, *args, **kwargs):
+        context = super(ViewAll, self).get_context(request, *args, **kwargs)
+        context['posts'] = self.posts
+        #context['posts'] = self.get_posts
+        #context['posts'] = PostPage.objects.descendant_of(self).live()
+        context['blog_page'] = self
+        return context
+"""
 
 class PostPage(Page):
     summary = RichTextField(blank=True)

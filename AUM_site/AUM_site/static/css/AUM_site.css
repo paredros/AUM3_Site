@@ -1896,3 +1896,16 @@ SIDEBUTTONS
 .panel-title > a:focus  {
     text-decoration:none;
 }
+
+.HeroAdmission_TalkText{
+    text-align: center;
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: 200;
+}
+.HeroAdmission_TalkText strong{
+    font-weight: 800;
+}
+.HeroAdmission_TalkText p{
+    text-align: center;
+}

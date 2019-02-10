@@ -1,0 +1,14 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="d-flex {{ value.align_bottom|yesno:'align-items-end,' }} ">
+    {% for item in value.items %}
+
+        <div class="pages_Inline_{{ item.value.size }} mr-4" style="color: {{ item.value.text_color.color }}">
+            {% if item.value.bold %}
+            <strong>{{ item.value.text | safe }}</strong>
+            {% else %}
+            {{ item.value.text | safe }}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>

@@ -61,7 +61,6 @@ class HeroBannerCircText(blocks.StructBlock):
         template = 'tmps/tmp_banner_circ_text.html'
 
 
-
 class CircleApplyWithPhoto(blocks.StructBlock):
     idHash = blocks.CharBlock(label='To be identified by script')
     image = ImageChooserBlock()
@@ -495,6 +494,8 @@ class Comp_TextBanner(blocks.StructBlock):
     text_small = blocks.RichTextBlock(required=False)
     has_button = blocks.BooleanBlock(required=False)
     link = blocks.PageChooserBlock(required=False)
+    use_external_link = blocks.BooleanBlock(required=False)
+    external_link = blocks.CharBlock(required=False)
     theme = blocks.ChoiceBlock(choices=[
         ('dark', 'Dark'),
         ('white', 'White'),
@@ -506,6 +507,41 @@ class Comp_TextBanner(blocks.StructBlock):
         label = 'Text Banner'
 
 
+class Comp_BigNumbAndTextTitle(blocks.StructBlock):
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    text_mini_color = SnippetChooserBlock('home.Colors', blank=True)
+    number_big = blocks.CharBlock(required=False)
+    text_normal = blocks.RichTextBlock(required=False)
+    text_title = blocks.CharBlock(required=False)
+
+    class Meta:
+        template = 'tmps/comp_bignumbtext_title.html'
+        icon = 'placeholder'
+        label = 'Big Number and Title with Sub'
+
+
+class Comp_InlineFill_Item(blocks.StructBlock):
+    size = blocks.ChoiceBlock(choices=[
+        ('NormalMini', 'Normal'),
+        ('ReallyBig', 'Big'),
+        ('ReallyBig', 'Giant'),
+    ], icon='edit', default='dark')
+    text = blocks.CharBlock()
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    bold = blocks.BooleanBlock(required=False)
+
+class Comp_InlineFill(blocks.StructBlock):
+    items = blocks.StreamBlock([
+        ('item', Comp_InlineFill_Item()),
+    ])
+    align_bottom = blocks.BooleanBlock(required=False)
+
+    class Meta:
+        template = 'tmps/comp_inline_fill.html'
+        icon = 'placeholder'
+        label = 'Inline Fill'
+
+
 class CompositionsBlock(blocks.StructBlock):
     compositions = blocks.StreamBlock([
         ('two_big_numbers', Comp_TwoBigNumbers()),
@@ -513,6 +549,8 @@ class CompositionsBlock(blocks.StructBlock):
         ('two_big_text', Comp_Two_Big_Text()),
         ('text_banner', Comp_TextBanner()),
         ('vertical_space', VerticalSpace()),
+        ('big_numb_and_title', Comp_BigNumbAndTextTitle()),
+        ('inline_text', Comp_InlineFill()),
     ])
 
     class Meta:
@@ -591,6 +629,24 @@ class VerticalParagraph(blocks.StructBlock):
         label = 'Vertical Plain Paragraph'
 
 
+class VerticalParagraphItem(blocks.StructBlock):
+    big_text = blocks.CharBlock(required=False)
+    normal_text = blocks.CharBlock(required=False)
+    big_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    normal_text_color = SnippetChooserBlock('home.Colors', blank=True)
+
+
+class VerticalParagraphComp(blocks.StructBlock):
+    blocks = blocks.StreamBlock(
+        [('block', VerticalParagraphItem())]
+    )
+
+    class Meta:
+        template = 'tmps/tmp_vertical_para_complex.html'
+        icon = 'placeholder'
+        label = 'Vertical Paragraph Complex'
+
+
 class YoutubeBlock(blocks.StructBlock):
     video = blocks.CharBlock()
 
@@ -623,6 +679,25 @@ class AccordionBlock(blocks.StructBlock):
         template = 'tmps/tmp_accordion.html'
         icon = 'placeholder'
         label = 'Accordion Block'
+
+
+class SimpleRecordsItem(blocks.StructBlock):
+    field_left = blocks.CharBlock()
+    field_right = blocks.CharBlock()
+    field_detail = blocks.CharBlock(required=False)
+
+
+class SimpleRecordsTable(blocks.StructBlock):
+    field_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    detail_text_color = SnippetChooserBlock('home.Colors', blank=True)
+    items = blocks.StreamBlock([
+        ('record', SimpleRecordsItem()),
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_simple_records.html'
+        icon = 'placeholder'
+        label = 'Simple Records Table'
 
 
 class LeftColumnAum(blocks.StreamBlock):
@@ -677,6 +752,7 @@ class RightColumnAumGeneric(blocks.StreamBlock):
     #embed = EmbedBlock()
     youtube = YoutubeBlock()
     accordion_block = AccordionBlock()
+    simple_records = SimpleRecordsTable()
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'
@@ -773,3 +849,11 @@ class TwoColumnsInverted(blocks.StructBlock):
         template = 'tmps/tmp_twocolumns_inv.html'
         icon = 'placeholder'
         label = 'Two Columns Inverted'
+
+
+class MiniApplyAlone(blocks.StaticBlock):
+
+    class Meta:
+        template = 'tmps/tmp_mini_apply_alone.html'
+        icon = 'placeholder'
+        label = 'Mini Apply Button'

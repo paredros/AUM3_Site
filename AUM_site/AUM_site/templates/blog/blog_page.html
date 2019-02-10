@@ -1,5 +1,7 @@
-{% load wagtailcore_tags blogapp_tags %}
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags utils_tags blogapp_tags wagtailroutablepage_tags %}
 
+{% comment %}
 {% block content %}
   <h1>{{ blog_page.title }}</h1>
 
@@ -10,3 +12,105 @@
   {% endfor %}
 
 {% endblock %}
+{% endcomment %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
+
+{% block content %}
+
+    {% include_block blog_page.herocarrousel.0 %}
+    <div class="HeroLogo">
+        <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
+    </div>
+
+    {% for banner in blog_page.herobanner %}
+
+        {% if banner.block_type == 'large_banner' %}
+            {% include "snips/banner.html" with data=banner.value %}
+        {% elif banner.block_type == 'circle_banner' %}
+            {% include "snips/banner_circ_apply.html" %}
+        {% elif banner.block_type == 'mini_banner' %}
+            {% include "tmps/tmp_mini_apply.html" %}
+        {% elif banner.block_type == 'circle_talk' %}
+            {% include "tmps/tmp_banner_circ_talk.html" %}
+        {% elif banner.block_type == 'only_text' %}
+            {% include "tmps/tmp_banner_circ_text.html" with value=banner.value %}
+        {% endif %}
+    {% endfor %}
+
+    {% if not showing_all %}
+        <div class="Space-100"></div>
+        {% include "snips/blog_block.html" with data=posts%}
+        <div class="Space-100"></div>
+
+        <div class="Space-100"></div>
+            <div class="container">
+                <div class="d-flex justify-content-center">
+                    {% if posts.has_previous %}
+                        <!--a href="{{ passget }}page={{ posts.previous_page_number }}" class="btn btn-primary backBlueAum m-2" >Previous</a-->
+                        <a href="{% pageurl blog_page %}?page={{ posts.previous_page_number }}" class="btn btn-primary backBlueAum m-2" >Previous</a>
+                    {% endif %}
+                    {% comment %}
+                    <!--a href="{% pageurl "blogall" %}" class="btn btn-primary backBlueAum m-2">View All</a-->
+                    {% endcomment %}
+                    <a href="{% routablepageurl blog_page "view_all" %}" class="btn btn-primary backBlueAum m-2">View All</a>
+                    {% if posts.has_next %}
+                        <!--a href="{{ passget }}page={{ posts.next_page_number }}" class="btn btn-primary backBlueAum m-2">Next</a-->
+                        <a href="{% pageurl blog_page %}?page={{ posts.next_page_number }}" class="btn btn-primary backBlueAum m-2">Next</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="Space-100"></div>
+        <div class="container-fluid">
+            <div class="d-flex flex-wrap justify-content-center">
+            {% for post in posts %}
+                <div class="aumBlog_ContainerAll m-5">
+                    {% comment %}
+                    <small>Created {{ post.date_created|timesince }} ago by
+                        <a href="{% routablepageurl blog_page "post_by_author" post.author.slug %}">{{ post.author.name }}</a></small>
+                        {% endcomment %}
+                    {% if post.author %}
+                        <small>Created {{ post.date|timesince }} ago by
+                        <a href="{% routablepageurl blog_page "post_by_author" post.author.slug %}">{{ post.author.name }}</a></small>
+                    {% else %}
+                        <small>Created {{ post.date|timesince }} ago </small>
+                    {% endif %}
+                    {{ post.author.name }}
+                    <div class="IsButton" onclick="location.href='{% pageurl post %}'">
+                        <h5>{{ post.title }}</h5>
+                        <div class="MoreButton MoreButton_H30">
+                            <div class="MoreButton_Over MoreButton_H30">
+                                View
+                                <div class="MoreButtonBarra MoreButtonBarra_H30 MoreButtonBarra_50">
+                                    <div class="BarraAnim_Idle"></div>
+                                </div>
+                            </div>
+                            {% comment %}
+                            {% if button_coloricon == 'white' %}
+                                <img src="{% static 'icons/FlechaRight2White.png' %}">
+                            {% else %}
+                                <img src="{% static 'icons/FlechaRight2.png' %}">
+                            {% endif %}
+                            {% endcomment %}
+                            <img src="{% static 'icons/FlechaRight2.png' %}">
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="Space-100"></div>
+    {% endif %}
+
+
+{% endblock content %}
+{% block extra_js %}
+
+{% endblock extra_js %}

@@ -1,0 +1,24 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <div class="CirculoMiniBanner text-center text-white" onclick="window.open('{{ settings.home.ApplyBanner.link |safe }}');">
+                <table class="Table-FullSize">
+                  <tbody>
+                    <tr>
+                        <td class="align-bottom">
+                            <h1>
+                                {{ settings.home.ApplyBanner.bigtext }}
+                            </h1>
+                            <img src="{% static 'icons/down-arrow-2.png' %}">
+                        </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

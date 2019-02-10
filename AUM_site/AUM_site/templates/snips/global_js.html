@@ -88,10 +88,10 @@
                 $(this).css('cursor','pointer');
                 $(this).parent().addClass('CirculoCentralImageOver');
                 $(this).addClass('text-white');
-                $(this).find('img').attr("src","{% static 'icons/down-arrow-2.png' %}");
+                $(this).find('img._replace').attr("src","{% static 'icons/down-arrow-2.png' %}");
                 $(this).find('.BarraAnim_Idle').addClass('BarraAnim_Active');
             }, function () {
-                $(this).find('img').attr("src","{% static 'icons/down-arrow.png' %}");
+                $(this).find('img._replace').attr("src","{% static 'icons/down-arrow.png' %}");
                 $(this).parent().removeClass('CirculoCentralImageOver');
                 $(this).removeClass('text-white');
                 $(this).find('.BarraAnim_Idle').removeClass('BarraAnim_Active');

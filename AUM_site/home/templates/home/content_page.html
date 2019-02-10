@@ -21,15 +21,34 @@ Delete the line below if you're just getting started and want to remove the welc
 
 
 
+    {% comment %}
     {% if content_page.herobanner.0.block_type == 'large_banner' %}
         {% include "snips/banner.html" with data=content_page.herobanner.0.value %}
     {% elif content_page.herobanner.0.block_type == 'circle_banner' %}
         {% include "snips/banner_circ_apply.html" %}
     {% elif content_page.herobanner.0.block_type == 'mini_banner' %}
         {% include "tmps/tmp_mini_apply.html" %}
+    {% elif content_page.herobanner.0.block_type == 'circle_talk' %}
+        {% include "tmps/tmp_banner_circ_talk.html" %}
     {% elif content_page.herobanner.0.block_type == 'only_text' %}
         {% include "tmps/tmp_banner_circ_text.html" with value=content_page.herobanner.0.value %}
     {% endif %}
+    {% endcomment %}
+
+    {% for banner in content_page.herobanner %}
+
+        {% if banner.block_type == 'large_banner' %}
+            {% include "snips/banner.html" with data=banner.value %}
+        {% elif banner.block_type == 'circle_banner' %}
+            {% include "snips/banner_circ_apply.html" %}
+        {% elif banner.block_type == 'mini_banner' %}
+            {% include "tmps/tmp_mini_apply.html" %}
+        {% elif banner.block_type == 'circle_talk' %}
+            {% include "tmps/tmp_banner_circ_talk.html" %}
+        {% elif banner.block_type == 'only_text' %}
+            {% include "tmps/tmp_banner_circ_text.html" with value=banner.value %}
+        {% endif %}
+    {% endfor %}
 
     {% with blocks=content_page.body %}
 

@@ -8,8 +8,8 @@
                 {% for block in value.blocks %}
                     <div class="p-2 MiFlex_Even">
                         <div class="pages_VerticalParagraph text-left h-100">
-                            <h1 style="color: {{ value.text_color.color }}">{{ block.value }}</h1>
-                            <!--p>{{ segment.normaltext }}</p-->
+                            <h1 style="color: {{ block.value.big_text_color.color }}">{{ block.value.big_text }}</h1>
+                            <p style="color: {{ block.value.normal_text_color.color }}">{{ block.value.normal_text }}</p>
                         </div>
                     </div>
                 {% endfor %}

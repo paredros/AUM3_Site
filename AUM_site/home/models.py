@@ -16,7 +16,12 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.contrib.settings.models import BaseSetting, register_setting
 from wagtail.snippets.models import register_snippet
 
+from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
+from modelcluster.fields import ParentalKey
+from wagtail.contrib.forms.edit_handlers import FormSubmissionsPanel
+
 from blog.models import *
+
 
 
 
@@ -194,6 +199,7 @@ class ContentPage(Page):
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
                               ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
                               ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
+                              ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
                               ], null=True, blank=True)
 
     body = StreamField([
@@ -218,6 +224,8 @@ class ContentPage(Page):
         ('professor_list', MiniProfessorList()),
         ('round_frame_text', RoundFrameText()),
         ('vertical_paragraph', VerticalParagraph()),
+        ('vertical_paragraph_complex', VerticalParagraphComp()),
+        ('mini_apply_alone', MiniApplyAlone()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -258,6 +266,29 @@ class ContentPage(Page):
         context['content_page'] = self
         return context
 
+
+class FormField(AbstractFormField):
+    page = ParentalKey('FormPage', related_name='custom_form_fields')
+
+
+class FormPage(AbstractEmailForm):
+    thank_you_text = RichTextField(blank=True)
+
+    content_panels = AbstractEmailForm.content_panels + [
+        FormSubmissionsPanel(),
+        InlinePanel('custom_form_fields', label="Form fields"),
+        FieldPanel('thank_you_text', classname="full"),
+        MultiFieldPanel([
+            FieldRowPanel([
+                FieldPanel('from_address', classname="col6"),
+                FieldPanel('to_address', classname="col6"),
+            ]),
+            FieldPanel('subject'),
+        ], "Email Notification Config"),
+    ]
+
+    def get_form_fields(self):
+        return self.custom_form_fields.all()
 
 
 @register_setting

@@ -1,0 +1,9 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+{% for record in value.items %}
+    <div class="TableAUM_Item_Detail" style="color: {{ value.detail_text_color.color }}">{{ record.value.field_detail | safe }}</div>
+    <div class="d-flex justify-content-between TableAUM_Item" style="color: {{ value.field_text_color.color }}">
+        <h1>{{ record.value.field_left | safe }}</h1>
+        <h2>{{ record.value.field_right | safe }}</h2>
+    </div>
+{% endfor %}

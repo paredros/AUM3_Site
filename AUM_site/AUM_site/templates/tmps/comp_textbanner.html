@@ -1,7 +1,15 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
 <div class="d-flex pages_InlineBanner">
-    <div class="pages_InlineBanner_BigText {{ value.has_button|yesno:'IsButton,' }}">
+    {% if value.has_button %}
+        <div class="pages_InlineBanner_BigText {{ value.has_button|yesno:'IsButton,' }}">
+    {% else %}
+        {% if value.use_external_link %}
+        <div class="pages_InlineBanner_BigText {{ value.has_button|yesno:'IsButton,' }}" onclick="window.location='{{ value.external_link | safe }}';">
+        {% else %}
+        <div class="pages_InlineBanner_BigText {{ value.has_button|yesno:'IsButton,' }}" onclick="window.location='{% pageurl value.link %}';">
+        {% endif %}
+    {% endif %}
         <div class="AutoSizeTextOneLine">
             <span>{{ value.text_big1 }}</span>
             <h2>{{ value.text_small }}</h2>

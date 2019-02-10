@@ -1,0 +1,26 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container-fluid mt-lg-4">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div id="HeroBannerApply" class="HeroBannerApplyCirculo blackAUM" >
+                <div class="CirculoCentralImage mx-auto" style="background-color: #E9EAE4">
+                    <div class="HeroBannerApplyButton" onclick="window.open('{{ settings.home.GlobalSettings.talk_to_admission_link |safe }}');">
+                        <div class="Space-25"></div>
+                        <img class="TalkAdmission_big" src="{% static 'icons/contact.png' %}" class="img-fluid">
+                        <div class="Space-25"></div>
+                        <h4><img class="_replace" src="{% static 'icons/down-arrow.png' %}"></h4>
+
+                        <div class="HeroAdmission_TalkText">{{ settings.home.GlobalSettings.talk_to_admission_text | safe }}</div>
+                        <div class="HeroBannerApplyBarra">
+                            <div class="BarraAnim_Idle"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</div>

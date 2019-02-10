@@ -43,6 +43,8 @@ INSTALLED_APPS = [
 
     'wagtail.contrib.routable_page',
 
+    'widget_tweaks',
+
     'modelcluster',
     'taggit',
 
