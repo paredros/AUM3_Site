@@ -1,0 +1,6 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="w-100" style="padding: {{ value.padding }}">
+    {% image value.image width-1920 as tmp_photo %}
+    <img src="{{ tmp_photo.url }}" class="w-100 h-auto">
+</div>

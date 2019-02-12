@@ -15,8 +15,8 @@ Delete the line below if you're just getting started and want to remove the welc
     {% include "snips/herocarousel_program.html" with value=content_page.herocarrousel.0.value %}
     {% endcomment %}
     {% include_block content_page.herocarrousel.0 %}
-    <div class="HeroLogo">
-        <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
+    <div class="HeroLogo" style="z-index: 950000;">
+        <a href="{% pageurl request.site.root_page %}" ><img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}"></a>
     </div>
 
     {% include "tmps/tmp_topnav.html" %}

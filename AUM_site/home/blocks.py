@@ -30,6 +30,25 @@ class TwoColumnBlock(blocks.StructBlock):
         label = 'Two Columns'
 
 
+class AnchorBlock(blocks.StructBlock):
+    anchor = blocks.CharBlock()
+
+    class Meta:
+        template = 'tmps/tmp_anchor.html'
+        icon = 'placeholder'
+        label = 'Anchor'
+
+
+class FullWidthImage(blocks.StructBlock):
+    image = ImageChooserBlock()
+    padding = blocks.CharBlock(default="0px")
+
+    class Meta:
+        template = 'tmps/tmp_full_width_image.html'
+        icon = 'placeholder'
+        label = 'Full Width Image'
+
+
 class HeroBannerCarrousel(blocks.StructBlock):
     heading = blocks.RichTextBlock()
     image = ImageChooserBlock()
@@ -48,10 +67,6 @@ class HeroCarouselMulti(blocks.StructBlock):
 
 
 class Banner(blocks.StructBlock):
-    type = blocks.ChoiceBlock(choices=[
-    ('long', 'Long'),
-    ('short', 'Short'),
-], icon='edit')
     textType = blocks.ChoiceBlock(choices=[
         ('simple', 'Simple'),
         ('double', 'double'),
@@ -781,6 +796,7 @@ class LeftColumnAum(blocks.StreamBlock):
     buttons_program = SectionButtonsProgram()
     vertical_space = VerticalSpace()
     side_apply_button = SideApplyButton()
+    generic_button = GenericButtonAum()
 
     class Meta:
         template = 'tmps/tmp_leftcolumn_aum.html'
@@ -810,6 +826,9 @@ class RightColumnAum(blocks.StreamBlock):
     separator_arrow = SeparatorLittleArrow()
     plan_outline = PlanOutline()
     stories_block = StoriesBloc()
+    generic_button = GenericButtonAum()
+    anchor = AnchorBlock()
+    full_width_image = FullWidthImage()
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'
@@ -831,8 +850,11 @@ class RightColumnAumGeneric(blocks.StreamBlock):
     youtube = YoutubeBlock()
     accordion_block = AccordionBlock()
     simple_records = SimpleRecordsTable()
-    form_view = FormView();
-    google_map = GoogleMap();
+    form_view = FormView()
+    google_map = GoogleMap()
+    anchor = AnchorBlock()
+    generic_button = GenericButtonAum()
+    full_width_image = FullWidthImage()
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'

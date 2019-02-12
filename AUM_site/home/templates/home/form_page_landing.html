@@ -10,8 +10,8 @@
 {% block content %}
 
     {% include_block page.herocarrousel.0 %}
-    <div class="HeroLogo">
-        <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
+    <div class="HeroLogo" style="z-index: 950000;">
+        <a href="{% pageurl request.site.root_page %}" ><img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}"></a>
     </div>
 
     {% for banner in page.herobanner %}

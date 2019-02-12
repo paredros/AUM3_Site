@@ -97,6 +97,9 @@ class HomePage(Page):
         ('vertical_paragraph', VerticalParagraph()),
         ('vertical_paragraph_complex', VerticalParagraphComp()),
         ('mini_apply_alone', MiniApplyAlone()),
+        ('anchor', AnchorBlock()),
+        ('generic_button', GenericButtonAum()),
+        ('full_width_image', FullWidthImage()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -202,6 +205,9 @@ class ProgramPage(Page):
         ('vertical_paragraph', VerticalParagraph()),
         ('vertical_paragraph_complex', VerticalParagraphComp()),
         ('mini_apply_alone', MiniApplyAlone()),
+        ('anchor', AnchorBlock()),
+        ('generic_button', GenericButtonAum()),
+        ('full_width_image', FullWidthImage()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -291,6 +297,9 @@ class ContentPage(Page):
         ('vertical_paragraph', VerticalParagraph()),
         ('vertical_paragraph_complex', VerticalParagraphComp()),
         ('mini_apply_alone', MiniApplyAlone()),
+        ('anchor', AnchorBlock()),
+        ('generic_button', GenericButtonAum()),
+        ('full_width_image', FullWidthImage()),
         #('form_view', FormView()),
     ], null=True, blank=True)
 
@@ -380,6 +389,9 @@ class FormPage(AbstractEmailForm):
         ('vertical_paragraph_complex', VerticalParagraphComp()),
         ('mini_apply_alone', MiniApplyAlone()),
         ('form_view', FormView()),
+        ('anchor', AnchorBlock()),
+        ('generic_button', GenericButtonAum()),
+        ('full_width_image', FullWidthImage()),
     ], null=True, blank=True)
 
     thank_you_body = StreamField([
@@ -406,6 +418,9 @@ class FormPage(AbstractEmailForm):
         ('vertical_paragraph', VerticalParagraph()),
         ('vertical_paragraph_complex', VerticalParagraphComp()),
         ('mini_apply_alone', MiniApplyAlone()),
+        ('anchor', AnchorBlock()),
+        ('generic_button', GenericButtonAum()),
+        ('full_width_image', FullWidthImage()),
         #('form_view', FormView()),
     ], null=True, blank=True)
 
