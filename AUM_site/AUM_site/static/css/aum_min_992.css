@@ -2,7 +2,8 @@
     font-size: 5em !important;
 }
 .HeroText1 {
-    font-size: 6vw;
+    font-size: 11vw;
+    line-height: 0.8em;
 }
 .CarouselValue_Holder{
     width: 100vh;

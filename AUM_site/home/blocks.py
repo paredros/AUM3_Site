@@ -36,6 +36,17 @@ class HeroBannerCarrousel(blocks.StructBlock):
     tintBlue = blocks.FloatBlock(label='Alpha Tint of the Blue Overlay')
 
 
+class HeroCarouselMulti(blocks.StructBlock):
+    items = blocks.StreamBlock([
+        ('item',HeroBannerCarrousel())
+    ])
+
+    class Meta:
+        template = 'tmps/tmp_herocarousel.html'
+        icon = 'placeholder'
+        label = 'Hero Multi'
+
+
 class Banner(blocks.StructBlock):
     type = blocks.ChoiceBlock(choices=[
     ('long', 'Long'),

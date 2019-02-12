@@ -215,9 +215,9 @@ b {
 .HeroLogo img{
     width: 200px;
 }
-
 .HeroText1{
-    font-size:11vw;
+    font-size: 11vw;
+    line-height: 0.8em;
     bottom: 30%;
     top:10%;
     right: 30%;

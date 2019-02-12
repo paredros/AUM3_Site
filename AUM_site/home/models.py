@@ -30,8 +30,25 @@ from blog.models import *
 class HomePage(Page):
     description = models.CharField(max_length=255, blank=True, )
 
-    herocarrousel = StreamField([('item', HeroBannerCarrousel())],null=True, blank=True)
-    herobanner = StreamField([('item', Banner())], null=True, blank=True)
+    #herocarrousel = StreamField([('item', HeroBannerCarrousel())],null=True, blank=True)
+    #herobanner = StreamField([('item', Banner())], null=True, blank=True)
+
+    herocarrousel = StreamField([
+        ('multi', HeroCarouselMulti()),
+        ('academic', HeroAcademic()),
+        ('mini_photo', HeroWithMiniFoto()),
+        ('solo_text', HeroSoloText()),
+        ('photo_or_letters', HeroWithFotoOrLetter()),
+        ('with_parameters', HeroParametric()),
+    ], null=True, blank=True)
+
+    herobanner = StreamField([('large_banner', Banner()),
+                              ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
+                              ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
+                              ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ], null=True, blank=True)
+
     use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
 
     #body = StreamField([

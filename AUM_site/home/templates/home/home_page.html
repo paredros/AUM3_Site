@@ -13,14 +13,33 @@ Delete the line below if you're just getting started and want to remove the welc
 {% block content %}
 
 
-
+    {% comment %}
     {% include "snips/herocarousel.html" with data=home_page.herocarrousel %}
+
+    {% endcomment %}
+    {% include_block home_page.herocarrousel.0 %}
     <div class="HeroLogo">
         <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
     </div>
+    {% for banner in home_page.herobanner %}
+
+        {% if banner.block_type == 'large_banner' %}
+            {% include "snips/banner.html" with data=banner.value %}
+        {% elif banner.block_type == 'circle_banner' %}
+            {% include "snips/banner_circ_apply.html" %}
+        {% elif banner.block_type == 'mini_banner' %}
+            {% include "tmps/tmp_mini_apply.html" %}
+        {% elif banner.block_type == 'circle_talk' %}
+            {% include "tmps/tmp_banner_circ_talk.html" %}
+        {% elif banner.block_type == 'only_text' %}
+            {% include "tmps/tmp_banner_circ_text.html" with value=banner.value %}
+        {% endif %}
+    {% endfor %}
+    {% comment %}
     {% if home_page.herobanner %}
         {% include "snips/banner.html" with data=home_page.herobanner.0.value %}
     {% endif %}
+    {% endcomment %}
     {% include "tmps/tmp_topnav.html" %}
     <div id="__BODY"></div>
     {% with blocks=home_page.body %}
