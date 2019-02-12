@@ -1,0 +1,63 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+<div class="Space-100"></div>
+<div class="w-100" style="background-color: #121212">
+    <div id="Footer" class="container text-white">
+        <div class="row">
+            {% for column in settings.home.NavigationMenus.footer.items %}
+                <div class="col-6 col-md-4 col-lg-{{ column.value.size }} mt-5 ">
+                    {% for group in column.value.content %}
+                        {% if group.block_type == "group" %}
+                            <div class="footer_GroupTitle">
+                                {{ group.value.title |safe}}
+                            </div>
+                            <div class="Space-10"></div>
+                            {% for item in group.value.items %}
+                                {% if item.block_type == "field_form" %}
+                                    <small class="form-text text-muted footer_Text">{{ item.value.text | safe }}</small>
+                                    <form id="FooterForm_{{ forloop.counter0 }}_{{ forloop.parentloop.counter0 }}_{{ forloop.parentloop.parentloop.counter0 }}"action="{% pageurl item.value.form_destination %}" method="POST" role="form">
+                                      {% csrf_token %}
+                                        <input type="{{ item.value.type }}" name="{{ item.value.slug_name | safe }}" required="" id="id_{{ item.value.slug_name | safe }}">
+                                      <input class="d-none" type="submit">
+                                    </form>
+                                    <div class="Space-10"></div>
+                                    <div class="footer_Button">
+                                        <div class="MoreButton MoreButton_H30" onclick="$('#FooterForm_{{ forloop.counter0 }}_{{ forloop.parentloop.counter0 }}_{{ forloop.parentloop.parentloop.counter0 }}').submit()">
+                                            <div class="MoreButton_Over MoreButton_H30">
+                                                Send
+                                                <div class="MoreButtonBarra MoreButtonBarra_H30 MoreButtonBarra_50">
+                                                    <div class="BarraAnim_Idle"></div>
+                                                </div>
+                                            </div>
+                                            <img src="{% static 'icons/FlechaRight2White.png' %}">
+
+                                        </div>
+                                    </div>
+                                {% elif item.block_type == "item" %}
+                                    <div class="footer_Item">
+                                    {% if item.value.use_external %}
+                                        <a href="{{ item.value.link_external | safe }}">{{ item.value.title|safe }}</a>
+                                    {% else %}
+                                        {% if item.value.use_anchor %}
+                                            <a href="{% pageurl item.value.page %}#{{ item.value.anchor }}">{{ item.value.title }}</a>
+                                        {% else %}
+                                            <a href="{% pageurl item.value.page %}">{{ item.value.title }}</a>
+                                        {% endif %}
+                                    {% endif %}
+                                    </div>
+                                {% elif item.block_type == "text" %}
+                                    <small class="form-text text-muted footer_Text">{{ item.value | safe }}</small>
+                                {% elif item.block_type == "blank" %}
+                                    <div class="Space-20"></div>
+                                {% elif item.block_type == "social" %}
+                                    {% include "snips/social_snip.html" with value=item.value %}
+                                {% endif %}
+                            {% endfor %}
+                        {% elif group.block_type == "blank" %}
+                            <div class="Space-20"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

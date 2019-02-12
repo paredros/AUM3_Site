@@ -41,6 +41,10 @@
 
     {% include "snips/simple_hero_img.html" with texttop=post.title textbody=post.summary %}
     {% include "snips/banner_circ_apply.html" %}
+
+    {% include "tmps/tmp_topnav.html" %}
+    <div id="__BODY"></div>
+
     <div class="Space-50"></div>
     <div class="Space-10"></div>
     <div class="container aumblog_PostContainer_TopImage" style="background-color: #FFFFFF">
@@ -116,5 +120,9 @@
 
     </div>
     </div>
+
+    {% include "snips/navstick.html" %}
+
+    {% include "snips/footer.html" %}
 {% endblock %}
 

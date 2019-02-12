@@ -1,0 +1,98 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div style="position: absolute;
+                left: 20px;
+                top: 10px;
+                width: 100%;">
+    <div class="row d-none d-lg-block">
+        <div class="col-11">
+            <div class="row TopNav_General{{ page.use_inverted_menu|yesno:'heronavDark,' }}">
+                 <div class="row TopNav_General slideInDown wow ml-auto mr-2" style="z-index: 900000">
+                     <nav class="navbar navbar-expand ml-auto">
+                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                {% for item in settings.home.NavigationMenus.top.items %}
+                                    {% if item.block_type == "simple"%}
+                                        {% if item.value.use_external %}
+                                            <li class="nav-item active">
+                                                <a class="nav-link {{ page.use_inverted_menu|yesno:'heronavDark,' }}"
+                                                                   href="{{ item.value.link_external }}">{{ item.value.title }}</a>
+                                            </li>
+                                        {% else %}
+
+                                            <li class="nav-item active">
+                                                {% if item.value.use_anchor %}
+                                                <a class="nav-link {{ page.use_inverted_menu|yesno:'heronavDark,' }}" href="{% pageurl item.value.page %}#{{ item.value.anchor }}">{{ item.value.title }}</a>
+                                                {% else %}
+                                                <a class="nav-link {{ page.use_inverted_menu|yesno:'heronavDark,' }}" href="{% pageurl item.value.page %}">{{ item.value.title }}</a>
+                                                {% endif %}
+                                            </li>
+
+                                        {% endif %}
+                                    {% elif item.block_type == "dropdown" %}
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle {{ page.use_inverted_menu|yesno:'heronavDark,' }}"
+                                               href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">
+                                                {{ item.value.title }}
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                                {% for line in item.value.items %}
+
+                                                    {% if line.block_type == "item" %}
+                                                        {% if line.value.use_external %}
+                                                            <a class="dropdown-item" href="{{ line.value.link_external }}">{{ line.value.title }}</a>
+                                                        {% else %}
+                                                            {% if item.value.use_anchor %}
+                                                                <a class="dropdown-item" href="{% pageurl line.value.page %}#{{ line.value.anchor }}">{{ line.value.title }}</a>
+                                                            {% else %}
+                                                                <a class="dropdown-item" href="{% pageurl line.value.page %}">{{ line.value.title }}</a>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% elif line.block_type == "separator" %}
+                                                        <div class="dropdown-divider"></div>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+                                    {% elif item.block_type == "veritical_separator" %}
+                                        <div class="ml-4 mr-4" style="border-right: 1px solid {{ page.use_inverted_menu|yesno:'#121212,#FFFFFF' }}"></div>
+                                    {% endif %}
+                                    {% comment %}
+                                <li class="nav-item active">
+                                    <a class="nav-link {{ settingstop.invertnavcolor|yesno:'heronavDark,' }}"
+                                                       href="#">BOTON</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link {{ settingstop.invertnavcolor|yesno:'heronavDark,' }}"
+                                                       href="#">BOTON2</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle {{ settingstop.invertnavcolor|yesno:'heronavDark,' }}"
+                                           href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                           aria-haspopup="true" aria-expanded="false">
+                                            BOTON3
+                                        </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#">OPCION1</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">OPCION2</a>
+                                    </div>
+                                </li>
+                                <div class="ml-4 mr-4"
+                                         style="border-right: 1px solid {{ settingstop.invertnavcolor|yesno:'#121212,#FFFFFF' }}"></div>
+                                <li class="nav-item active">
+                                    <a class="nav-link {{ settingstop.invertnavcolor|yesno:'heronavDark,' }}"
+                                                       href="#">BOTON4</a>
+                                </li>
+                                    {% endcomment %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

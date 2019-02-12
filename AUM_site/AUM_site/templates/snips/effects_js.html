@@ -5,6 +5,7 @@
     //var controller = new ScrollMagic.Controller({loglevel: 3});
     var controller = new ScrollMagic.Controller();
     var pin_holder;
+
     {% for effect in effects %}
         {% if effect.block_type == 'pin_color' %}
             pin_holder = new ScrollMagic.Scene({

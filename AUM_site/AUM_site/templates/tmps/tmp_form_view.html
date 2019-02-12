@@ -1,0 +1,46 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags widget_tweaks %}
+
+{% if value.use_container %}
+<div class="container w-75 pages_ContactForm">
+{% else %}
+<div class="container-fluid pages_ContactForm">
+{% endif %}
+<form id="usrform" action="{% pageurl page %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% comment %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger" role="alert">
+        {% for error in form.non_field_errors %}
+          {{ error }}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% for field in form.visible_fields %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {% render_field field class+="form-control" %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary" >Submit</button>
+       {% endcomment %}
+        {% if value.use_simple_button %}
+            <button type="submit" class="btn btn-primary" >{{ value.text_submit }}</button>
+        {% else %}
+            <div class="pages_TwoColumn1_BigText IsButton" onclick="$('#usrform').submit()" >
+                {{ value.text_submit | safe}}
+                <div class="MoreButton MoreButton_H30">
+                    <div class="MoreButton_Over MoreButton_H30">
+                        {{ value.text_submit_2 | safe }}
+                        <div class="MoreButtonBarra MoreButtonBarra_H30 MoreButtonBarra_50">
+                            <div class="BarraAnim_Idle"></div>
+                        </div>
+                    </div>
+                    <img src="{% static 'icons/FlechaRight2.png' %}">
+                </div>
+            </div>
+        {% endif %}
+</form>
+</div>

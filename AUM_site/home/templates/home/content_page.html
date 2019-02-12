@@ -19,6 +19,7 @@ Delete the line below if you're just getting started and want to remove the welc
         <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
     </div>
 
+    {% include "tmps/tmp_topnav.html" %}
 
 
     {% comment %}
@@ -49,7 +50,7 @@ Delete the line below if you're just getting started and want to remove the welc
             {% include "tmps/tmp_banner_circ_text.html" with value=banner.value %}
         {% endif %}
     {% endfor %}
-
+    <div id="__BODY"></div>
     {% with blocks=content_page.body %}
 
         {% for block in blocks %}
@@ -68,6 +69,10 @@ Delete the line below if you're just getting started and want to remove the welc
             {% endif %}
         {% endfor %}
     {% endwith %}
+
+    {% include "snips/navstick.html" %}
+
+    {% include "snips/footer.html" %}
 {% endblock content %}
 {% block extra_js %}
 

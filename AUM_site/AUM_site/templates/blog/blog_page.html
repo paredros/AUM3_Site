@@ -42,6 +42,9 @@
         {% endif %}
     {% endfor %}
 
+    {% include "tmps/tmp_topnav.html" %}
+    <div id="__BODY"></div>
+
     {% if not showing_all %}
         <div class="Space-100"></div>
         {% include "snips/blog_block.html" with data=posts%}
@@ -109,7 +112,9 @@
         <div class="Space-100"></div>
     {% endif %}
 
+    {% include "snips/navstick.html" %}
 
+    {% include "snips/footer.html" %}
 {% endblock content %}
 {% block extra_js %}
 

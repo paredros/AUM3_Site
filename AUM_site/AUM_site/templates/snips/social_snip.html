@@ -1,0 +1,41 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="d-inline-flex">
+    {% if value.show_email %}
+        <div class="footer_Icon">
+            <a href="mailto:{{ settings.home.SocialSettings.email | safe }}">
+                <img src="{% static 'icons/close-envelope.png' %}">
+            </a>
+        </div>
+    {% endif %}
+    {% if value.show_facebook %}
+        <div class="footer_Icon">
+            <a href="{{ settings.home.SocialSettings.facebook |safe }}" target="_blank">
+                <img src="{% static 'icons/facebook-letter-logo-2.png' %}">
+            </a>
+        </div>
+    {% endif %}
+    {% comment %}
+    {% if social.ln %}
+        <div class="footer_Icon">
+            <a href="{{ social.ln }}" target="_blank">
+                <img src="{% static 'icons/linkedin-logo-2.png' %}">
+            </a>
+        </div>
+    {% endif %}
+    {% endcomment %}
+    {% if value.show_twitter %}
+        <div class="footer_Icon">
+            <a href="{{ settings.home.SocialSettings.twitter |safe }}" target="_blank">
+                <img src="{% static 'icons/twitter-logo-silhouette-2.png' %}">
+            </a>
+        </div>
+    {% endif %}
+    {% if value.show_web %}
+        <div class="footer_Icon">
+            <a href="{{ settings.home.SocialSettings.weburl |safe }}" target="_blank">
+                <img src="{% static 'icons/grid-world-2.png' %}">
+            </a>
+        </div>
+    {% endif %}
+</div>

@@ -3,7 +3,9 @@
 <div class="container mt-5" >
     <div class="row text-center">
         <!--div class="row "  style="background-color: #ce1731"-->
+    {% comment %}
     {% for i in "xxxxx" %}
+    {% endcomment %}
 {% for program in data %}
     <!--h1>{{ program.programTitle }}</h1>
     <h2>{{ program.short }}</h2-->
@@ -34,8 +36,9 @@
                     <div class="BarraAnim_Idle"></div>
                 </div>
             </div>
-
+{% comment %}
 {% endfor %}
+{% endcomment %}
 {% endfor %}
 
         <!--/div-->

@@ -1,7 +1,7 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
 <div class="d-flex pages_InlineBanner">
-    {% if value.has_button %}
+    {% if not value.has_button %}
         <div class="pages_InlineBanner_BigText {{ value.has_button|yesno:'IsButton,' }}">
     {% else %}
         {% if value.use_external_link %}

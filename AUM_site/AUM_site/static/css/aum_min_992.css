@@ -86,7 +86,7 @@
 }
 .HeroProgramTitle p{
     width: 45vw;
-    font-size: 2em;
+    font-size: 1em;
     line-height: 1em;
 }
 .HeroProgramText {
@@ -188,4 +188,14 @@
     /*margin-top: 90px;*/
     /*font-weight: 300!important;*/
     width: 60%;
+}
+.HeroProfessorCircle2 {
+    width: 300px;
+    height: 300px;
+}
+.HeroProfessorCircle2 p{
+    width: 300px;
+    height: 300px;
+    line-height: 300px;
+    font-size: 6.5em;
 }

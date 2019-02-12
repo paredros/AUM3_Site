@@ -1,5 +1,27 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
+<div id="MiniButtonLeaf1" class="SidButtonMini_holder text-left" onclick="window.open('{{ value.link_leaflet |safe }}');">
+    <div class="d-flex">
+    <img class="SidButtonMini_icon" src="{% static 'icons/leaflet.png' %}" class="img-fluid">
+    <div class="SidButtonMini_text">{{ settings.home.GlobalSettings.get_leaf_text | safe }}</div>
+    </div>
+    <div class="MoreButton MoreButton_H30">
+        <div class="MoreButton_Over MoreButton_H30">
+            {{ settings.home.GlobalSettings.get_leaf_short | safe }}
+            <div class="MoreButtonBarra MoreButtonBarra_H30 MoreButtonBarra_50">
+                <div class="BarraAnim_Idle"></div>
+            </div>
+        </div>
+        {% if value.theme == 'white' %}
+            <img src="{% static 'icons/FlechaRight2White.png' %}">
+        {% else %}
+            <img src="{% static 'icons/FlechaRight2.png' %}">
+        {% endif %}
+    </div>
+</div>
+
+{% comment %}
+
 <div id="MiniButtonLeaf1" class="SidButtonMini_holder text-center text-lg-left" onclick="window.open('{{ value.link_leaflet |safe }}');">
     <div class="d-flex d-lg-block justify-content-center">
     <img class="SidButtonMini_icon" src="{% static 'icons/leaflet.png' %}" class="img-fluid">
@@ -19,3 +41,4 @@
         {% endif %}
     </div>
 </div>
+{% endcomment %}

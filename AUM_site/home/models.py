@@ -19,6 +19,8 @@ from wagtail.snippets.models import register_snippet
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from modelcluster.fields import ParentalKey
 from wagtail.contrib.forms.edit_handlers import FormSubmissionsPanel
+from wagtail.snippets.blocks import SnippetChooserBlock
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 
 from blog.models import *
 
@@ -30,6 +32,7 @@ class HomePage(Page):
 
     herocarrousel = StreamField([('item', HeroBannerCarrousel())],null=True, blank=True)
     herobanner = StreamField([('item', Banner())], null=True, blank=True)
+    use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
 
     #body = StreamField([
     #    ('heading', blocks.CharBlock(classname="full title")),
@@ -63,6 +66,20 @@ class HomePage(Page):
         #('embedded_video', EmbedBlock(icon="media")),
         ('programs_list', blocks.StaticBlock(label="Show the list of Programs", icon="site")),
         ('blog_list', blocks.StaticBlock(label="Show the list of Blog Post", icon="site")),
+        ('full_text', FullText()),
+        ('fast_full_text', FastFullText()),
+        ('two_columns_aum', TwoColumnAumGeneric()),
+        ('separator_arrow', SeparatorLittleArrow()),
+        ('circle_key_values', CircleKeyValues()),
+        ('circle_apply_banner', CircleApplyBanner()),
+        ('big_numbers_text', BigNumbersText()),
+        ('group_cards', GroupCards()),
+        ('two_columns_inverted', TwoColumnsInverted()),
+        ('professor_list', MiniProfessorList()),
+        ('round_frame_text', RoundFrameText()),
+        ('vertical_paragraph', VerticalParagraph()),
+        ('vertical_paragraph_complex', VerticalParagraphComp()),
+        ('mini_apply_alone', MiniApplyAlone()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -76,6 +93,7 @@ class HomePage(Page):
             [
                 StreamFieldPanel('herocarrousel'),
                 StreamFieldPanel('herobanner'),
+                FieldPanel('use_inverted_menu'),
             ],
             heading="Hero",
             classname="collapsible collapsed"
@@ -126,6 +144,8 @@ class ProgramPage(Page):
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site"))
                               ], null=True, blank=True)
 
+    use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
+
     body = StreamField([
         ('central_circle', CentralCircle(icon="radio-empty")),
         #('two_columns', TwoColumnBlock()),
@@ -141,6 +161,15 @@ class ProgramPage(Page):
         ('separator_arrow', SeparatorLittleArrow()),
         ('circle_key_values', CircleKeyValues()),
         ('circle_apply_banner', CircleApplyBanner()),
+        ('fast_full_text', FastFullText()),
+        ('big_numbers_text', BigNumbersText()),
+        ('group_cards', GroupCards()),
+        ('two_columns_inverted', TwoColumnsInverted()),
+        ('professor_list', MiniProfessorList()),
+        ('round_frame_text', RoundFrameText()),
+        ('vertical_paragraph', VerticalParagraph()),
+        ('vertical_paragraph_complex', VerticalParagraphComp()),
+        ('mini_apply_alone', MiniApplyAlone()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -159,6 +188,7 @@ class ProgramPage(Page):
             [
                 StreamFieldPanel('herocarrousel'),
                 StreamFieldPanel('herobanner'),
+                FieldPanel('use_inverted_menu'),
             ],
             heading="Hero",
             classname="collapsible collapsed"
@@ -194,6 +224,7 @@ class ContentPage(Page):
                                 ('mini_photo', HeroWithMiniFoto()),
                                 ('solo_text', HeroSoloText()),
                                 ('photo_or_letters', HeroWithFotoOrLetter()),
+                                ('with_parameters', HeroParametric()),
                                  ], null=True, blank=True)
     herobanner = StreamField([('large_banner', Banner()),
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
@@ -201,6 +232,8 @@ class ContentPage(Page):
                               ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
                               ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
                               ], null=True, blank=True)
+
+    use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
 
     body = StreamField([
         ('central_circle', CentralCircle(icon="radio-empty")),
@@ -226,6 +259,7 @@ class ContentPage(Page):
         ('vertical_paragraph', VerticalParagraph()),
         ('vertical_paragraph_complex', VerticalParagraphComp()),
         ('mini_apply_alone', MiniApplyAlone()),
+        #('form_view', FormView()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -238,6 +272,7 @@ class ContentPage(Page):
             [
                 StreamFieldPanel('herocarrousel'),
                 StreamFieldPanel('herobanner'),
+                FieldPanel('use_inverted_menu'),
             ],
             heading="Hero",
             classname="collapsible collapsed"
@@ -272,12 +307,105 @@ class FormField(AbstractFormField):
 
 
 class FormPage(AbstractEmailForm):
-    thank_you_text = RichTextField(blank=True)
+    herocarrousel = StreamField([
+        ('academic', HeroAcademic()),
+        ('mini_photo', HeroWithMiniFoto()),
+        ('solo_text', HeroSoloText()),
+        ('photo_or_letters', HeroWithFotoOrLetter()),
+        ('with_parameters', HeroParametric()),
+    ], null=True, blank=True)
+    herobanner = StreamField([('large_banner', Banner()),
+                              ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
+                              ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
+                              ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ], null=True, blank=True)
+
+    use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
+
+    body = StreamField([
+        ('central_circle', CentralCircle(icon="radio-empty")),
+        ('two_columns', TwoColumnBlock()),
+        ('vertical_space', VerticalSpace()),
+        ('circle_image_block', CircleImageBlock(icon="placeholder")),
+        ('big_text_boxes', BigTextBoxes(icon="placeholder")),
+        ('carousel_with_banner', CarouselWithBanner(icon="placeholder")),
+        ('three_columns_mini', ThreeColumnsMini()),
+        ('programs_list', blocks.StaticBlock(label="Show the list of Programs", icon="site")),
+        ('blog_list', blocks.StaticBlock(label="Show the list of Blog Post", icon="site")),
+        ('full_text', FullText()),
+        ('fast_full_text', FastFullText()),
+        ('two_columns_aum', TwoColumnAumGeneric()),
+        ('separator_arrow', SeparatorLittleArrow()),
+        ('circle_key_values', CircleKeyValues()),
+        ('circle_apply_banner', CircleApplyBanner()),
+        ('big_numbers_text', BigNumbersText()),
+        ('group_cards', GroupCards()),
+        ('two_columns_inverted', TwoColumnsInverted()),
+        ('professor_list', MiniProfessorList()),
+        ('round_frame_text', RoundFrameText()),
+        ('vertical_paragraph', VerticalParagraph()),
+        ('vertical_paragraph_complex', VerticalParagraphComp()),
+        ('mini_apply_alone', MiniApplyAlone()),
+        ('form_view', FormView()),
+    ], null=True, blank=True)
+
+    thank_you_body = StreamField([
+        ('central_circle', CentralCircle(icon="radio-empty")),
+        ('two_columns', TwoColumnBlock()),
+        ('vertical_space', VerticalSpace()),
+        ('circle_image_block', CircleImageBlock(icon="placeholder")),
+        ('big_text_boxes', BigTextBoxes(icon="placeholder")),
+        ('carousel_with_banner', CarouselWithBanner(icon="placeholder")),
+        ('three_columns_mini', ThreeColumnsMini()),
+        ('programs_list', blocks.StaticBlock(label="Show the list of Programs", icon="site")),
+        ('blog_list', blocks.StaticBlock(label="Show the list of Blog Post", icon="site")),
+        ('full_text', FullText()),
+        ('fast_full_text', FastFullText()),
+        ('two_columns_aum', TwoColumnAumGeneric()),
+        ('separator_arrow', SeparatorLittleArrow()),
+        ('circle_key_values', CircleKeyValues()),
+        ('circle_apply_banner', CircleApplyBanner()),
+        ('big_numbers_text', BigNumbersText()),
+        ('group_cards', GroupCards()),
+        ('two_columns_inverted', TwoColumnsInverted()),
+        ('professor_list', MiniProfessorList()),
+        ('round_frame_text', RoundFrameText()),
+        ('vertical_paragraph', VerticalParagraph()),
+        ('vertical_paragraph_complex', VerticalParagraphComp()),
+        ('mini_apply_alone', MiniApplyAlone()),
+        #('form_view', FormView()),
+    ], null=True, blank=True)
+
+    effects = StreamField([
+        ('pin_color', MagicPinColor()),
+        ('unround_carousel', MagicCarouselUnround())
+    ], null=True, blank=True)
+
+    #thank_you_text = RichTextField(blank=True)
 
     content_panels = AbstractEmailForm.content_panels + [
         FormSubmissionsPanel(),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('herocarrousel'),
+                StreamFieldPanel('herobanner'),
+                FieldPanel('use_inverted_menu'),
+            ],
+            heading="Hero",
+            classname="collapsible collapsed"
+        ),
+        StreamFieldPanel('body'),
+        MultiFieldPanel(
+            [
+                StreamFieldPanel('effects'),
+            ],
+            heading="Effects",
+            classname="collapsible collapsed"
+        ),
         InlinePanel('custom_form_fields', label="Form fields"),
-        FieldPanel('thank_you_text', classname="full"),
+        #FieldPanel('thank_you_text', classname="full"),
+        StreamFieldPanel('thank_you_body'),
         MultiFieldPanel([
             FieldRowPanel([
                 FieldPanel('from_address', classname="col6"),
@@ -314,6 +442,82 @@ class GlobalSettings(BaseSetting):
     get_leaf_short = models.CharField(default="", max_length=255, help_text='Url of Representative')
     scholarship_text = RichTextField(default="")
     scholarship_short = models.CharField(default="", max_length=255, help_text='Url of Representative')
+    use_wagtail_bar = models.BooleanField(default=False)
+
+
+@register_setting
+class SocialSettings(BaseSetting):
+    email = models.CharField(default="",max_length=255, blank=True)
+    weburl = models.CharField(default="",max_length=255, blank=True)
+    facebook = models.CharField(default="",max_length=255, blank=True)
+    twitter = models.CharField(default="",max_length=255,blank=True)
+
+
+@register_setting
+class NavigationMenus(BaseSetting):
+    #top = SnippetChooserBlock('home.NavigationMenu', blank=True)
+    top = models.ForeignKey(
+        'home.NavigationMenu',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    footer = models.ForeignKey(
+        'home.FooterData',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+
+    panels = [
+        SnippetChooserPanel('top'),
+        SnippetChooserPanel('footer'),
+    ]
+
+
+@register_snippet
+class NavigationMenu(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    items = StreamField([
+        ('simple', NavigationItem(icon="radio-empty")),
+        ('dropdown', NavigationDropdown(icon="radio-empty")),
+        ('veritical_separator', blocks.StaticBlock(icon="radio-empty")),
+    ], blank=True)
+
+    panels =[
+        FieldPanel('title'),
+        StreamFieldPanel('items'),
+    ]
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Menu"
+        verbose_name_plural = "Menus"
+
+
+@register_snippet
+class FooterData(models.Model):
+    title = models.CharField(max_length=255, blank=True)
+    items = StreamField([
+        ('column', FooterColumn(icon="radio-empty")),
+    ], blank=True)
+
+    panels =[
+        FieldPanel('title'),
+        StreamFieldPanel('items'),
+    ]
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Footer"
+        verbose_name_plural = "Footers"
 
 
 @register_snippet
@@ -333,3 +537,6 @@ class Colors(models.Model):
     class Meta:
         verbose_name = "Color"
         verbose_name_plural = "Colors"
+
+
+

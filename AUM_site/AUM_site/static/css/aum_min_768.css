@@ -173,3 +173,13 @@
     font-size: 1em;
     line-height: 1em;
 }
+.HeroProfessorCircle2 {
+    width: 200px;
+    height: 200px;
+}
+.HeroProfessorCircle2 p{
+    width: 200px;
+    height: 200px;
+    line-height: 200px;
+    font-size: 4.5em;
+}

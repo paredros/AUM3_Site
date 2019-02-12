@@ -1,6 +1,6 @@
 {% load static wagtailcore_tags wagtailimages_tags utils_tags %}
 
-
+{% if value.use_image_carousel %}
 <div id="carouselHero" class="carousel slide carousel-fade ForceMinHeight" data-ride="carousel">
   <div class="carousel-inner">
       {% for image in value.images %}
@@ -12,8 +12,8 @@
             {% image image.value width-1920 as tmp_photo %}
                 <div class="inline-block" style="
                         width: 100vw;
-                        height: 300px;
-                        min-height: 500px;
+                        height: {{ value.height }};
+                        min-height: {{ value.min_height }};
                         background-attachment: fixed;
                         background-color: #121212;
                         background-image: url('{{ tmp_photo.url }}');
@@ -25,13 +25,13 @@
                 <div class="inline-block " style="
                     position: absolute;
                     width: 100vw;
-                    height: 300px;
-                    min-height: 500px;
+                    height: {{ value.height }};
+                    min-height: {{ value.min_height }};
                     top: 0px;
                     left: 0px;
                     background-image: linear-gradient(
-                     rgba(0, 74, 135,{{ value.tint_overlay }}),
-                     rgba(0, 74, 135,{{ value.tint_overlay }})
+                     rgba({{ value.tint_R }}, {{ value.tint_G }}, {{ value.tint_B }},{{ value.tint_overlay }}),
+                     rgba({{ value.tint_R }}, {{ value.tint_G }}, {{ value.tint_B }},{{ value.tint_overlay }})
                      );
                         ">
                 </div>
@@ -39,7 +39,24 @@
       {% endfor %}
   </div>
 </div>
-
+{% else %}
+<div class="CarouselValue_Holder" style="height: {{ value.height }}!important;
+                    min-height: {{ value.min_height }}!important;">
+  <div class="inline-block " style="
+                    position: absolute;
+                    width: 100vw;
+                    height: {{ value.height }};
+                    min-height: {{ value.min_height }};
+                    top: 0px;
+                    left: 0px;
+                    background-image: linear-gradient(
+                     rgba({{ value.tint_R }}, {{ value.tint_G }}, {{ value.tint_B }},{{ value.tint_overlay }}),
+                     rgba({{ value.tint_R }}, {{ value.tint_G }}, {{ value.tint_B }},{{ value.tint_overlay }})
+                     );
+                        ">
+                </div>
+</div>
+{% endif %}
 {% comment %}
 <div style="position: absolute;
                 left: 20px;
@@ -162,17 +179,19 @@
             <div class="Space-100"></div>
             <div class="row">
                 <div class="col-md-8 order-1 order-md-0">
-                    <div class="align-bottom text-white"><div class="{{ settingstop.usefontrich|yesno:'HeroProgramTitle_rich,HeroProgramTitle' }}">{{ value.big_text | safe }}</div></div>
-                    <div class="HeroProfessorText text-white">{{ value.detail_text | safe }}</div>
+                    <div class="align-bottom"><div class="HeroProgramTitle" style="color: {{ value.text_color.color }}">{{ value.big_text | safe }}</div></div>
+                    <div class="HeroProfessorText" style="color: {{ value.text_color.color }}">{{ value.detail_text | safe }}</div>
                 </div>
                 <div class="col-md-4 order-0 order-md-1">
-                    {% if value.use_image %}
-                    {% image value.mini_image width-400 as tmp_photo %}
-                    <div class="HeroProfessorCircle2" style="background-image: url({{ tmp_photo.url }})"></div>
-                    {% else %}
-                        <div class="HeroProfessorCircle2" style="background-color: {{ value.letters_back.color }};
-                    color: {{ value.letters_color.color }};
-                    "><p>{{ value.letters }}</p></div>
+                    {% if value.use_circle %}
+                        {% if value.use_image %}
+                        {% image value.mini_image width-400 as tmp_photo %}
+                        <div class="HeroProfessorCircle2" style="background-image: url({{ tmp_photo.url }})"></div>
+                        {% else %}
+                            <div class="HeroProfessorCircle2" style="background-color: {{ value.letters_back.color }};
+                        color: {{ value.letters_color.color }};
+                        "><p>{{ value.letters }}</p></div>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>

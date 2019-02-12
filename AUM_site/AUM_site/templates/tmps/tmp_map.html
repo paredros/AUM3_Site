@@ -1,0 +1,40 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div id="map_google"></div>
+<script>
+    // Initialize and add the map
+    function initMap() {
+
+        // The location of Uluru
+        var aum = {lat: {{ value.lat }}, lng: {{value.lng}}};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map_google'), {
+                zoom: {{ value.zoom }},
+                center: aum,
+                mapTypeControl: false
+            });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: aum, map: map});
+    }
+    {% comment %}
+    function initMap() {
+
+        // The location of Uluru
+        var aum = {lat: 35.881718, lng: 14.519760};
+        // The map, centered at Uluru
+        var map = new google.maps.Map(
+            document.getElementById('map_google'), {
+                zoom: 15,
+                center: aum,
+                mapTypeControl: false
+            });
+        // The marker, positioned at Uluru
+        var marker = new google.maps.Marker({position: aum, map: map});
+    }
+    {% endcomment %}
+</script>
+<!--AIzaSyBjZDVil-qQ3WZ0oovJCsE7vdDa3c4nYCQ
+mio = AIzaSyBwQBaf6kp_fGS7Ug1ttvpCbLehp1s0iU0-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjZDVil-qQ3WZ0oovJCsE7vdDa3c4nYCQ&callback=initMap"></script>

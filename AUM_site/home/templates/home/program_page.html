@@ -11,10 +11,13 @@ Delete the line below if you're just getting started and want to remove the welc
 {% endblock extra_css %}
 
 {% block content %}
+
     {% include "snips/herocarousel_program.html" with data=program_page.herocarrousel.0.value %}
+
     <div class="HeroLogo">
         <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
     </div>
+
 
     <div style="position: absolute;
                 left: 20px;
@@ -52,6 +55,10 @@ Delete the line below if you're just getting started and want to remove the welc
         {% include "snips/banner_circ_apply.html" %}
     {% endif %}
 
+
+    {% include "tmps/tmp_topnav.html" %}
+
+    <div id="__BODY"></div>
     {% with blocks=program_page.body %}
 
         {% for block in blocks %}
@@ -70,6 +77,10 @@ Delete the line below if you're just getting started and want to remove the welc
             {% endif %}
         {% endfor %}
     {% endwith %}
+
+    {% include "snips/navstick.html" %}
+
+    {% include "snips/footer.html" %}
 {% endblock content %}
 {% block extra_js %}
 

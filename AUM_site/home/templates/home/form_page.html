@@ -1,8 +1,55 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags utils_tags widget_tweaks %}
 
-{% load static wagtailcore_tags widget_tweaks %}
+{% block body_class %}template-homepage{% endblock %}
+
+{% block extra_css %}
+
+{% endblock extra_css %}
 
 {% block content %}
 
+    {% include_block self.herocarrousel.0 %}
+    <div class="HeroLogo">
+        <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
+    </div>
+
+    {% for banner in self.herobanner %}
+
+        {% if banner.block_type == 'large_banner' %}
+            {% include "snips/banner.html" with data=banner.value %}
+        {% elif banner.block_type == 'circle_banner' %}
+            {% include "snips/banner_circ_apply.html" %}
+        {% elif banner.block_type == 'mini_banner' %}
+            {% include "tmps/tmp_mini_apply.html" %}
+        {% elif banner.block_type == 'circle_talk' %}
+            {% include "tmps/tmp_banner_circ_talk.html" %}
+        {% elif banner.block_type == 'only_text' %}
+            {% include "tmps/tmp_banner_circ_text.html" with value=banner.value %}
+        {% endif %}
+    {% endfor %}
+    {% include "tmps/tmp_topnav.html" %}
+
+    <div id="__BODY"></div>
+{% with blocks=self.body %}
+
+        {% for block in blocks %}
+            {% if block.block_type == 'programs_list' %}
+                {% include "snips/programs_list.html" with data=programs%}
+            {% elif block.block_type == 'vertical_space' %}
+                {% include "snips/vertical_space.html" with data=block.value%}
+            {% elif block.block_type == 'blog_list'%}
+                {% include "snips/blog_block.html" with data=blogposts%}
+
+            {% else %}
+                {% include_block block %}
+            {% endif %}
+        {% endfor %}
+    {% endwith %}
+
+
+
+    {% comment %}
 <h1>Contact</h1>
 <br>
 
@@ -10,7 +57,9 @@
 
 <form action="{% pageurl page %}" method="POST">
     {% csrf_token %}
-
+    {{ form.as_p }}
+    {% endcomment %}
+    {% comment %}
     {% if form.non_field_errors %}
       <div class="alert alert-danger" role="alert">
         {% for error in form.non_field_errors %}
@@ -27,6 +76,15 @@
     {% endfor %}
 
     <button type="submit" class="btn btn-primary" >Submit</button>
+       {% endcomment %}
+    {% comment %}
 </form>
+{% endcomment %}
 
-{% endblock %}
+    {% include "snips/navstick.html" %}
+
+    {% include "snips/footer.html" %}
+{% endblock content%}
+{% block extra_js %}
+
+{% endblock extra_js %}

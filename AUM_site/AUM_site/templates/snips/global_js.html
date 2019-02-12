@@ -111,6 +111,25 @@
         if ($('.AutoSizeTextOneLine').length) {
             $('.AutoSizeTextOneLine').textfill({maxFontPixels: 200});
         }
+        var TopMenuMiniScroll;
+        var TopMenuMiniScroll_status = false;
+        //TopMenuMiniScroll.remove()
+        if ($("#TopMenuMini").length) {
+                if(isBreakpoint("lg")) {
+                    TopMenuMiniScroll = new ScrollMagic.Scene({
+                        triggerElement: "#__BODY",
+                        triggerHook: 0,
+                        duration: 0
+                    })
+                        .setTween("#TopMenuMini", 0.1, {opacity: 1, display: '', ease: Power0.easeNone})
+                        .addTo(controller);
+                    TopMenuMiniScroll_status=true;
+                }else{
+                    $('#TopMenuMini').css('opacity',1);
+                    $('#TopMenuMini').css('display',"");
+                }
+            }
+
         $(window).resize(function() {
             if ($('.CyanSection_CirculoMiniBlanco').length) {
                 $('.CyanSection_CirculoMiniBlanco').textfill({changeLineHeight: true});
@@ -118,10 +137,57 @@
             if ($('.AutoSizeTextOneLine').length) {
                 $('.AutoSizeTextOneLine').textfill({maxFontPixels: 200});
             }
+            if(isBreakpoint("lg")) {
+                    if(!TopMenuMiniScroll_status) {
+                        $('#TopMenuMini').css('opacity',0);
+                        $('#TopMenuMini').css('display',"none");
+                        TopMenuMiniScroll = new ScrollMagic.Scene({
+                            triggerElement: "#__BODY",
+                            triggerHook: 0,
+                            duration: 0
+                        })
+                            .setTween("#TopMenuMini", 0.1, {opacity: 1, display: '', ease: Power0.easeNone})
+                            .addTo(controller);
+                        TopMenuMiniScroll_status = true;
+                    }
+            }else{
+                if(TopMenuMiniScroll_status) {
+                    TopMenuMiniScroll.remove()
+                    TopMenuMiniScroll_status = false;
+                }
+                $('#TopMenuMini').css('opacity',1);
+                $('#TopMenuMini').css('display',"");
+            }
         });
 
-    }
 
+    }
+    function showMenu() {
+        $("#TopMenuFloat").css('display','')
+        //$('.navbar-toggler').click();
+        $('#TopMenuFloat_Collapse').collapse('show');
+        //$('.toggler').collapse('hide');
+        TweenMax.to("#TopMenuFloat", 0.1, {
+                    'opacity': 1, onComplete: function () {
+                        $("#TopMenuMini").css('display','none')
+                    }
+                })
+
+    }
+    function hideMenu(){
+        $('#TopMenuFloat_Collapse').collapse('hide');
+        TweenMax.to("#TopMenuFloat", 0.1, {
+                    'opacity': 0, onComplete: function () {
+                        $("#TopMenuFloat").css('display','none')
+                        $("#TopMenuMini").css('display','')
+                    }
+                })
+
+
+    }
+    function isBreakpoint( alias ) {
+        return $('.device-' + alias).is(':visible');
+    }
     function ApplyButtonActivation() {
         if ($('.ApplyButton').length) {
             $(".ApplyButton").hover(function () {

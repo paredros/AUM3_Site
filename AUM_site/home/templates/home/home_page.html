@@ -21,7 +21,8 @@ Delete the line below if you're just getting started and want to remove the welc
     {% if home_page.herobanner %}
         {% include "snips/banner.html" with data=home_page.herobanner.0.value %}
     {% endif %}
-
+    {% include "tmps/tmp_topnav.html" %}
+    <div id="__BODY"></div>
     {% with blocks=home_page.body %}
 
         {% for block in blocks %}
@@ -55,7 +56,9 @@ Delete the line below if you're just getting started and want to remove the welc
 
     {% endwith %}
 
+    {% include "snips/navstick.html" %}
 
+    {% include "snips/footer.html" %}
 {% endblock content %}
 {% block extra_js %}
 

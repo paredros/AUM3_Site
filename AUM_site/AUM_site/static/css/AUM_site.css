@@ -1154,7 +1154,7 @@ GRUPO BLOG
 }
 .HeroProgramTitle{
     width: 55vw;
-    font-size: 3em;
+    font-size: 2em;
     line-height: 1em;
 }
 .HeroProgramTitle_Normal{
@@ -1167,9 +1167,13 @@ GRUPO BLOG
 }
 .HeroProgramTitle p{
     width: 45vw;
-    font-size: 2em;
+    font-size: 1em;
     line-height: 1em;
 }
+.HeroProgramTitle_x2 p {
+    font-size: 2em;
+}
+
 .HeroProgramTitleHolder{
     position: absolute;
     left: 120px;
@@ -1776,8 +1780,8 @@ SIDEBUTTONS
     background-color: #ce1731;
     background-size: cover;
     background-position: center;
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
 }
 .HeroProfessorCircle p{
     font-family: Roboto, sans-serif;
@@ -1791,12 +1795,11 @@ SIDEBUTTONS
 }
 .HeroProfessorCircle2 p{
     font-family: Roboto, sans-serif;
-    width: 300px;
-    height: 300px;
+    width: 100px;
+    height: 100px;
     text-align: center;
-    line-height: 300px;
-    color: #ffffff;
-    font-size: 6.5em;
+    line-height: 100px;
+    font-size: 3em;
     font-weight: 900;
 }
 
@@ -1807,7 +1810,7 @@ SIDEBUTTONS
     font-size: 1em;
 }
 .HeroProfessorText{
-    font-size: 2em;
+    font-size: 1.5em;
     line-height: 1em;
     /*margin-top: 90px;*/
     /*font-weight: 300!important;*/
@@ -1908,4 +1911,266 @@ SIDEBUTTONS
 }
 .HeroAdmission_TalkText p{
     text-align: center;
+}
+
+.pages_ContactForm{
+    width: 100%;
+    font-size: 20px;
+}
+.pages_ContactForm label{
+    width: 100%;
+    font-size: 1.3em;
+}
+.pages_ContactForm .helptext{
+    font-size: 0.6em!important;
+    color: #646464!important;
+}
+.pages_ContactForm input[type=text],input[type=email] {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #dddbe3;
+    font-size: 0.9em;
+}
+.pages_ContactForm input:focus, textarea:focus  {
+    border: none;
+    outline: none;
+    border-bottom: 3px solid #1ba7c1!important;
+}
+.pages_ContactForm input[type=text]::placeholder,input[type=email]::placeholder textarea::placeholder {
+    color: #c8c8c8;
+}
+.pages_ContactForm textarea{
+    border: none;
+    border-bottom: 1px solid #dddbe3;
+    width: 100%;
+    height: 200px;
+    font-size: 0.9em;
+    resize: none;
+    background-color: #f5f6f8;
+}
+.pages_ContactForm input[type=submit]{
+    visibility: hidden;
+}
+.pages_ContactForm .errorlist{
+    font-size: 0.5em;
+    color: #ce1731;
+}
+
+.pages_ContactForm_MiniText{
+    margin-left: 10px;
+    padding-top: 8px;
+    font-size: 0.9em!important;
+}
+
+.pages_TwoColumn1_BigText{
+    font-size: 2.4em;
+    line-height: 1em;
+    font-weight: 200;
+    /*margin-left: 20px;*/
+}
+.pages_TwoColumn1_BigText a{
+    color: #ce1731;
+}
+.pages_TwoColumn1_BigText strong{
+    font-weight: bold;
+}
+
+
+.footer_Icon{
+     -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 0px;
+    width: 30px;
+    height: 30px;
+    background-color: #4A4B45;
+    margin-right: 5px;
+    transition: all 0.5s ease;
+}
+.footer_Icon img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 2px
+}
+.footer_Icon:hover{
+    cursor: pointer;
+    background-color: #1ba7c1;
+}
+/*====================================
+GOOGLE MAP
+======================= */
+#map_google {
+    height: 400px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+}
+
+/*====================================
+TOP NAV
+======================= */
+.TopNav_OriginItem{
+
+}
+
+.TopNav_HolderList{
+    position: relative;
+    width: 200px;
+    background-color: #eaebed;
+    color: #333333;
+    margin-top: -50px;
+    margin-left: -30px;
+    padding: 10px;
+    line-height: 1em;
+    z-index: 10000000!important;
+}
+.TopNav_General{
+    /*font-family: 'Muli', sans-serif;*/
+    line-height: 1em!important;
+    /*text-transform: uppercase;*/
+
+}
+.dropdown .dropdown-menu {
+    visibility: hidden;
+        /*display: block;*/
+      opacity:0;
+    -webkit-transition: all 200ms ease-in;
+    -moz-transition: all 200ms ease-in;
+    -ms-transition: all 200ms ease-in;
+    -o-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+}
+.dropdown.show .dropdown-menu {
+    /*display: block;*/
+    opacity: 1;
+    visibility: visible;
+}
+
+.TopNav_General .dropdown.show{
+    background-color: #a4bac3 !important;
+}
+.TopNav_General .dropdown-toggle, .nav-link{
+    color: #ffffff;
+}
+.TopNav_General .dropdown-toggle:hover, .nav-link:hover{
+    color: #dcdcdc;
+    /*background-color: #a4bac3;*/
+    /*text-decoration: underline;*/
+    /*border-bottom: 1px solid #ffffff;*/
+}
+.TopNav_General .dropdown-toggle:hover .show{
+    border: none!important;
+}
+.TopNav_General .dropdown-item {
+    color: #333333;
+}
+.heronavDark{
+    font-weight: 600!important;
+    color: #4A4B45!important;
+}
+/*====================================
+GRUPO TOP MENU
+======================= */
+.TopMenuHolder {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #121212;
+    width: 70px;
+    height: 70px;
+     -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+.TopMenuHolder h1{
+    line-height: 68px;
+}
+
+/*====================================
+GRUPO FLOAT NAV
+======================= */
+.floatnav_GroupTitle{
+    border-bottom: 2px solid #fff;
+    font-size: 1em;
+    font-weight: 700;
+    display: inline;
+}
+.floatnav_Item{
+    color: #CCCCCC;
+    font-size: 0.8em;
+    font-weight: 400;
+    margin-top: 2px;
+}
+.floatnav_Item a{
+    color: #CCCCCC;
+}
+.floatnav_Item a:hover{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+/*====================================
+GRUPO FOOTER
+======================= */
+
+#Footer {
+    background-color: #121212;
+    min-height: 300px;
+}
+.footer_GroupTitle{
+    border-top: 2px solid #fff;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.footer_Item{
+    color: #CCCCCC;
+    font-size: 0.6em;
+    font-weight: 400;
+    margin-top: 2px;
+}
+.footer_Item a{
+    color: #CCCCCC;
+}
+.footer_Item a:hover{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+.footer_Text{
+    font-size: 0.8em!important;
+    font-weight: 400!important;
+}
+.footer_Icon{
+     -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    border: 0px;
+    width: 30px;
+    height: 30px;
+    background-color: #4A4B45;
+    margin-right: 5px;
+    transition: all 0.5s ease;
+}
+.footer_Icon img{
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    margin-top: 2px
+}
+.footer_Icon:hover{
+    cursor: pointer;
+    background-color: #1ba7c1;
+}
+.footer_Input{
+    -webkit-border-radius: 0%!important;
+    -moz-border-radius: 0%!important;
+    border-radius: 0%!important;
+    border: 0px!important;
+    font-size: 0.7em;
+    height: 30px;
+}
+.footer_Button{
+    cursor: pointer;
+    font-size: 0.5em;
 }

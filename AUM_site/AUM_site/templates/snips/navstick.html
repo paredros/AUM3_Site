@@ -1,0 +1,134 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+<div class="device-xs d-none d-xs-block"></div>
+<div class="device-sm d-none d-sm-block"></div>
+<div class="device-md d-none d-md-block"></div>
+<div class="device-lg d-none d-lg-block"></div>
+<!--div id="TopMenuMini" class="TopMenuHolder text-center text-white" style="display: none" onclick="showMenu();"-->
+<div id="TopMenuMini" class="TopMenuHolder text-center text-white" onclick="showMenu();">
+    <h1>&#9776;</h1>
+</div>
+
+
+{% comment %}
+
+        {% endcomment %}
+
+<!--div id="TopMenuFloat" class="container" style="width: 80%;position: fixed;top: 30px;right: 50px;background-color: #121212; font-size: 1em; display: none;opacity:0;transition: all 0.5s ease"-->
+<div id="TopMenuFloat" class="container" style="z-index: 1000000;width:75%;position: fixed;top: 30px;right: 50px;background-color: #121212; font-size: 1em; display: none;opacity:0;transition: all 0.5s ease">
+
+
+
+
+
+    <nav class="navbar navbar-dark bg-dark" style="background-color: #121212!important;">
+
+  <div id="TopMenuFloat_Collapse" class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+
+        {% for item in settings.home.NavigationMenus.top.items %}
+            {% if item.block_type == "simple"%}
+                <li class="nav-item active">
+                    {% if item.value.use_external %}
+                        <a class="nav-link" href="item.value.link_external">{{ item.value.title }}</a>
+                    {% else %}
+                        {% if item.value.use_anchor %}
+                        <a class="nav-link" href="{% pageurl item.value.page %}#{{ item.value.anchor }}">{{ item.value.title }}</a>
+                        {% else %}
+                        <a class="nav-link" href="{% pageurl item.value.page %}">{{ item.value.title }}</a>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% elif item.block_type == "dropdown" %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        {{ item.value.title }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                        {% for line in item.value.items %}
+
+                            {% if line.block_type == "item" %}
+                                {% if line.value.use_external %}
+                                    <a class="dropdown-item" href="{{ line.value.link_external }}">{{ line.value.title }}</a>
+                                {% else %}
+                                    {% if item.value.use_anchor %}
+                                        <a class="dropdown-item" href="{% pageurl line.value.page %}#{{ line.value.anchor }}">{{ line.value.title }}</a>
+                                    {% else %}
+                                        <a class="dropdown-item" href="{% pageurl line.value.page %}">{{ line.value.title }}</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% elif line.block_type == "separator" %}
+                                <div class="dropdown-divider"></div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </li>
+            {% elif item.block_type == "veritical_separator" %}
+                <div style="height: 10px;margin-bottom: 5px; border-bottom: 1px solid #666666;"></div>
+            {% endif %}
+        {% endfor %}
+        {% comment %}
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        {% endcomment %}
+
+    </ul>
+    <!--form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form-->
+  </div>
+</nav>
+
+
+
+    <div class="row text-white">
+
+            <div style="position: absolute;right: 8px;top: 4px">
+            <div class="footer_Icon">
+            <a href="javascript:hideMenu()">
+                <img src="{% static 'icons/forbidden-mark.png' %}">
+            </a>
+        </div>
+        </div>
+
+
+
+
+    </div>
+
+</div>

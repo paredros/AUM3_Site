@@ -250,6 +250,32 @@ class HeroWithFotoOrLetter(blocks.StructBlock):
         template = 'tmps/tmp_hero_photo_letter.html'
 
 
+class HeroParametric(blocks.StructBlock):
+    use_image_carousel = blocks.BooleanBlock(required=False)
+    images = blocks.StreamBlock([
+        ('image', ImageChooserBlock())
+    ], required=False)
+    tint_overlay = blocks.FloatBlock(default=0.7, label='Amount of blue Tint')
+    tint_R = blocks.IntegerBlock(default=0)
+    tint_G = blocks.IntegerBlock(default=74)
+    tint_B = blocks.IntegerBlock(default=135)
+    height = blocks.CharBlock(default="300px")
+    min_height = blocks.CharBlock(default="500px")
+    big_text = blocks.RichTextBlock()
+    detail_text = blocks.RichTextBlock(required=False)
+    text_color = SnippetChooserBlock('home.Colors', blank=True, required=False)
+    use_circle = blocks.BooleanBlock(required=False)
+    use_image = blocks.BooleanBlock(required=False)
+    mini_image = ImageChooserBlock(required=False)
+    letters = blocks.CharBlock(required=False, max_length=3, label="Initial letters if dont use image")
+    letters_color = SnippetChooserBlock('home.Colors', blank=True,required=False)
+    letters_back = SnippetChooserBlock('home.Colors', blank=True,required=False)
+
+
+    class Meta:
+        template = 'tmps/tmp_hero_params.html'
+
+
 class FullText(blocks.StructBlock):
     text_size = blocks.ChoiceBlock(choices=[
         ('xsmall', 'X-Small'),
@@ -441,7 +467,9 @@ class GenericButtonAum(blocks.StructBlock):
         ('white', 'White'),
     ], icon='edit', default='dark')
     title = blocks.CharBlock()
-    link = blocks.PageChooserBlock()
+    link = blocks.PageChooserBlock(required=False)
+    use_external = blocks.BooleanBlock(required=False)
+    link_external = blocks.CharBlock(required=False)
 
     class Meta:
         template = 'tmps/tmp_button_aum.html'
@@ -700,6 +728,42 @@ class SimpleRecordsTable(blocks.StructBlock):
         label = 'Simple Records Table'
 
 
+class FormView(blocks.StructBlock):
+    #text_color = SnippetChooserBlock('home.Colors', blank=True)
+    use_container = blocks.BooleanBlock(required=False)
+    use_simple_button = blocks.BooleanBlock(required=False, default=True)
+    text_submit = blocks.CharBlock(default="Submit")
+    text_submit_2 = blocks.CharBlock(default="Send", label="Only for complex button")
+
+    class Meta:
+        template = 'tmps/tmp_form_view.html'
+        icon = 'placeholder'
+        label = 'Form View (only Form Page)'
+
+
+class SocialButtons(blocks.StructBlock):
+    show_email = blocks.BooleanBlock(required=False, default=True)
+    show_web = blocks.BooleanBlock(required=False, default=True)
+    show_facebook = blocks.BooleanBlock(required=False, default=True)
+    show_twitter = blocks.BooleanBlock(required=False, default=True)
+
+    class Meta:
+        template = 'tmps/tmp_social.html'
+        icon = 'placeholder'
+        label = 'Social Buttons'
+
+
+class GoogleMap(blocks.StructBlock):
+    lat = blocks.CharBlock(default="35.881718")
+    lng = blocks.CharBlock(default="14.519760")
+    zoom = blocks.CharBlock(default="15")
+
+    class Meta:
+        template = 'tmps/tmp_map.html'
+        icon = 'placeholder'
+        label = 'Google Map'
+
+
 class LeftColumnAum(blocks.StreamBlock):
     paragraph = blocks.RichTextBlock()
     program_name = SectionNameProgram()
@@ -719,6 +783,9 @@ class LeftColumnAumGeneric(blocks.StreamBlock):
     fast_text = FastFullText()
     full_text = FullText()
     generic_button = GenericButtonAum()
+    form_view = FormView()
+    social_buttons = SocialButtons()
+
 
     class Meta:
         template = 'tmps/tmp_leftcolumn_aum.html'
@@ -753,6 +820,8 @@ class RightColumnAumGeneric(blocks.StreamBlock):
     youtube = YoutubeBlock()
     accordion_block = AccordionBlock()
     simple_records = SimpleRecordsTable()
+    form_view = FormView();
+    google_map = GoogleMap();
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'
@@ -857,3 +926,50 @@ class MiniApplyAlone(blocks.StaticBlock):
         template = 'tmps/tmp_mini_apply_alone.html'
         icon = 'placeholder'
         label = 'Mini Apply Button'
+
+
+class NavigationItem(blocks.StructBlock):
+    title = blocks.CharBlock()
+    page = blocks.PageChooserBlock(required=False)
+    use_external = blocks.BooleanBlock(required=False)
+    link_external = blocks.CharBlock(required=False)
+    use_anchor = blocks.BooleanBlock(required=False)
+    anchor = blocks.CharBlock(required=False, label="like #anchor, dont include #")
+
+
+class NavigationDropdown(blocks.StructBlock):
+    title = blocks.CharBlock()
+    items = blocks.StreamBlock([
+        ('item', NavigationItem()),
+        ('separator', blocks.StaticBlock()),
+    ])
+
+
+class FooterForm(blocks.StructBlock):
+    text = blocks.CharBlock()
+    form_destination = blocks.PageChooserBlock(target_model="home.FormPage")
+    slug_name = blocks.CharBlock(label="the-name-of-the-field (like this)")
+    type = blocks.ChoiceBlock(choices=[
+        ('email', 'Email'),
+        ('text', 'Single Line'),
+        ('password', 'Passwor'),
+    ], icon='edit', default='email')
+
+
+class FooterGroup(blocks.StructBlock):
+    title = blocks.CharBlock()
+    items = blocks.StreamBlock([
+        ('item', NavigationItem()),
+        ('blank', blocks.StaticBlock()),
+        ('text', blocks.StaticBlock()),
+        ('social', SocialButtons()),
+        ('field_form', FooterForm()),
+    ])
+
+
+class FooterColumn(blocks.StructBlock):
+    size = blocks.IntegerBlock(label="grid based, total must be 12")
+    content = blocks.StreamBlock([
+        ('group', FooterGroup()),
+        ('blank', blocks.StaticBlock()),
+    ])
