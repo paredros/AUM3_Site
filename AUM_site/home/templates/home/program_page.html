@@ -11,14 +11,28 @@ Delete the line below if you're just getting started and want to remove the welc
 {% endblock extra_css %}
 
 {% block content %}
-
+    {% comment %}
     {% include "snips/herocarousel_program.html" with data=program_page.herocarrousel.0.value %}
-
+    {% endcomment %}
+    {% include_block program_page.herocarrousel.0 %}
     <div class="HeroLogo">
         <img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}">
     </div>
+    {% for banner in program_page.herobanner %}
 
-
+        {% if banner.block_type == 'large_banner' %}
+            {% include "snips/banner.html" with data=banner.value %}
+        {% elif banner.block_type == 'circle_banner' %}
+            {% include "snips/banner_circ_apply.html" %}
+        {% elif banner.block_type == 'mini_banner' %}
+            {% include "tmps/tmp_mini_apply.html" %}
+        {% elif banner.block_type == 'circle_talk' %}
+            {% include "tmps/tmp_banner_circ_talk.html" %}
+        {% elif banner.block_type == 'only_text' %}
+            {% include "tmps/tmp_banner_circ_text.html" with value=banner.value %}
+        {% endif %}
+    {% endfor %}
+    {% comment %}
     <div style="position: absolute;
                 left: 20px;
                 top: 20px;
@@ -54,7 +68,7 @@ Delete the line below if you're just getting started and want to remove the welc
     {% elif program_page.herobanner.0.block_type == 'circle_banner' %}
         {% include "snips/banner_circ_apply.html" %}
     {% endif %}
-
+    {% endcomment %}
 
     {% include "tmps/tmp_topnav.html" %}
 
