@@ -10,3 +10,5 @@ __pycache__/
 AUM_site/blog/migrations/
 
 AUM_site/home/migrations/
+
+*.sqlite3
