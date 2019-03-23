@@ -3,3 +3,10 @@ local_settings.py
 *.pyc
 *.log
 __pycache__/
+\.idea/vcs\.xml
+
+\.idea/workspace\.xml
+
+AUM_site/blog/migrations/
+
+AUM_site/home/migrations/
