@@ -12,3 +12,4 @@ AUM_site/blog/migrations/
 AUM_site/home/migrations/
 
 *.sqlite3
+AUM_site/media/
