@@ -13,3 +13,5 @@ AUM_site/home/migrations/
 
 *.sqlite3
 AUM_site/media/
+
+AUM_site/AUM_site/static/
