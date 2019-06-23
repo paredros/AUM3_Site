@@ -1,0 +1,35 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+{% if value.use_container %}
+<div class="container">
+{% endif %}
+    <div class="textaum_{{ value.text_size }} links_enh" style="color: {{ value.text_color.color }};
+            text-align: {{ value.align }};
+            line-height: 1em;
+            ">
+        {% if value.use_external %}
+            <a href="{{ value.link_external }}"
+               {% if value.open_on_new %}
+                   target="_blank"
+               {% endif %}
+            >{{ value.text }}</a>
+        {% else %}
+            {% if value.use_anchor %}
+                <a href="{% pageurl value.page %}#{{ value.anchor }}"
+                   {% if value.open_on_new %}
+                       target="_blank"
+                   {% endif %}
+                >{{ value.text }}</a>
+            {% else %}
+                <a href="{% pageurl value.page %}"
+                   {% if value.open_on_new %}
+                       target="_blank"
+                   {% endif %}
+
+                >{{ value.text }}</a>
+
+            {% endif %}
+        {% endif %}
+    </div>
+{% if value.use_container %}
+</div>
+{% endif %}

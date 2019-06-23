@@ -105,6 +105,14 @@
                 $(this).removeClass('CirculoCentralImageOver');
             });
         }
+        if ($('.CirculoMiniBanner_post').length) {
+            $(".CirculoMiniBanner_post").hover(function () {
+                $(this).css('cursor', 'pointer');
+                $(this).addClass('CirculoCentralImageOver');
+            }, function () {
+                $(this).removeClass('CirculoCentralImageOver');
+            });
+        }
         if ($('.CyanSection_CirculoMiniBlanco').length) {
             $('.CyanSection_CirculoMiniBlanco').textfill({changeLineHeight: true});
         }
@@ -117,7 +125,7 @@
         if ($("#TopMenuMini").length) {
                 if(isBreakpoint("lg")) {
                     TopMenuMiniScroll = new ScrollMagic.Scene({
-                        triggerElement: "#__BODY",
+                        triggerElement: "#__TOPMENU",
                         triggerHook: 0,
                         duration: 0
                     })
@@ -137,12 +145,13 @@
             if ($('.AutoSizeTextOneLine').length) {
                 $('.AutoSizeTextOneLine').textfill({maxFontPixels: 200});
             }
+            //triggerElement: "#__BODY",
             if(isBreakpoint("lg")) {
                     if(!TopMenuMiniScroll_status) {
                         $('#TopMenuMini').css('opacity',0);
                         $('#TopMenuMini').css('display',"none");
                         TopMenuMiniScroll = new ScrollMagic.Scene({
-                            triggerElement: "#__BODY",
+                            triggerElement: "#__TOPMENU",
                             triggerHook: 0,
                             duration: 0
                         })
@@ -259,4 +268,5 @@
             })
         }
     }
+
 </script>

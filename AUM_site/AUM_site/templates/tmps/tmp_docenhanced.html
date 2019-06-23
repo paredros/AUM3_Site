@@ -1,0 +1,17 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+{% if value.use_container %}
+<div class="container">
+{% endif %}
+    <div class="textaum_{{ value.text_size }} links_enh" style="color: {{ value.text_color.color }};
+            text-align: {{ value.align }};
+            line-height: 1em;
+            ">
+        <a href="{{ value.document.url }}"
+           {% if value.open_on_new %}
+               target="_blank"
+           {% endif %}
+        >{{ value.text }}</a>
+    </div>
+{% if value.use_container %}
+</div>
+{% endif %}

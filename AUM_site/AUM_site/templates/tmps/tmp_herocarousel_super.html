@@ -1,0 +1,151 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+    {% comment %}
+    {% for hc in data %}
+        <h1>{{ hc.value.heading }}</h1>
+        {% image hc.value.image width-900 class="img-responsive img-circle" %}
+
+        {% image hc.value.image width-400 as tmp_photo %}
+
+        <img src="{{ tmp_photo.url }}" width="{{ tmp_photo.width }}"
+            height="{{ tmp_photo.height }}" alt="{{ tmp_photo.alt }}" class="rounded-circle" />
+    {% endfor %}
+    {% endcomment %}
+
+
+  <!--div class="container  ForceMinHeight"-->
+<div id="carouselHero" class="carousel slide carousel-fade" data-ride="carousel" {{ value.pause_on_hover|yesno:",data-pause='false'" }} style="min-height: {{ value.min_height }}">
+  <div class="carousel-inner"><!-- style="height: 100%;"-->
+      {% for hc in value.items %}
+        {% image hc.value.image width-1920 as tmp_photo %}
+        {% if forloop.first %}
+            <div class="carousel-item active" data-interval="{{ hc.value.interval }}" style="height: 100%;">
+        {% else %}
+            <div class="carousel-item" data-interval="{{ hc.value.interval }}" style="height: 100%;">
+        {% endif %}
+            <!--img class="d-block w-100" src="{{ tmp_photo.url }}" alt="slide" style="height: 100vh"-->
+          {% if not hc.value.use_video %}
+            <div class="inline-block d-md-none" style="
+                    width: 100vw;
+                    height: {{ value.height }};
+                    min-height: {{ value.min_height }};
+                    /*background-attachment: fixed;*/
+                    background-color: #121212;
+                    background-image: url('{{ tmp_photo.url }}');
+                    background-size: cover;
+                    background-position: center;
+                    ">
+            </div>
+              <!--div class="d-xs-none d-md-inline-block" style="-->
+              <div class="d-none d-md-inline-block" style="
+                    width: 100vw;
+                    height: {{ value.height }};
+                    min-height: {{ value.min_height }};
+                    background-attachment: fixed;
+                    background-color: #121212;
+                    background-image: url('{{ tmp_photo.url }}');
+                    background-size: cover;
+                    background-position: center;
+                    ">
+            </div>
+          {% else %}
+              <div style="height: {{ value.height }}; background-color: #121212;display: block;object-fit: contain;">
+                  <video autoplay loop muted playsinline style="
+                            min-width: 100%;
+                            min-height: {{ value.min_height }};
+                            width: auto;
+                            height: auto;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            position: relative;
+                            display: block;
+                            object-fit: contain;
+                            ">
+                        <!--source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" /-->
+                        <source src="{{ hc.value.video.url }}" type="video/mp4" />
+                  </video>
+              </div>
+          {% endif %}
+            <div class="inline-block" style="
+                    position: absolute;
+                    width: 100vw;
+                    height: {{ value.height }};
+                    min-height: {{ value.min_height }};
+                    top: 0px;
+                    left: 0px;
+                    background-image: linear-gradient(
+                     rgba(0, 74, 135,{{ hc.value.tintBlue }}),
+                     rgba(0, 74, 135,{{ hc.value.tintBlue }})
+                     );
+                        ">
+
+            </div>
+            <div class="carousel-caption d-none d-block d-flex text_base text_shadow_black HeroText_Super" >
+                <div style="align-self: flex-end">
+                    {% comment %}
+                     {{ hc.value.heading | richtext }}
+                     {% endcomment %}
+                    <div class="textaum_{{ hc.value.text_size }} links_enh" style="color: {{ hc.value.text_color.color }};
+            text-align: {{ hc.value.align }};
+            line-height: 1em;
+            ">
+                        {% if hc.value.is_bold %}
+                            <strong>
+                        {% endif %}
+
+                        {% if hc.value.has_link %}
+
+                            {% if hc.value.use_external %}
+                                <a href="{{ hc.value.link_external }}"
+                                   {% if hc.value.open_on_new %}
+                                       target="_blank"
+                                   {% endif %}
+                                >{{ hc.value.text }}</a>
+                            {% else %}
+                                {% if hc.value.use_anchor %}
+                                    <a href="{% pageurl hc.value.page %}#{{ hc.value.anchor }}"
+                                       {% if hc.value.open_on_new %}
+                                           target="_blank"
+                                       {% endif %}
+                                    >{{ hc.value.text }}</a>
+                                {% else %}
+                                    <a href="{% pageurl hc.value.page %}"
+                                       {% if hc.value.open_on_new %}
+                                           target="_blank"
+                                       {% endif %}
+
+                                    >{{ hc.value.text }}</a>
+
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+
+
+                            {{ hc.value.text }}
+                        {% endif %}
+                        {% if hc.value.is_bold %}
+                            </strong>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      {% endfor %}
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselHero" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselHero" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<!--/div-->
+
+
+

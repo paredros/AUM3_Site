@@ -10,7 +10,18 @@
             <div class="carousel-item">
         {% endif %}
             {% image image.value width-1920 as tmp_photo %}
-                <div class="inline-block" style="
+                <div class="inline-block d-md-none" style="
+                        width: 100vw;
+                        height: 100vh;
+                        min-height: 500px;
+                        /*background-attachment: fixed;*/
+                        background-color: #121212;
+                        background-image: url('{{ tmp_photo.url }}');
+                        background-size: cover;
+                        background-position: center;
+                        ">
+                </div>
+                <div class="d-none d-md-inline-block" style="
                         width: 100vw;
                         height: 100vh;
                         min-height: 500px;
@@ -20,7 +31,6 @@
                         background-size: cover;
                         background-position: center;
                         ">
-
                 </div>
                 <div class="inline-block " style="
                     position: absolute;

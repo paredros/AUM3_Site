@@ -45,9 +45,11 @@ class BlogPage(RoutablePageMixin, Page):
 
     herobanner = StreamField([('large_banner', Banner()),
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('circle_banner_half', blocks.StaticBlock(label="Middle Circle Apply Half", icon="site")),
                               ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
                               ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
                               ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ('circle_talk_half', blocks.StaticBlock(label="Middle Circle Talk Half", icon="site")),
                               ], null=True, blank=True)
 
     content_panels = Page.content_panels + [
@@ -202,6 +204,9 @@ class PostPage(Page):
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock(icon="image")),
         ('embedded_video', EmbedBlock(icon="media")),
+        ('link_enhanced', LinkEnhanced()),
+        ('doc_enhanced', DocumentEnhanced()),
+        ('form_to_out', FormToOutput()),
     ])
     date = models.DateTimeField(verbose_name="Post date", default=datetime.datetime.today)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
@@ -225,6 +230,9 @@ class PostPage(Page):
         SnippetChooserPanel('author'),
     ]
 
+    def get_posts(self):
+        return PostPage.objects.live().order_by('-date')[:6]
+
     @property
     def blog_page(self):
         return self.get_parent().specific
@@ -233,6 +241,7 @@ class PostPage(Page):
         context = super(PostPage, self).get_context(request, *args, **kwargs)
         context['blog_page'] = self.blog_page
         context['post'] = self
+        context['posts'] = self.get_posts()
         return context
 
 

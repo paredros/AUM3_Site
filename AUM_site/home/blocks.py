@@ -5,6 +5,7 @@ from wagtail.core import blocks
 from wagtail.core.fields import StreamField
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.documents.blocks import DocumentChooserBlock
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
@@ -49,6 +50,32 @@ class FullWidthImage(blocks.StructBlock):
         label = 'Full Width Image'
 
 
+class FormItem(blocks.StructBlock):
+    id = blocks.CharBlock()
+    label = blocks.CharBlock(required=False)
+    default_value = blocks.CharBlock(required=False)
+    is_hidden = blocks.BooleanBlock(required=False)
+
+
+class FormToOutput(blocks.StructBlock):
+    title = blocks.CharBlock()
+    page_form = blocks.PageChooserBlock(required=False)
+    is_external = blocks.BooleanBlock(required=False)
+    url = blocks.CharBlock(required=False)
+    method = blocks.CharBlock(default="get")
+    submit_text = blocks.CharBlock(default="Send")
+    open_on_new = blocks.BooleanBlock(required=False)
+    fields = blocks.StreamBlock([
+        ('field', FormItem()),
+    ])
+
+
+    class Meta:
+        template = 'tmps/tmp_formtoout.html'
+        icon = 'placeholder'
+        label = 'Form To Output'
+
+
 class HeroBannerCarrousel(blocks.StructBlock):
     heading = blocks.RichTextBlock()
     image = ImageChooserBlock()
@@ -64,6 +91,50 @@ class HeroCarouselMulti(blocks.StructBlock):
         template = 'tmps/tmp_herocarousel.html'
         icon = 'placeholder'
         label = 'Hero Multi'
+
+
+class HeroC_ItemCustom(blocks.StructBlock):
+    #heading = blocks.RichTextBlock()
+    text_size = blocks.ChoiceBlock(choices=[
+        ('xsmall', 'X-Small'),
+        ('small', 'Small'),
+        ('normal', 'Normal'),
+        ('medium', 'Medium'),
+        ('big', 'Big'),
+        ('giant', 'Giant'),
+    ], icon='edit', default='big')
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    text = blocks.CharBlock(required=False)
+    is_bold = blocks.BooleanBlock(required=False)
+    image = ImageChooserBlock(required=False)
+    use_video = blocks.BooleanBlock(required=False)
+    video = DocumentChooserBlock(required=False)
+    interval = blocks.IntegerBlock(default=3000, label='Interval In millisec')
+
+    align = blocks.CharBlock(default="left", label='css align type [left, right, center, etc]')
+    tintBlue = blocks.FloatBlock(default=0.3, label='Alpha Tint of the Blue Overlay')
+    has_link = blocks.BooleanBlock(required=False)
+    page = blocks.PageChooserBlock(required=False)
+    use_external = blocks.BooleanBlock(required=False)
+    link_external = blocks.CharBlock(required=False)
+    use_anchor = blocks.BooleanBlock(required=False)
+    anchor = blocks.CharBlock(required=False, label="like #anchor, dont include #")
+    open_on_new = blocks.BooleanBlock(required=False)
+
+
+
+class HeroCarouselSuper(blocks.StructBlock):
+    items = blocks.StreamBlock([
+        ('item', HeroC_ItemCustom())
+    ])
+    pause_on_hover = blocks.BooleanBlock(required=False)
+    height = blocks.CharBlock(default="100vh")
+    min_height = blocks.CharBlock(default="500px")
+
+    class Meta:
+        template = 'tmps/tmp_herocarousel_super.html'
+        icon = 'placeholder'
+        label = 'Hero Super'
 
 
 class Banner(blocks.StructBlock):
@@ -85,6 +156,59 @@ class HeroBannerCircText(blocks.StructBlock):
     class Meta:
         icon = 'placeholder'
         template = 'tmps/tmp_banner_circ_text.html'
+
+
+##nuevo v2
+
+class LinkEnhanced(blocks.StructBlock):
+    text_size = blocks.ChoiceBlock(choices=[
+        ('xsmall', 'X-Small'),
+        ('small', 'Small'),
+        ('normal', 'Normal'),
+        ('medium', 'Medium'),
+        ('big', 'Big'),
+        ('giant', 'Giant'),
+    ], icon='edit', default='big')
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    text = blocks.CharBlock(required=False)
+    align = blocks.CharBlock(default="left", label='css align type [left, right, center, etc]')
+    use_container = blocks.BooleanBlock(required=False, default=False)
+    page = blocks.PageChooserBlock(required=False)
+    use_external = blocks.BooleanBlock(required=False)
+    link_external = blocks.CharBlock(required=False)
+    use_anchor = blocks.BooleanBlock(required=False)
+    anchor = blocks.CharBlock(required=False, label="like #anchor, dont include #")
+    open_on_new = blocks.BooleanBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_linkenhanced.html'
+        icon = 'placeholder'
+        label = 'Link Enhanced'
+
+
+class DocumentEnhanced(blocks.StructBlock):
+    text_size = blocks.ChoiceBlock(choices=[
+        ('xsmall', 'X-Small'),
+        ('small', 'Small'),
+        ('normal', 'Normal'),
+        ('medium', 'Medium'),
+        ('big', 'Big'),
+        ('giant', 'Giant'),
+    ], icon='edit', default='big')
+    text_color = SnippetChooserBlock('home.Colors', blank=True)
+    text = blocks.CharBlock(required=False)
+    align = blocks.CharBlock(default="left", label='css align type [left, right, center, etc]')
+    use_container = blocks.BooleanBlock(required=False, default=False)
+    document = DocumentChooserBlock(required=False)
+    open_on_new = blocks.BooleanBlock(required=False)
+
+    class Meta:
+        template = 'tmps/tmp_docenhanced.html'
+        icon = 'placeholder'
+        label = 'Document Enhanced'
+
+
+##---nuevo end
 
 
 class CircleApplyWithPhoto(blocks.StructBlock):
@@ -403,6 +527,7 @@ class SeparatorLittleArrow(blocks.StructBlock):
         icon = 'placeholder'
         label = 'Separator Little Arrow'
 
+
 class PlanOutline_Task(blocks.StructBlock):
     code = blocks.CharBlock(default="", required=False)
     name = blocks.CharBlock(default="")
@@ -496,6 +621,8 @@ class GenericButtonAum(blocks.StructBlock):
     link = blocks.PageChooserBlock(required=False)
     use_external = blocks.BooleanBlock(required=False)
     link_external = blocks.CharBlock(required=False)
+    use_anchor = blocks.BooleanBlock(required=False)
+    anchor = blocks.CharBlock(required=False, label="like #anchor, dont include #")
 
     class Meta:
         template = 'tmps/tmp_button_aum.html'
@@ -583,6 +710,7 @@ class Comp_InlineFill_Item(blocks.StructBlock):
     text = blocks.CharBlock()
     text_color = SnippetChooserBlock('home.Colors', blank=True)
     bold = blocks.BooleanBlock(required=False)
+
 
 class Comp_InlineFill(blocks.StructBlock):
     items = blocks.StreamBlock([
@@ -713,6 +841,13 @@ class YoutubeBlock(blocks.StructBlock):
 class AccordionItem(blocks.StructBlock):
     title = blocks.CharBlock()
     text = blocks.RichTextBlock()
+    items = blocks.StreamBlock([
+        ("link_enhanced", LinkEnhanced()),
+        ("doc_enhanced",DocumentEnhanced()),
+        ("text", blocks.RichTextBlock()),
+        ("anchor_id", AnchorBlock()),
+        ("form_to_out", FormToOutput()),
+    ], blank=True,required=False)
 
 
 class AccordionBlock(blocks.StructBlock):
@@ -727,6 +862,7 @@ class AccordionBlock(blocks.StructBlock):
     title_text_color = SnippetChooserBlock('home.Colors', blank=True)
     body_text_color = SnippetChooserBlock('home.Colors', blank=True)
     body_back_color = SnippetChooserBlock('home.Colors', blank=True)
+    use_container = blocks.BooleanBlock(required=False, default=False)
 
 
     class Meta:
@@ -797,6 +933,9 @@ class LeftColumnAum(blocks.StreamBlock):
     vertical_space = VerticalSpace()
     side_apply_button = SideApplyButton()
     generic_button = GenericButtonAum()
+    link_enhanced = LinkEnhanced()
+    doc_enchanced = DocumentEnhanced()
+    form_to_out = FormToOutput()
 
     class Meta:
         template = 'tmps/tmp_leftcolumn_aum.html'
@@ -812,6 +951,9 @@ class LeftColumnAumGeneric(blocks.StreamBlock):
     generic_button = GenericButtonAum()
     form_view = FormView()
     social_buttons = SocialButtons()
+    link_enhanced = LinkEnhanced()
+    doc_enchanced = DocumentEnhanced()
+    form_to_out = FormToOutput()
 
 
     class Meta:
@@ -829,6 +971,10 @@ class RightColumnAum(blocks.StreamBlock):
     generic_button = GenericButtonAum()
     anchor = AnchorBlock()
     full_width_image = FullWidthImage()
+    link_enhanced = LinkEnhanced()
+    doc_enchanced = DocumentEnhanced()
+    accordion_block = AccordionBlock()
+    form_to_out = FormToOutput()
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'
@@ -855,6 +1001,9 @@ class RightColumnAumGeneric(blocks.StreamBlock):
     anchor = AnchorBlock()
     generic_button = GenericButtonAum()
     full_width_image = FullWidthImage()
+    link_enhanced = LinkEnhanced()
+    doc_enchanced = DocumentEnhanced()
+    form_to_out = FormToOutput()
 
     class Meta:
         template = 'tmps/tmp_rightcolumn_aum.html'
@@ -1006,3 +1155,16 @@ class FooterColumn(blocks.StructBlock):
         ('group', FooterGroup()),
         ('blank', blocks.StaticBlock()),
     ])
+
+class IFrame(blocks.StructBlock):
+    title = blocks.CharBlock()
+    url = blocks.CharBlock()
+    width = blocks.CharBlock(default="100%")
+    height = blocks.CharBlock(default="500px")
+
+    class Meta:
+        template = 'tmps/tmp_iframe.html'
+        icon = 'placeholder'
+        label = 'IFrame'
+
+

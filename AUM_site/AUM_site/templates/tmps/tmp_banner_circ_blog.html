@@ -1,0 +1,28 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+<div class="container" style="margin-top: -60px">
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <div class="CirculoMiniBanner_post text-center text-white" onclick="window.location.href ='{% pageurl blog_page %}';">
+                <table class="Table-FullSize">
+                  <tbody>
+                    <tr>
+                        <td class="align-middle">
+                            <div class="Space-25"></div>
+                            <h1>
+                                {% comment %}
+                                {{ settings.home.ApplyBanner.bigtext }}
+                                {% endcomment %}
+                                AUM<span class="redAUM">LIVE</span>
+                            </h1>
+                            <img src="{% static 'icons/down-arrow.png' %}">
+                        </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

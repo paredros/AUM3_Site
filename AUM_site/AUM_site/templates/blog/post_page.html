@@ -39,13 +39,20 @@
     {% endwith %}
     {% endcomment %}
 
-    {% include "snips/simple_hero_img.html" with texttop=post.title textbody=post.summary %}
+    <div class="HeroLogo" style="z-index: 950000;">
+        <a href="{% pageurl request.site.root_page %}" ><img src="{{ settings.home.GlobalSettings.logoTopGeneral.url  }}"></a>
+    </div>
+    {% comment %}
+    {% include "snips/simple_hero_blue.html" with texttop=post.title textbody=post.summary %}
     {% include "snips/banner_circ_apply.html" %}
+    {% endcomment %}
+    {% include "snips/simple_hero_blue.html"%}
+    {% include "tmps/tmp_banner_circ_blog.html" %}
 
     {% include "tmps/tmp_topnav.html" %}
     <div id="__BODY"></div>
 
-    <div class="Space-50"></div>
+    <!--div class="Space-50"></div-->
     <div class="Space-10"></div>
     <div class="container aumblog_PostContainer_TopImage" style="background-color: #FFFFFF">
         <div class="card">
@@ -90,8 +97,9 @@
 
     <div class="container aumblog_PostContainer">
 
-
-        {{ post.body }}
+        <div class="post_body">
+            {{ post.body }}
+        </div>
         <div class="Space-50"></div>
         <div class="d-flex justify-content-end">
             <small class="text-muted">
@@ -120,6 +128,9 @@
 
     </div>
     </div>
+    <div class="Space-50"></div>
+
+    {% include "snips/blog_block.html" with data=posts%}
 
     {% include "snips/navstick.html" %}
 

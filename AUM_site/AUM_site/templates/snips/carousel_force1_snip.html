@@ -27,7 +27,8 @@
                 {% endcomment %}
                   {% image image.value width-1920 as tmp_photo %}
                   <div class="carousel-item {{ forloop.first|yesno:'active, ' }}">
-                    <div class="CarouselTest {{ data.use_round_effect|yesno:" ,CarouselTest_NoEffect" }}" style="background-image: url('{{ tmp_photo.url }}');"></div>
+                    <div class="d-md-none CarouselTest_Mobile {{ data.use_round_effect|yesno:" ,CarouselTest_NoEffect" }}" style="background-image: url('{{ tmp_photo.url }}');"></div>
+                    <div class="d-none d-md-inline-block CarouselTest {{ data.use_round_effect|yesno:" ,CarouselTest_NoEffect" }}" style="background-image: url('{{ tmp_photo.url }}');"></div>
                 </div>
               {% endfor %}
                 {% if data.text_big_size == "big" %}

@@ -3,7 +3,11 @@
 {% if value.use_external %}
 <div id="MiniButtonLeaf1" class="SidButtonMini_holder text-left" onclick="window.location='{{ value.link_external | safe }}';">
 {% else %}
-<div id="MiniButtonLeaf1" class="SidButtonMini_holder text-left" onclick="window.location='{% pageurl value.link %}';">
+    {% if value.use_anchor %}
+        <div id="MiniButtonLeaf1" class="SidButtonMini_holder text-left" onclick="window.location='{% pageurl value.link %}#{{ value.anchor }}';">
+    {% else %}
+        <div id="MiniButtonLeaf1" class="SidButtonMini_holder text-left" onclick="window.location='{% pageurl value.link %}';">
+    {% endif %}
 {% endif %}
     <div class="d-flex">
     <div class="SidButtonMini_text" style="color: {{ value.main_text_color.color }}">{{ value.title | safe }}</div>

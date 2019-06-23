@@ -1,0 +1,8 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+<div class="container">
+<iframe src="{{ value.url }}" title="{{ value.title }}" target="_parent" width="{{ value.width }}" height="{{ value.height }}">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+</div>

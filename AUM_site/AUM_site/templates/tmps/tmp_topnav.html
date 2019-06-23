@@ -3,7 +3,7 @@
 <div style="position: absolute;
                 left: 20px;
                 top: 10px;
-                width: 100%;">
+                width: 95%;">
     <div class="row d-none d-lg-block">
         <div class="col-11">
             <div class="row TopNav_General{{ page.use_inverted_menu|yesno:'heronavDark,' }}">
@@ -44,7 +44,7 @@
                                                         {% if line.value.use_external %}
                                                             <a class="dropdown-item" href="{{ line.value.link_external }}">{{ line.value.title }}</a>
                                                         {% else %}
-                                                            {% if item.value.use_anchor %}
+                                                            {% if line.value.use_anchor %}
                                                                 <a class="dropdown-item" href="{% pageurl line.value.page %}#{{ line.value.anchor }}">{{ line.value.title }}</a>
                                                             {% else %}
                                                                 <a class="dropdown-item" href="{% pageurl line.value.page %}">{{ line.value.title }}</a>
@@ -95,4 +95,5 @@
             </div>
         </div>
     </div>
+    <div id="__TOPMENU"></div>
 </div>

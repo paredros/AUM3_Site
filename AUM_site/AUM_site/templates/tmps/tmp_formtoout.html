@@ -1,0 +1,39 @@
+{% load static wagtailcore_tags wagtailimages_tags utils_tags %}
+
+
+<div class="container">
+
+        {% if not value.is_external %}
+            <form action="{{ value.page_form.url }}" method="{{ value.method }}"
+                  {% if value.open_on_new %}
+                  target="_blank"
+                  {% endif %}
+            >
+            {% csrf_token %}
+        {% else %}
+            <form action="{{ value.url }}" method="{{ value.method }}"
+                  {% if value.open_on_new %}
+                  target="_blank"
+                  {% endif %}
+            >
+        {% endif %}
+      <!-- the redirect_to is optional, the form will redirect to the referrer on submission -->
+      <!--input type='hidden' name='databaseList' value='' /-->
+
+      <!-- all your input fields here.... -->
+      <!--input type='text' name='queryString' /-->
+        {% for field in value.fields %}
+            <label for="{{ field.value.id }}">{{ field.value.label }}</label>
+            <input
+                {% if field.value.is_hidden %}
+                    type='hidden'
+                {% else %}
+                    type='text'
+                {% endif %}
+                id='{{ field.value.id }}' name='{{ field.value.id }}' value='{{ field.value.default_value }}'
+            >
+        {% endfor %}
+
+      <input type='submit' value='{{ value.submit_text }}' />
+    </form>
+</div>

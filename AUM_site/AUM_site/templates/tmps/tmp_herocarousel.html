@@ -24,7 +24,19 @@
             <div class="carousel-item">
         {% endif %}
             <!--img class="d-block w-100" src="{{ tmp_photo.url }}" alt="slide" style="height: 100vh"-->
-            <div class="inline-block" style="
+            <div class="inline-block d-md-none" style="
+                    width: 100vw;
+                    height: 100vh;
+                    min-height: 500px;
+                    /*background-attachment: fixed;*/
+                    background-color: #121212;
+                    background-image: url('{{ tmp_photo.url }}');
+                    background-size: cover;
+                    background-position: center;
+                    ">
+                <!--img class="d-block w-auto" src="{{ tmp_photo.url }}" alt="slide" style="height: 100vh;"-->
+            </div>
+            <div class="d-none d-md-inline-block" style="
                     width: 100vw;
                     height: 100vh;
                     min-height: 500px;

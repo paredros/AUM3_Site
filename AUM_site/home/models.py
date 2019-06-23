@@ -40,13 +40,16 @@ class HomePage(Page):
         ('solo_text', HeroSoloText()),
         ('photo_or_letters', HeroWithFotoOrLetter()),
         ('with_parameters', HeroParametric()),
+        ('super', HeroCarouselSuper()),
     ], null=True, blank=True)
 
     herobanner = StreamField([('large_banner', Banner()),
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('circle_banner_half', blocks.StaticBlock(label="Middle Circle Apply Half", icon="site")),
                               ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
                               ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
                               ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ('circle_talk_half', blocks.StaticBlock(label="Middle Circle Talk Half", icon="site")),
                               ], null=True, blank=True)
 
     use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
@@ -100,6 +103,11 @@ class HomePage(Page):
         ('anchor', AnchorBlock()),
         ('generic_button', GenericButtonAum()),
         ('full_width_image', FullWidthImage()),
+        ('link_enhanced', LinkEnhanced()),
+        ('doc_enhanced', DocumentEnhanced()),
+        ('accordion_block', AccordionBlock()),
+        ('iframe', IFrame()),
+        ('form_to_out', FormToOutput()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -170,13 +178,16 @@ class ProgramPage(Page):
         ('solo_text', HeroSoloText()),
         ('photo_or_letters', HeroWithFotoOrLetter()),
         ('with_parameters', HeroParametric()),
+        ('super', HeroCarouselSuper()),
     ], null=True, blank=True)
 
     herobanner = StreamField([('large_banner', Banner()),
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('circle_banner_half', blocks.StaticBlock(label="Middle Circle Apply Half", icon="site")),
                               ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
                               ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
                               ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ('circle_talk_half', blocks.StaticBlock(label="Middle Circle Talk Half", icon="site")),
                               ], null=True, blank=True)
 
     use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
@@ -208,6 +219,11 @@ class ProgramPage(Page):
         ('anchor', AnchorBlock()),
         ('generic_button', GenericButtonAum()),
         ('full_width_image', FullWidthImage()),
+        ('link_enhanced', LinkEnhanced()),
+        ('doc_enhanced', DocumentEnhanced()),
+        ('accordion_block', AccordionBlock()),
+        ('iframe', IFrame()),
+        ('form_to_out', FormToOutput()),
     ], null=True, blank=True)
 
     effects = StreamField([
@@ -263,12 +279,15 @@ class ContentPage(Page):
                                 ('solo_text', HeroSoloText()),
                                 ('photo_or_letters', HeroWithFotoOrLetter()),
                                 ('with_parameters', HeroParametric()),
+                                ('super', HeroCarouselSuper()),
                                  ], null=True, blank=True)
     herobanner = StreamField([('large_banner', Banner()),
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('circle_banner_half', blocks.StaticBlock(label="Middle Circle Apply Half", icon="site")),
                               ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
                               ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
                               ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ('circle_talk_half', blocks.StaticBlock(label="Middle Circle Talk Half", icon="site")),
                               ], null=True, blank=True)
 
     use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
@@ -300,6 +319,11 @@ class ContentPage(Page):
         ('anchor', AnchorBlock()),
         ('generic_button', GenericButtonAum()),
         ('full_width_image', FullWidthImage()),
+        ('link_enhanced', LinkEnhanced()),
+        ('doc_enhanced', DocumentEnhanced()),
+        ('accordion_block', AccordionBlock()),
+        ('iframe', IFrame()),
+        ('form_to_out', FormToOutput()),
         #('form_view', FormView()),
     ], null=True, blank=True)
 
@@ -354,12 +378,15 @@ class FormPage(AbstractEmailForm):
         ('solo_text', HeroSoloText()),
         ('photo_or_letters', HeroWithFotoOrLetter()),
         ('with_parameters', HeroParametric()),
+        ('super', HeroCarouselSuper()),
     ], null=True, blank=True)
     herobanner = StreamField([('large_banner', Banner()),
                               ('circle_banner', blocks.StaticBlock(label="Middle Circle Apply", icon="site")),
+                              ('circle_banner_half', blocks.StaticBlock(label="Middle Circle Apply Half", icon="site")),
                               ('mini_banner', blocks.StaticBlock(label="Mini Circle Apply", icon="site")),
                               ('only_text', HeroBannerCircText(label="Only Text Circle", icon="site")),
                               ('circle_talk', blocks.StaticBlock(label="Middle Circle Talk", icon="site")),
+                              ('circle_talk_half', blocks.StaticBlock(label="Middle Circle Talk Half", icon="site")),
                               ], null=True, blank=True)
 
     use_inverted_menu = models.BooleanField(default=False, help_text="Invert the color of the Top Menu")
@@ -392,6 +419,10 @@ class FormPage(AbstractEmailForm):
         ('anchor', AnchorBlock()),
         ('generic_button', GenericButtonAum()),
         ('full_width_image', FullWidthImage()),
+        ('link_enhanced', LinkEnhanced()),
+        ('doc_enhanced', DocumentEnhanced()),
+        ('accordion_block', AccordionBlock()),
+        ('iframe', IFrame()),
     ], null=True, blank=True)
 
     thank_you_body = StreamField([
@@ -421,6 +452,10 @@ class FormPage(AbstractEmailForm):
         ('anchor', AnchorBlock()),
         ('generic_button', GenericButtonAum()),
         ('full_width_image', FullWidthImage()),
+        ('link_enhanced', LinkEnhanced()),
+        ('doc_enhanced', DocumentEnhanced()),
+        ('accordion_block', AccordionBlock()),
+        ('iframe', IFrame()),
         #('form_view', FormView()),
     ], null=True, blank=True)
 
@@ -490,6 +525,7 @@ class GlobalSettings(BaseSetting):
     scholarship_text = RichTextField(default="")
     scholarship_short = models.CharField(default="", max_length=255, help_text='Url of Representative')
     use_wagtail_bar = models.BooleanField(default=False)
+
 
 
 @register_setting
